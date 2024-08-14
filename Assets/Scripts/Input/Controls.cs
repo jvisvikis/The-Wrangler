@@ -38,7 +38,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Wrangle"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""a18a5e2f-c7b0-4dfe-85e6-6e7a90066f1a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
