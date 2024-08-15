@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Controls playerControls;
     private Rigidbody2D rb2d;
 
-    [SerializeField] private GameObject lasso;
+    [SerializeField] private Lasso lasso;
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f;
     [SerializeField] private float speed = 2f;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(!lassoing) rb2d.velocity = GetDirection() * speed;
+        if(!lassoing && !bringingBackLasso) rb2d.velocity = GetDirection() * speed;
         else rb2d.velocity = Vector2.zero;
     }
 
@@ -55,20 +55,19 @@ public class PlayerController : MonoBehaviour
 
     void StartLassoCharge()
     {
-        Debug.Log("Start Lasso");
-        lassoing = true;
-        if(!bringingBackLasso) StartCoroutine(ChargeLasso());
+        if(!bringingBackLasso && lasso.animal == null) StartCoroutine(ChargeLasso());
     }
 
     void ReleaseLasso()
     {
-        Debug.Log("Release Lasso");
         lassoing = false;
-        if (!bringingBackLasso) StartCoroutine(BringLassoBack(0.5f, 0.25f));
+        if(!bringingBackLasso && lasso.animal != null) StartCoroutine(BringAnimalBack());
+        if(!bringingBackLasso && lasso.animal == null) StartCoroutine(BringLassoBack(0.5f, 0.25f));
     }
 
     private IEnumerator ChargeLasso()
     {
+        lassoing = true;
         Vector3 mousePos = Mouse.current.position.ReadValue();   
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
@@ -82,6 +81,22 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private IEnumerator BringAnimalBack()
+    {
+        bringingBackLasso = true;
+        Vector2 startPos = (Vector2)lasso.transform.localPosition;
+        float timer = 0;
+        lasso.BringAnimal();
+        while(Vector2.Distance(lasso.transform.position, transform.position) > 2f && lasso.animal != null)
+        {
+            lasso.transform.localPosition = Vector2.Lerp(startPos, Vector2.zero, timer);
+            timer -= Time.deltaTime;
+            if(playerControls.Player.Wrangle.triggered) timer += 0.15f;        
+            yield return null;
+        }
+        bringingBackLasso = false;
+    }
+
     private IEnumerator BringLassoBack(float duration, float delay)
     {
         bringingBackLasso = true;
@@ -90,7 +105,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         while(timer < duration)
         {
-            float stepAmount = Mathf.Pow (timer * duration, 2);
+            float stepAmount = Mathf.Pow (timer * 1.5f, 2);
             lasso.transform.localPosition = Vector2.Lerp(lasso.transform.localPosition, Vector2.zero, stepAmount);
             timer += Time.deltaTime;
             
@@ -98,7 +113,6 @@ public class PlayerController : MonoBehaviour
         }
         lasso.transform.localPosition = Vector2.zero;
         lassoTimer = 0;
-        Debug.Log("lasso is back");
         bringingBackLasso = false;
     }
 }
