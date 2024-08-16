@@ -922,7 +922,7 @@ MonoBehaviour:
   lasso: {fileID: 1462722192}
   lassoRange: 5
   lassoChargeTime: 0.5
-  followSharpness: 0.1
+  followSharpness: 0.05
   followDistance: 2
   speed: 10
 --- !u!212 &2123059012

@@ -24,13 +24,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aim",
-                    "type": "Value",
-                    "id": "6f17a8e2-6577-4263-ae98-911841a4f2eb",
-                    "expectedControlType": "Delta",
+                    "name": "Release",
+                    "type": "Button",
+                    "id": "a446df05-5ef0-4172-af71-e3500f79295a",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -102,12 +102,12 @@
                 },
                 {
                     "name": "",
-                    "id": "374c997f-9f9b-4507-bb7c-a60c93849be7",
-                    "path": "<Mouse>/delta",
+                    "id": "9131fb18-d6fe-45c9-a44d-23dd2be8a53b",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
+                    "action": "Release",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -7,7 +7,7 @@ public class Lasso : MonoBehaviour
     [SerializeField] private LayerMask animalLayerMask;
     public GameObject animal {get; private set;}
 
-    private bool gotAnimal;
+    public bool gotAnimal{get; private set;}
     
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,5 +30,14 @@ public class Lasso : MonoBehaviour
         gotAnimal = true;
         animal.transform.parent = transform;
         animal.transform.localPosition = Vector2.zero;
+    }
+
+    public void ReleaseAnimal()
+    {
+        gotAnimal = false;
+        animal.transform.parent = null;
+        animal.GetComponent<SpriteRenderer>().color = Color.white;
+        animal = null;
+
     }
 }

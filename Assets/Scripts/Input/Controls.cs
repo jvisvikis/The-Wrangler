@@ -46,13 +46,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim"",
-                    ""type"": ""Value"",
-                    ""id"": ""6f17a8e2-6577-4263-ae98-911841a4f2eb"",
-                    ""expectedControlType"": ""Delta"",
+                    ""name"": ""Release"",
+                    ""type"": ""Button"",
+                    ""id"": ""a446df05-5ef0-4172-af71-e3500f79295a"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -124,12 +124,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""374c997f-9f9b-4507-bb7c-a60c93849be7"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""9131fb18-d6fe-45c9-a44d-23dd2be8a53b"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""Release"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -142,7 +142,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Wrangle = m_Player.FindAction("Wrangle", throwIfNotFound: true);
-        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+        m_Player_Release = m_Player.FindAction("Release", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,14 +206,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Wrangle;
-    private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_Release;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Wrangle => m_Wrapper.m_Player_Wrangle;
-        public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        public InputAction @Release => m_Wrapper.m_Player_Release;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -229,9 +229,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Wrangle.started += instance.OnWrangle;
             @Wrangle.performed += instance.OnWrangle;
             @Wrangle.canceled += instance.OnWrangle;
-            @Aim.started += instance.OnAim;
-            @Aim.performed += instance.OnAim;
-            @Aim.canceled += instance.OnAim;
+            @Release.started += instance.OnRelease;
+            @Release.performed += instance.OnRelease;
+            @Release.canceled += instance.OnRelease;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -242,9 +242,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Wrangle.started -= instance.OnWrangle;
             @Wrangle.performed -= instance.OnWrangle;
             @Wrangle.canceled -= instance.OnWrangle;
-            @Aim.started -= instance.OnAim;
-            @Aim.performed -= instance.OnAim;
-            @Aim.canceled -= instance.OnAim;
+            @Release.started -= instance.OnRelease;
+            @Release.performed -= instance.OnRelease;
+            @Release.canceled -= instance.OnRelease;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -266,6 +266,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnWrangle(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
+        void OnRelease(InputAction.CallbackContext context);
     }
 }

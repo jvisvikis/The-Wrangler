@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         playerControls = new Controls();
         playerControls.Player.Wrangle.performed += ctx => StartLassoCharge();
         playerControls.Player.Wrangle.canceled += ctx => ReleaseLasso();
+        playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -66,8 +67,13 @@ public class PlayerController : MonoBehaviour
 
     void ReleaseAnimal()
     {
-        lasso.transform.parent = transform;
-        lasso.transform.localPosition = Vector2.zero;
+        if(lasso.gotAnimal)
+        {
+            lasso.ReleaseAnimal();
+            lasso.transform.parent = transform;
+            lasso.transform.localPosition = Vector2.zero;
+            animalFollowing = false;
+        }
     }
 
     void ReleaseLasso()
@@ -90,7 +96,7 @@ public class PlayerController : MonoBehaviour
             lassoTimer += Time.deltaTime;
             yield return null;
         }
-        
+        lassoTimer = 0;
     }
 
     private IEnumerator BringAnimalBack()
