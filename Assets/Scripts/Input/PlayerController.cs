@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Lasso lasso;
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f;
+    [SerializeField] private float followSharpness = 2f;
+    [SerializeField] private float followDistance = 2f;
     [SerializeField] private float speed = 2f;
     
     private float lassoTimer;
     private bool lassoing;
     private bool bringingBackLasso;
+    private bool animalFollowing;
 
     void Awake()
     {
@@ -41,6 +44,9 @@ public class PlayerController : MonoBehaviour
     {
         if(!lassoing && !bringingBackLasso) rb2d.velocity = GetDirection() * speed;
         else rb2d.velocity = Vector2.zero;
+
+        if(animalFollowing && Vector2.Distance(transform.position, lasso.transform.position) > followDistance) 
+            lasso.transform.position += (transform.position - lasso.transform.position) * followSharpness;
     }
 
     public Vector2 GetDirection()
@@ -56,6 +62,12 @@ public class PlayerController : MonoBehaviour
     void StartLassoCharge()
     {
         if(!bringingBackLasso && lasso.animal == null) StartCoroutine(ChargeLasso());
+    }
+
+    void ReleaseAnimal()
+    {
+        lasso.transform.parent = transform;
+        lasso.transform.localPosition = Vector2.zero;
     }
 
     void ReleaseLasso()
@@ -94,7 +106,9 @@ public class PlayerController : MonoBehaviour
             if(playerControls.Player.Wrangle.triggered) timer += 0.15f;        
             yield return null;
         }
+        lasso.transform.parent = null;
         bringingBackLasso = false;
+        animalFollowing = true;
     }
 
     private IEnumerator BringLassoBack(float duration, float delay)
