@@ -5,6 +5,7 @@ using UnityEngine;
 public class Lasso : MonoBehaviour
 {
     [SerializeField] private LayerMask animalLayerMask;
+    
     public GameObject animal {get; private set;}
 
     public bool gotAnimal{get; private set;}
