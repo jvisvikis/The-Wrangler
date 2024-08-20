@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
 {
     private Controls playerControls;
     private Rigidbody2D rb2d;
+    private SwitchCamera switchCam;
 
     [SerializeField] private Lasso lasso;
+    [SerializeField] private Transform wrangleCam;
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f;
     [SerializeField] private float followSharpness = 2f;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
         rb2d = GetComponent<Rigidbody2D>();
+        switchCam = GetComponent<SwitchCamera>();
     }
 
     void OnEnable()
@@ -55,7 +58,11 @@ public class PlayerController : MonoBehaviour
         if(animalFollowing && Vector2.Distance(transform.position, lasso.transform.position) > followDistance) 
             lasso.transform.position += (transform.position - lasso.transform.position) * followSharpness;
 
-        if(bringingAnimalBack && pullTimer <= 0) ReleaseAnimal();
+        if(bringingAnimalBack && pullTimer <= 0) 
+        {
+            ReleaseAnimal();
+            switchCam.SwitchPriority();
+        }
         else pullTimer -= Time.deltaTime;
 
     }
@@ -108,8 +115,18 @@ public class PlayerController : MonoBehaviour
             lasso.BringAnimal(transform.position-lasso.transform.position);
             moveCounter = lasso.animal.moveNum;
             pullTimer = pullTime;
+            switchCam.SwitchPriority();
+            Vector2 point = SetMidPoint((Vector2)transform.localPosition, (Vector2)lasso.transform.localPosition);
+            wrangleCam.localPosition = new Vector3(point.x, point.y, -10); 
         }
         if(!bringingBackLasso && lasso.animal == null) StartCoroutine(BringLassoBack(0.5f, 0.25f));
+    }
+
+    private Vector2 SetMidPoint(Vector2 start, Vector2 end)
+    {
+        float x = (end.x - start.x)/2;
+        float y = (end.y - start.y)/2;
+        return new Vector2(x,y);
     }
 
     private IEnumerator ChargeLasso()
@@ -133,11 +150,17 @@ public class PlayerController : MonoBehaviour
         bringingAnimalBack = false;
         Vector2 startPos = (Vector2)lasso.transform.localPosition;
         Vector2 endPos = new Vector2(startPos.x/3*2, startPos.y/3*2);
+        Vector3 camStartPoint = wrangleCam.localPosition;
+        Vector2 point = SetMidPoint((Vector2)transform.localPosition, endPos);
+        Vector3 camEndPoint = new Vector3(point.x, point.y, -10);
+
+
         float timer = 0;
         
         while(timer < duration)
         {
             lasso.transform.localPosition = Vector2.Lerp(startPos, endPos, timer/duration);
+            wrangleCam.localPosition = Vector3.Lerp(camStartPoint, camEndPoint, timer/duration);
             timer += Time.deltaTime;       
             yield return null;
         }
@@ -149,6 +172,7 @@ public class PlayerController : MonoBehaviour
             animalFollowing = true;
             bringingBackLasso = false;
             timesPulled = 0;
+            switchCam.SwitchPriority();
         }
         else
         {
