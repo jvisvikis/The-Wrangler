@@ -7,10 +7,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Controls playerControls;
+    private Merchant merchant;
     private Rigidbody2D rb2d;
+    private PlayerWorldUI playerWorldUI;
     private SwitchCamera switchCam;
 
+    [SerializeField] private Collider2D playerCollider;
     [SerializeField] private Lasso lasso;
+    [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f;
@@ -36,8 +40,13 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Wrangle.canceled += ctx => ReleaseLasso();
         playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
+        merchant = FindObjectOfType<Merchant>();
         rb2d = GetComponent<Rigidbody2D>();
+        playerWorldUI = GetComponent<PlayerWorldUI>();
         switchCam = GetComponent<SwitchCamera>();
+
+        playerWorldUI.SetCanvas(false);
+        playerWorldUI.FillPullBar(0f);
     }
 
     void OnEnable()
@@ -77,7 +86,13 @@ public class PlayerController : MonoBehaviour
         return (Vector2)lasso.transform.position;
     }
 
-    void Wrangle()
+    public string GetAnimalName()
+    {
+        if(lasso.gotAnimal) return lasso.animal.animalName;
+        else return null;
+    }
+
+    private void Wrangle()
     {
         if(!bringingBackLasso && lasso.animal == null) StartCoroutine(ChargeLasso());
         if(bringingAnimalBack) 
@@ -90,13 +105,17 @@ public class PlayerController : MonoBehaviour
                 timesPulled++;
                 StartCoroutine(BringAnimalBack(0.25f));
             }
+            playerWorldUI.FillPullBar(1f - moveCounter/lasso.animal.moveNum);
         }
     }
 
-    void ReleaseAnimal()
+    public void ReleaseAnimal()
     {
         if(lasso.gotAnimal)
         {
+            playerWorldUI.SetCanvas(false);
+            playerWorldUI.FillPullBar(0f);
+            if(playerCollider.IsTouchingLayers(merchantMask)) merchant.TakeAnimal(lasso.animal);
             lasso.ReleaseAnimal();
             lasso.transform.parent = transform;
             animalFollowing = false;
@@ -105,7 +124,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ReleaseLasso()
+    private void ReleaseLasso()
     {
         lassoing = false;
         if(!bringingBackLasso && lasso.animal != null && !animalFollowing) 
@@ -116,13 +135,15 @@ public class PlayerController : MonoBehaviour
             moveCounter = lasso.animal.moveNum;
             pullTimer = pullTime;
             switchCam.SwitchPriority();
-            Vector2 point = SetMidPoint((Vector2)transform.localPosition, (Vector2)lasso.transform.localPosition);
+            Vector2 point = GetMidPoint(Vector2.zero, (Vector2)lasso.transform.localPosition);
             wrangleCam.localPosition = new Vector3(point.x, point.y, -10); 
+            playerWorldUI.SetCanvas(true);
+            playerWorldUI.FillPullBar(0f);
         }
         if(!bringingBackLasso && lasso.animal == null) StartCoroutine(BringLassoBack(0.5f, 0.25f));
     }
 
-    private Vector2 SetMidPoint(Vector2 start, Vector2 end)
+    private Vector2 GetMidPoint(Vector2 start, Vector2 end)
     {
         float x = (end.x - start.x)/2;
         float y = (end.y - start.y)/2;
@@ -151,7 +172,7 @@ public class PlayerController : MonoBehaviour
         Vector2 startPos = (Vector2)lasso.transform.localPosition;
         Vector2 endPos = new Vector2(startPos.x/3*2, startPos.y/3*2);
         Vector3 camStartPoint = wrangleCam.localPosition;
-        Vector2 point = SetMidPoint((Vector2)transform.localPosition, endPos);
+        Vector2 point = GetMidPoint(Vector2.zero, endPos);
         Vector3 camEndPoint = new Vector3(point.x, point.y, -10);
 
 
@@ -173,6 +194,7 @@ public class PlayerController : MonoBehaviour
             bringingBackLasso = false;
             timesPulled = 0;
             switchCam.SwitchPriority();
+            playerWorldUI.SetCanvas(false);
         }
         else
         {

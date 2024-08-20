@@ -6,8 +6,9 @@ public class Animal : MonoBehaviour
 {
     private State state = State.Idle;
     private enum State {Idle, Moving, BeingWrangled, Follow}
-    
+
     public float moveNum = 10;
+    public string animalName;
     [SerializeField] private float pullStrength;
    
 
@@ -32,7 +33,7 @@ public class Animal : MonoBehaviour
     {
         while(state == State.BeingWrangled)
         {
-            lasso.transform.position = (Vector2)lasso.transform.position + dir * pullStrength * Time.deltaTime;
+            lasso.transform.position = (Vector2)lasso.transform.position + dir * Random.Range(0,pullStrength) * Time.deltaTime;
             yield return null;
         }
     }
