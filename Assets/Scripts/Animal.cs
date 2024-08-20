@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private State state = State.Idle;
+    private enum State {Idle, Moving, BeingWrangled, Follow}
+    
+    public float moveNum = 10;
+    [SerializeField] private float pullStrength;
+   
+
+
+    public void PullBack(Vector2 dir, GameObject lasso)
     {
-        
+        state = State.BeingWrangled;
+        StartCoroutine(MoveBack(dir, lasso));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Wrangled()
     {
-        
+        state = State.Follow;
+    }
+
+    public void Release()
+    {
+        state = State.Idle;
+    }
+
+    private IEnumerator MoveBack(Vector2 dir, GameObject lasso)
+    {
+        while(state == State.BeingWrangled)
+        {
+            lasso.transform.position = (Vector2)lasso.transform.position + dir * pullStrength * Time.deltaTime;
+            yield return null;
+        }
     }
 }

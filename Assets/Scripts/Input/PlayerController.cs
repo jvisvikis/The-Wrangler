@@ -14,8 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float lassoChargeTime = 1f;
     [SerializeField] private float followSharpness = 2f;
     [SerializeField] private float followDistance = 2f;
+    [SerializeField] private float pullStrength;
+    [SerializeField] private float pullTime;
     [SerializeField] private float speed = 2f;
-    [SerializeField] private float moveNum = 10;
+
+    private float pullTimer;
     private float lassoTimer;
     private float moveCounter;
     private int timesPulled;
@@ -32,7 +35,6 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
         rb2d = GetComponent<Rigidbody2D>();
-        moveCounter = moveNum;
     }
 
     void OnEnable()
@@ -52,6 +54,10 @@ public class PlayerController : MonoBehaviour
 
         if(animalFollowing && Vector2.Distance(transform.position, lasso.transform.position) > followDistance) 
             lasso.transform.position += (transform.position - lasso.transform.position) * followSharpness;
+
+        if(bringingAnimalBack && pullTimer <= 0) ReleaseAnimal();
+        else pullTimer -= Time.deltaTime;
+
     }
 
     public Vector2 GetDirection()
@@ -69,10 +75,11 @@ public class PlayerController : MonoBehaviour
         if(!bringingBackLasso && lasso.animal == null) StartCoroutine(ChargeLasso());
         if(bringingAnimalBack) 
         {
-            moveCounter--;
+            moveCounter -= pullStrength;
             if(moveCounter <= 0)
             {
-                moveCounter = moveNum;
+                pullTimer = pullTime;
+                moveCounter = lasso.animal.moveNum;
                 timesPulled++;
                 StartCoroutine(BringAnimalBack(0.25f));
             }
@@ -85,8 +92,9 @@ public class PlayerController : MonoBehaviour
         {
             lasso.ReleaseAnimal();
             lasso.transform.parent = transform;
-            lasso.transform.localPosition = Vector2.zero;
             animalFollowing = false;
+            bringingAnimalBack = false;
+            StartCoroutine(BringLassoBack(0.5f,0.25f));
         }
     }
 
@@ -97,7 +105,9 @@ public class PlayerController : MonoBehaviour
         {
             bringingAnimalBack = true;
             bringingBackLasso = true;
-            lasso.BringAnimal();
+            lasso.BringAnimal(transform.position-lasso.transform.position);
+            moveCounter = lasso.animal.moveNum;
+            pullTimer = pullTime;
         }
         if(!bringingBackLasso && lasso.animal == null) StartCoroutine(BringLassoBack(0.5f, 0.25f));
     }
@@ -135,6 +145,7 @@ public class PlayerController : MonoBehaviour
         if(timesPulled >= 3)
         {
             lasso.transform.parent = null;
+            lasso.AnimalWrangled();
             animalFollowing = true;
             bringingBackLasso = false;
             timesPulled = 0;

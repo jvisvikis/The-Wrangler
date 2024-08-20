@@ -6,7 +6,7 @@ public class Lasso : MonoBehaviour
 {
     [SerializeField] private LayerMask animalLayerMask;
     
-    public GameObject animal {get; private set;}
+    public Animal animal {get; private set;}
 
     public bool gotAnimal{get; private set;}
     
@@ -14,23 +14,30 @@ public class Lasso : MonoBehaviour
     {
         if((animalLayerMask & (1 << other.gameObject.layer)) != 0)
         {
-            animal = other.gameObject;
+            animal = other.gameObject.GetComponent<Animal>();
             animal.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if(animal != other.gameObject || gotAnimal) return;
+        if(animal == null || gotAnimal) return;
         animal.GetComponent<SpriteRenderer>().color = Color.white;
         animal = null;
     }
 
-    public void BringAnimal()
+    public void AnimalWrangled()
+    {
+        animal.Wrangled();
+    }
+
+    public void BringAnimal(Vector2 dir)
     {
         gotAnimal = true;
+        transform.position = animal.transform.position;
         animal.transform.parent = transform;
         animal.transform.localPosition = Vector2.zero;
+        animal.PullBack(-dir, this.gameObject);
     }
 
     public void ReleaseAnimal()
@@ -38,6 +45,7 @@ public class Lasso : MonoBehaviour
         gotAnimal = false;
         animal.transform.parent = null;
         animal.GetComponent<SpriteRenderer>().color = Color.white;
+        animal.Release();
         animal = null;
 
     }
