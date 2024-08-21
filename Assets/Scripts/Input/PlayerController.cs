@@ -6,12 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    private Controls playerControls;
-    private Merchant merchant;
-    private Rigidbody2D rb2d;
-    private PlayerWorldUI playerWorldUI;
-    private SwitchCamera switchCam;
-
+    public float pullStrength;
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private Lasso lasso;
     [SerializeField] private LayerMask merchantMask;
@@ -19,11 +14,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f;
     [SerializeField] private float followSharpness = 2f;
-    [SerializeField] private float followDistance = 2f;
-    [SerializeField] private float pullStrength;
+    [SerializeField] private float followDistance = 2f; 
     [SerializeField] private float pullTime;
     [SerializeField] private float speed = 2f;
-
+    private Controls playerControls;
+    private Merchant merchant;
+    private Rigidbody2D rb2d;
+    private PlayerWorldUI playerWorldUI;
+    private SwitchCamera switchCam;
     private float pullTimer;
     private float lassoTimer;
     private float moveCounter;
@@ -116,6 +114,7 @@ public class PlayerController : MonoBehaviour
             playerWorldUI.SetCanvas(false);
             playerWorldUI.FillPullBar(0f);
             if(playerCollider.IsTouchingLayers(merchantMask)) merchant.TakeAnimal(lasso.animal);
+            timesPulled = 0;
             lasso.ReleaseAnimal();
             lasso.transform.parent = transform;
             animalFollowing = false;
