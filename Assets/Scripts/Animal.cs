@@ -29,6 +29,11 @@ public class Animal : MonoBehaviour
         state = State.Idle;
     }
 
+    public void MoveTo(Vector2 target, float duration)
+    {
+        StartCoroutine(GoTo(target,duration));
+    }
+
     private IEnumerator MoveBack(Vector2 dir, GameObject lasso)
     {
         while(state == State.BeingWrangled)
@@ -36,5 +41,19 @@ public class Animal : MonoBehaviour
             lasso.transform.position = (Vector2)lasso.transform.position + dir * Random.Range(0,pullStrength) * Time.deltaTime;
             yield return null;
         }
+    }
+
+    private IEnumerator GoTo(Vector2 target, float duration)
+    {
+        Debug.Log("Move");
+        float timer = 0;
+        Vector2 startPos = (Vector2)transform.position;
+        while(timer < duration)
+        {
+            transform.position = Vector2.Lerp(startPos, target, timer/duration);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        Destroy(this.gameObject);
     }
 }

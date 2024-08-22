@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public float pullStrength;
     [SerializeField] private Collider2D playerCollider;
-    [SerializeField] private Lasso lasso;
+    [SerializeField] private List<Lasso> lassos;
     [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
     [SerializeField] private float lassoRange = 5f;
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float followDistance = 2f; 
     [SerializeField] private float pullTime;
     [SerializeField] private float speed = 2f;
+    [SerializeField] private int lassoLimit = 4;
     private Controls playerControls;
     private Merchant merchant;
     private Rigidbody2D rb2d;
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Wrangle.canceled += ctx => ReleaseLasso();
         playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
+        lassos = new List<Lasso>();
+        lassos.Add(FindObjectOfType<Lasso>());
         merchant = FindObjectOfType<Merchant>();
         rb2d = GetComponent<Rigidbody2D>();
         playerWorldUI = GetComponent<PlayerWorldUI>();
@@ -62,8 +65,8 @@ public class PlayerController : MonoBehaviour
         if(!lassoing && !bringingBackLasso) rb2d.velocity = GetDirection() * speed;
         else rb2d.velocity = Vector2.zero;
 
-        if(animalFollowing && Vector2.Distance(transform.position, lasso.transform.position) > followDistance) 
-            lasso.transform.position += (transform.position - lasso.transform.position) * followSharpness;
+        if(animalFollowing && Vector2.Distance(transform.position, lassos[0].transform.position) > followDistance) 
+            lassos[0].transform.position += (transform.position - lassos[0].transform.position) * followSharpness;
 
         if(bringingAnimalBack && pullTimer <= 0) 
         {
@@ -81,42 +84,42 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 GetLassoPosition()
     {
-        return (Vector2)lasso.transform.position;
+        return (Vector2)GetFreeLasso().transform.position;
     }
 
     public string GetAnimalName()
     {
-        if(lasso.gotAnimal) return lasso.animal.animalName;
+        if(lassos[0].gotAnimal) return lassos[0].animal.animalName;
         else return null;
     }
 
     private void Wrangle()
     {
-        if(!bringingBackLasso && lasso.animal == null) StartCoroutine(ChargeLasso());
+        if(!bringingBackLasso && lassos[0].animal == null) StartCoroutine(ChargeLasso());
         if(bringingAnimalBack) 
         {
             moveCounter -= pullStrength;
             if(moveCounter <= 0)
             {
                 pullTimer = pullTime;
-                moveCounter = lasso.animal.moveNum;
+                moveCounter = lassos[0].animal.moveNum;
                 timesPulled++;
                 StartCoroutine(BringAnimalBack(0.25f));
             }
-            playerWorldUI.FillPullBar(1f - moveCounter/lasso.animal.moveNum);
+            playerWorldUI.FillPullBar(1f - moveCounter/lassos[0].animal.moveNum);
         }
     }
 
     public void ReleaseAnimal()
     {
-        if(lasso.gotAnimal)
+        if(lassos[0].gotAnimal)
         {
             playerWorldUI.SetCanvas(false);
             playerWorldUI.FillPullBar(0f);
-            if(playerCollider.IsTouchingLayers(merchantMask)) merchant.TakeAnimal(lasso.animal);
+            if(playerCollider.IsTouchingLayers(merchantMask)) merchant.TakeAnimal(lassos[0].animal);
             timesPulled = 0;
-            lasso.ReleaseAnimal();
-            lasso.transform.parent = transform;
+            lassos[0].ReleaseAnimal();
+            lassos[0].transform.parent = transform;
             animalFollowing = false;
             bringingAnimalBack = false;
             StartCoroutine(BringLassoBack(0.5f,0.25f));
@@ -126,20 +129,20 @@ public class PlayerController : MonoBehaviour
     private void ReleaseLasso()
     {
         lassoing = false;
-        if(!bringingBackLasso && lasso.animal != null && !animalFollowing) 
+        if(!bringingBackLasso && lassos[0].animal != null && !animalFollowing) 
         {
             bringingAnimalBack = true;
             bringingBackLasso = true;
-            lasso.BringAnimal(transform.position-lasso.transform.position);
-            moveCounter = lasso.animal.moveNum;
+            lassos[0].BringAnimal(transform.position-lassos[0].transform.position);
+            moveCounter = lassos[0].animal.moveNum;
             pullTimer = pullTime;
             switchCam.SwitchPriority();
-            Vector2 point = GetMidPoint(Vector2.zero, (Vector2)lasso.transform.localPosition);
+            Vector2 point = GetMidPoint(Vector2.zero, (Vector2)lassos[0].transform.localPosition);
             wrangleCam.localPosition = new Vector3(point.x, point.y, -10); 
             playerWorldUI.SetCanvas(true);
             playerWorldUI.FillPullBar(0f);
         }
-        if(!bringingBackLasso && lasso.animal == null) StartCoroutine(BringLassoBack(0.5f, 0.25f));
+        if(!bringingBackLasso && lassos[0].animal == null) StartCoroutine(BringLassoBack(0.5f, 0.25f));
     }
 
     private Vector2 GetMidPoint(Vector2 start, Vector2 end)
@@ -149,6 +152,18 @@ public class PlayerController : MonoBehaviour
         return new Vector2(x,y);
     }
 
+    private Lasso GetFreeLasso()
+    {
+        foreach(Lasso lasso in lassos)
+        {
+            if(!lasso.gotAnimal)
+            {
+                return lasso;
+            }
+        }
+        return null;
+    }
+
     private IEnumerator ChargeLasso()
     {
         lassoing = true;
@@ -156,6 +171,7 @@ public class PlayerController : MonoBehaviour
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
         Vector2 dir = ((Vector2)worldPos - (Vector2)transform.position).normalized;
+        Lasso lasso = GetFreeLasso();
         while(lassoing)
         {
             lasso.transform.localPosition = Vector2.Lerp(Vector2.zero, dir*lassoRange, Mathf.PingPong(lassoTimer/lassoChargeTime,1));
@@ -168,7 +184,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator BringAnimalBack(float duration)
     {
         bringingAnimalBack = false;
-        Vector2 startPos = (Vector2)lasso.transform.localPosition;
+        Vector2 startPos = (Vector2)lassos[0].transform.localPosition;
         Vector2 endPos = new Vector2(startPos.x/3*2, startPos.y/3*2);
         Vector3 camStartPoint = wrangleCam.localPosition;
         Vector2 point = GetMidPoint(Vector2.zero, endPos);
@@ -179,7 +195,7 @@ public class PlayerController : MonoBehaviour
         
         while(timer < duration)
         {
-            lasso.transform.localPosition = Vector2.Lerp(startPos, endPos, timer/duration);
+            lassos[0].transform.localPosition = Vector2.Lerp(startPos, endPos, timer/duration);
             wrangleCam.localPosition = Vector3.Lerp(camStartPoint, camEndPoint, timer/duration);
             timer += Time.deltaTime;       
             yield return null;
@@ -187,8 +203,8 @@ public class PlayerController : MonoBehaviour
         
         if(timesPulled >= 3)
         {
-            lasso.transform.parent = null;
-            lasso.AnimalWrangled();
+            lassos[0].transform.parent = null;
+            lassos[0].AnimalWrangled();
             animalFollowing = true;
             bringingBackLasso = false;
             timesPulled = 0;
@@ -204,6 +220,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator BringLassoBack(float duration, float delay)
     {
         bringingBackLasso = true;
+        Lasso lasso = GetFreeLasso();
         Vector2 startPos = lasso.transform.localPosition;
         float timer = 0;
         yield return new WaitForSeconds(delay);

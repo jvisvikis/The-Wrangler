@@ -28,7 +28,7 @@ public class Merchant : MonoBehaviour
         if(animalsWanted.Contains(animal.animalName))
         {
             animalsWanted.Remove(animal.animalName);
-            Destroy(animal.gameObject);
+            animal.MoveTo((Vector2)transform.position, 1f);
         }
 
         if(animalsWanted.Count <= 0) AddAnimalsToList();
@@ -51,5 +51,6 @@ public class Merchant : MonoBehaviour
     {
         animalNameText.text = text;
     }
+ 
 
 }
