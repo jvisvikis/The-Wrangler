@@ -8,17 +8,18 @@ public class LassoBelt : MonoBehaviour
     [SerializeField] private Lasso lassoPrefab;
     [SerializeField] private int lassoLimit = 4;
 
+    public bool followPlayer {get; set;}
     private int freeIdx;
-    private PlayerController player;
 
     void Start()
     {
-        player = FindObjectOfType<PlayerController>();
+        followPlayer = true;
     }
 
     void FixedUpdate()
     {
-        Follow(player.transform);
+        if(followPlayer)
+            Follow(transform);
     }
     
     public List<string> GetAnimalNames()
@@ -84,7 +85,6 @@ public class LassoBelt : MonoBehaviour
 
     private void Follow(Transform target)
     {
-        transform.position = target.position;
         foreach(Lasso lasso in lassos)
         {
             if(!lasso.isWrangling)

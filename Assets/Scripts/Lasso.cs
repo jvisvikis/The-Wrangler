@@ -21,7 +21,6 @@ public class Lasso : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other);
         if((animalLayerMask & (1 << other.gameObject.layer)) != 0)
         {
             animal = other.gameObject.GetComponent<Animal>();

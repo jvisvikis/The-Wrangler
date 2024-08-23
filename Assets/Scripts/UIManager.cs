@@ -36,8 +36,7 @@ public class UIManager : MonoBehaviour
         for(int i = 0; i < animalNames.Count; i++)
         {
             dict.Add(animalNames[i],0);
-            if(i >= animals.Count)
-                animalsWanted[i].gameObject.SetActive(false);
+            
         }
 
         foreach(string animal in animals)
@@ -54,6 +53,11 @@ public class UIManager : MonoBehaviour
                 animalsWantedNums[imageIdx].text = $"x{kvp.Value}";
                 imageIdx++;
             }
+        }
+
+        for(int i = imageIdx; i<animalsWanted.Count; i++)
+        {
+            animalsWanted[i].gameObject.SetActive(false);
         }
     }
 }

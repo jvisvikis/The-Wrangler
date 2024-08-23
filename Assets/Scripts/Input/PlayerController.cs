@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
     private bool bringingAnimalBack;
     private bool animalFollowing;
     
-
+    private enum State{Charging, Wrangling, Roaming};
+    private State state = State.Roaming;
     void Awake()
     {
         playerControls = new Controls();
@@ -62,13 +63,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(!lassoing) rb2d.velocity = GetDirection() * speed;
+        if(state == State.Roaming) rb2d.velocity = GetDirection() * speed;
         else rb2d.velocity = Vector2.zero;
 
-        if(bringingAnimalBack && pullTimer <= 0) 
+        lassoBelt.followPlayer = !(state == State.Wrangling);
+
+        if(state == State.Wrangling && pullTimer <= 0) 
         {
             AnimalEscaped();
             switchCam.SwitchPriority();
+            state = State.Roaming;
         }
         else pullTimer -= Time.deltaTime;
 
@@ -91,8 +95,12 @@ public class PlayerController : MonoBehaviour
 
     private void Wrangle()
     {
-        if(!bringingBackLasso && lassoBelt.GetFreeLasso() != null) StartCoroutine(ChargeLasso());
-        if(bringingAnimalBack) 
+        if(state == State.Roaming && lassoBelt.GetFreeLasso() != null) 
+        {
+            state = State.Charging;
+            StartCoroutine(ChargeLasso());
+        }
+        if(state == State.Wrangling) 
         {
             moveCounter -= pullStrength;
             if(moveCounter <= 0)
@@ -113,10 +121,10 @@ public class PlayerController : MonoBehaviour
             playerWorldUI.SetCanvas(false);
             playerWorldUI.FillPullBar(0f);
             animalFollowing = false;
-            bringingAnimalBack = false;
             lassoBelt.GetFreeLasso().ReleaseAnimal();
             lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
-            StartCoroutine(BringLassoBack(0.5f,0.25f));
+            lassoBelt.GetFreeLasso().isWrangling = false;
+            // StartCoroutine(BringLassoBack(0.5f,0.25f));
         }
     }
 
@@ -131,28 +139,33 @@ public class PlayerController : MonoBehaviour
             lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
             timesPulled = 0;
             bringingAnimalBack = false;
-            StartCoroutine(BringLassoBack(0.5f,0.25f));
+            // StartCoroutine(BringLassoBack(0.5f,0.25f));
         }
     }
 
     private void ReleaseLasso()
     {
         lassoing = false;
-        if(!bringingBackLasso && lassoBelt.GetFreeLasso().animal != null && !animalFollowing) 
+        if(state == State.Charging && lassoBelt.GetFreeLasso().animal != null) 
         {
             bringingAnimalBack = true;
             bringingBackLasso = true;
             lassoBelt.BringAnimal(transform.position-lassoBelt.GetFreeLasso().transform.position);
             moveCounter = lassoBelt.GetFreeLasso().animal.moveNum;
-            lassoBelt.GetFreeLasso().isWrangling = true;
             pullTimer = pullTime;
             switchCam.SwitchPriority();
             Vector2 point = GetMidPoint(Vector2.zero, (Vector2)lassoBelt.GetFreeLasso().transform.localPosition);
             wrangleCam.localPosition = new Vector3(point.x, point.y, -10); 
             playerWorldUI.SetCanvas(true);
             playerWorldUI.FillPullBar(0f);
+            lassoBelt.GetFreeLasso().isWrangling = true;
+            state = State.Wrangling;
         }
-        if(!bringingBackLasso && lassoBelt.GetFreeLasso().animal == null) StartCoroutine(BringLassoBack(0.5f, 0.25f));
+        if(state == State.Charging && lassoBelt.GetFreeLasso().animal == null) 
+        {
+            state = State.Roaming;
+            lassoBelt.GetFreeLasso().transform.parent = transform.parent;
+        }
     }
 
     private Vector2 GetMidPoint(Vector2 start, Vector2 end)
@@ -172,7 +185,7 @@ public class PlayerController : MonoBehaviour
         Lasso lasso = lassoBelt.GetFreeLasso();
         lasso.transform.position = transform.position;
         lasso.transform.parent = lassoBelt.transform;
-        while(lassoing)
+        while(state == State.Charging)
         {
             lasso.transform.localPosition = Vector2.Lerp(Vector2.zero, dir*lassoRange, Mathf.PingPong(lassoTimer/lassoChargeTime,1));
             lassoTimer += Time.deltaTime;
@@ -201,13 +214,14 @@ public class PlayerController : MonoBehaviour
         
         if(timesPulled >= 3)
         {
-            lassoBelt.GetFreeLasso().transform.parent = null;
+            lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
             lassoBelt.GrabAnimal();
             animalFollowing = true;
             bringingBackLasso = false;
             timesPulled = 0;
             switchCam.SwitchPriority();
             playerWorldUI.SetCanvas(false);
+            state = State.Roaming;
         }
         else
         {
@@ -219,7 +233,8 @@ public class PlayerController : MonoBehaviour
     {
         bringingBackLasso = true;
         Lasso lasso = lassoBelt.GetFreeLasso();
-        Vector2 startPos = lasso.transform.localPosition;
+        lasso.transform.parent = lassoBelt.transform.parent;
+        Vector2 startPos = lasso.transform.position;
         float timer = 0;
         yield return new WaitForSeconds(delay);
         while(timer < duration)

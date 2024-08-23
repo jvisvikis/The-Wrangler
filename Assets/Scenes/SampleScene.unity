@@ -1615,54 +1615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &742739929
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 742739930}
-  - component: {fileID: 742739931}
-  m_Layer: 3
-  m_Name: LassoBelt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &742739930
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742739929}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 779609312}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &742739931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742739929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca66195ac03282148be487c0d7d38ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lassos:
-  - {fileID: 1459531101}
-  lassoPrefab: {fileID: 6117795003140371552, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-  lassoLimit: 4
 --- !u!1001 &755014921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1754,7 +1706,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 841365474}
-  - {fileID: 742739930}
   - {fileID: 1459531100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2132,6 +2083,27 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1378686658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6561094434964019152, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
+  m_PrefabInstance: {fileID: 2315208982738161590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1378686665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378686658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca66195ac03282148be487c0d7d38ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lassos:
+  - {fileID: 1459531101}
+  lassoPrefab: {fileID: 6117795003140371552, guid: 39093b1564eb3644386567a66021cac5, type: 3}
+  lassoLimit: 4
 --- !u!4 &1459531100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
@@ -2645,6 +2617,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6561094434964019152, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1378686665}
     - targetCorrespondingSourceObject: {fileID: 5143506222470807245, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1191092604}

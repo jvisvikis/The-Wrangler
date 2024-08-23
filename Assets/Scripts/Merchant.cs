@@ -19,11 +19,10 @@ public class Merchant : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         animalsWanted = new List<string>();
         animalsWanted.Add(animals[0]);
-        animalsWanted.Add(animals[2]);
-        animalsWanted.Add(animals[1]);
+        animalsWanted.Add(animals[0]);
+        animalsWanted.Add(animals[0]);
         UIManager.instance.SetImages(animalsWanted);
-        SetAnimalImage(0);
-        SetAnimalName(animals[0]);
+
     }
     
     public void TakeAnimal(Animal animal)
@@ -41,18 +40,7 @@ public class Merchant : MonoBehaviour
     {
         int idx = Random.Range(0,(int)player.pullStrength);
         animalsWanted.Add(animals[idx]);
-        SetAnimalImage(idx);
-        SetAnimalName(animals[idx]);
-    }
-
-    private void SetAnimalImage(int idx)
-    {
-        animalWantedImage.sprite = animalSprites[idx];
-    }
-
-    private void SetAnimalName(string text)
-    {
-        animalNameText.text = text;
+        UIManager.instance.SetImages(animalsWanted);
     }
  
 
