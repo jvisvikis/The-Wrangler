@@ -9,6 +9,17 @@ public class LassoBelt : MonoBehaviour
     [SerializeField] private int lassoLimit = 4;
 
     private int freeIdx;
+    private PlayerController player;
+
+    void Start()
+    {
+        player = FindObjectOfType<PlayerController>();
+    }
+
+    void FixedUpdate()
+    {
+        Follow(player.transform);
+    }
     
     public List<string> GetAnimalNames()
     {
@@ -56,12 +67,12 @@ public class LassoBelt : MonoBehaviour
     public void BringAnimal(Vector2 dir)
     {
         lassos[freeIdx].BringAnimal(dir);
-        
     }
 
     public void GrabAnimal()
     {
         lassos[freeIdx].AnimalWrangled();
+        lassos[freeIdx].isWrangling = false;
         freeIdx++;
     }
 
@@ -70,5 +81,15 @@ public class LassoBelt : MonoBehaviour
         if(lassos.Count < lassoLimit)
             lassos.Add(Instantiate(lassoPrefab, this.transform.position, Quaternion.identity));
     }
+
+    private void Follow(Transform target)
+    {
+        transform.position = target.position;
+        foreach(Lasso lasso in lassos)
+        {
+            if(!lasso.isWrangling)
+                lasso.Follow(target);
+        }
+    }   
 
 }

@@ -10,8 +10,6 @@ public class Animal : MonoBehaviour
     public float moveNum = 10;
     public string animalName;
     [SerializeField] private float pullStrength;
-   
-
 
     public void PullBack(Vector2 dir, GameObject lasso)
     {

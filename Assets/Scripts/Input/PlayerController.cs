@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Wrangle.canceled += ctx => ReleaseLasso();
         playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
-        lassoBelt = GetComponent<LassoBelt>();
+        lassoBelt = FindObjectOfType<LassoBelt>();
         merchant = FindObjectOfType<Merchant>();
         rb2d = GetComponent<Rigidbody2D>();
         playerWorldUI = GetComponent<PlayerWorldUI>();
@@ -65,12 +65,9 @@ public class PlayerController : MonoBehaviour
         if(!lassoing) rb2d.velocity = GetDirection() * speed;
         else rb2d.velocity = Vector2.zero;
 
-        // if(animalFollowing && Vector2.Distance(transform.position, lassos[0].transform.position) > followDistance) 
-        //     lassos[0].transform.position += (transform.position - lassos[0].transform.position) * followSharpness;
-
         if(bringingAnimalBack && pullTimer <= 0) 
         {
-            ReleaseAnimal();
+            AnimalEscaped();
             switchCam.SwitchPriority();
         }
         else pullTimer -= Time.deltaTime;
@@ -109,17 +106,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void AnimalEscaped()
+    {
+        if(lassoBelt.GetFreeLasso().animal != null)
+        {
+            playerWorldUI.SetCanvas(false);
+            playerWorldUI.FillPullBar(0f);
+            animalFollowing = false;
+            bringingAnimalBack = false;
+            lassoBelt.GetFreeLasso().ReleaseAnimal();
+            lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
+            StartCoroutine(BringLassoBack(0.5f,0.25f));
+        }
+    }
+
     public void ReleaseAnimal()
     {
         if(lassoBelt.GetLastInUse() != null)
         {
-            playerWorldUI.SetCanvas(false);
-            playerWorldUI.FillPullBar(0f);
-            if(playerCollider.IsTouchingLayers(merchantMask)) merchant.TakeAnimal(lassoBelt.GetLastInUse().animal);
-            timesPulled = 0;
+            if(playerCollider.IsTouchingLayers(merchantMask)) 
+                merchant.TakeAnimal(lassoBelt.GetLastInUse().animal);
+
             lassoBelt.ReleaseLast();
-            lassoBelt.GetFreeLasso().transform.parent = transform;
-            animalFollowing = false;
+            lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
+            timesPulled = 0;
             bringingAnimalBack = false;
             StartCoroutine(BringLassoBack(0.5f,0.25f));
         }
@@ -128,12 +138,13 @@ public class PlayerController : MonoBehaviour
     private void ReleaseLasso()
     {
         lassoing = false;
-        if(!bringingBackLasso && lassoBelt.GetFreeLasso() != null && !animalFollowing) 
+        if(!bringingBackLasso && lassoBelt.GetFreeLasso().animal != null && !animalFollowing) 
         {
             bringingAnimalBack = true;
             bringingBackLasso = true;
             lassoBelt.BringAnimal(transform.position-lassoBelt.GetFreeLasso().transform.position);
             moveCounter = lassoBelt.GetFreeLasso().animal.moveNum;
+            lassoBelt.GetFreeLasso().isWrangling = true;
             pullTimer = pullTime;
             switchCam.SwitchPriority();
             Vector2 point = GetMidPoint(Vector2.zero, (Vector2)lassoBelt.GetFreeLasso().transform.localPosition);
@@ -159,6 +170,8 @@ public class PlayerController : MonoBehaviour
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
         Vector2 dir = ((Vector2)worldPos - (Vector2)transform.position).normalized;
         Lasso lasso = lassoBelt.GetFreeLasso();
+        lasso.transform.position = transform.position;
+        lasso.transform.parent = lassoBelt.transform;
         while(lassoing)
         {
             lasso.transform.localPosition = Vector2.Lerp(Vector2.zero, dir*lassoRange, Mathf.PingPong(lassoTimer/lassoChargeTime,1));
@@ -176,8 +189,6 @@ public class PlayerController : MonoBehaviour
         Vector3 camStartPoint = wrangleCam.localPosition;
         Vector2 point = GetMidPoint(Vector2.zero, endPos);
         Vector3 camEndPoint = new Vector3(point.x, point.y, -10);
-
-
         float timer = 0;
         
         while(timer < duration)
@@ -214,12 +225,11 @@ public class PlayerController : MonoBehaviour
         while(timer < duration)
         {
             float stepAmount = Mathf.Pow (timer * 1.5f, 2);
-            lasso.transform.localPosition = Vector2.Lerp(lasso.transform.localPosition, Vector2.zero, stepAmount);
+            lasso.transform.position = Vector2.Lerp(lasso.transform.position, transform.position, stepAmount);
             timer += Time.deltaTime;
             
             yield return null;
         }
-        lasso.transform.localPosition = Vector2.zero;
         lassoTimer = 0;
         bringingBackLasso = false;
     }

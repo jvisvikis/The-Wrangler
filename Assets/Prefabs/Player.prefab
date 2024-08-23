@@ -412,7 +412,6 @@ GameObject:
   - component: {fileID: 1552239417561302756}
   - component: {fileID: 2580658221241061163}
   - component: {fileID: 904345605646537732}
-  - component: {fileID: 8501331723301676693}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -434,7 +433,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3337625511047633102}
-  - {fileID: 6122737338187568982}
   - {fileID: 4077250825617239471}
   - {fileID: 8239976867184578323}
   - {fileID: 8702392125151331813}
@@ -617,22 +615,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8501331723301676693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6561094434964019152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca66195ac03282148be487c0d7d38ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lassos:
-  - {fileID: 7757204476238249270}
-  lassoPrefab: {fileID: 6117795003140371552, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-  lassoLimit: 4
 --- !u!1 &7372815462625742959
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,76 +961,3 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6223181692158973284}
---- !u!1001 &4558177715887753558
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8641177373924019005}
-    m_Modifications:
-    - target: {fileID: 3041739331713795824, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_Name
-      value: Lasso
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 39093b1564eb3644386567a66021cac5, type: 3}
---- !u!4 &6122737338187568982 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-  m_PrefabInstance: {fileID: 4558177715887753558}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7757204476238249270 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6117795003140371552, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-  m_PrefabInstance: {fileID: 4558177715887753558}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb5237763d6a564ab3f9f6fb15a9377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
