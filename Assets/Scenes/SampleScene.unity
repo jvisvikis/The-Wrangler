@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 184928587}
   - component: {fileID: 184928591}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -971,10 +971,10 @@ PrefabInstance:
     - target: {fileID: 7856886700990256481, guid: 0ed773f01f1931b48913699d51a6a361, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1319e8a408c04554bb0b92c5ae8126c0, type: 3}
+      objectReference: {fileID: 21300000, guid: be5a640986be5ea41bd7676c7100296b, type: 3}
     - target: {fileID: 8957631712650453595, guid: 0ed773f01f1931b48913699d51a6a361, type: 3}
       propertyPath: m_Name
-      value: AnimalImage (3)
+      value: HorseAnimalImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1431,7 +1431,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 1319e8a408c04554bb0b92c5ae8126c0, type: 3}
     - target: {fileID: 8957631712650453595, guid: 0ed773f01f1931b48913699d51a6a361, type: 3}
       propertyPath: m_Name
-      value: AnimalImage (1)
+      value: BoarAnimalImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1589,10 +1589,10 @@ PrefabInstance:
     - target: {fileID: 7856886700990256481, guid: 0ed773f01f1931b48913699d51a6a361, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1319e8a408c04554bb0b92c5ae8126c0, type: 3}
+      objectReference: {fileID: 21300000, guid: 61c9fdd8576f287498302e05784ef7b7, type: 3}
     - target: {fileID: 8957631712650453595, guid: 0ed773f01f1931b48913699d51a6a361, type: 3}
       propertyPath: m_Name
-      value: AnimalImage (2)
+      value: CattleAnimalImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1951,14 +1951,14 @@ PrefabInstance:
     - target: {fileID: 7856886700990256481, guid: 0ed773f01f1931b48913699d51a6a361, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1319e8a408c04554bb0b92c5ae8126c0, type: 3}
+      objectReference: {fileID: 21300000, guid: 1cf18b97432e473409be9bf2e7188782, type: 3}
     - target: {fileID: 8111141196371099506, guid: 0ed773f01f1931b48913699d51a6a361, type: 3}
       propertyPath: m_fontSizeBase
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8957631712650453595, guid: 0ed773f01f1931b48913699d51a6a361, type: 3}
       propertyPath: m_Name
-      value: AnimalImage
+      value: ChickenAnimalImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

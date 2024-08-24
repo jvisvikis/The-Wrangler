@@ -30,6 +30,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SetNumText(string animalName)
+    {
+        int idx = animalNames.IndexOf(animalName);
+        if(idx <= -1)
+            return;
+        
+        char num = (char)((animalsWantedNums[idx].text[animalsWantedNums[idx].text.Length-1]) - 1);
+        animalsWantedNums[idx].text = $"x{num}";
+    }
+
     public void SetImages(List<string> animals)
     {
         Dictionary<string, int> dict= new Dictionary<string, int>();

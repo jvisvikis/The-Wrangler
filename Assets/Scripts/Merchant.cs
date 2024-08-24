@@ -6,10 +6,7 @@ using TMPro;
 
 public class Merchant : MonoBehaviour
 {
-    [SerializeField] private Image animalWantedImage;
-    [SerializeField] private TextMeshProUGUI animalNameText;
     public List<string> animalsWanted{get; private set;}
-    public List<Sprite> animalSprites;
     private PlayerController player;
     private string [] animals =  {"Chicken", "Boar", "Cattle", "Horse"};
     
@@ -18,7 +15,6 @@ public class Merchant : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         animalsWanted = new List<string>();
-        animalsWanted.Add(animals[0]);
         animalsWanted.Add(animals[0]);
         animalsWanted.Add(animals[0]);
         UIManager.instance.SetImages(animalsWanted);
@@ -31,6 +27,7 @@ public class Merchant : MonoBehaviour
         {
             animalsWanted.Remove(animal.animalName);
             animal.MoveTo((Vector2)transform.position, 1f);
+            UIManager.instance.SetNumText(animal.animalName);
         }
 
         if(animalsWanted.Count <= 0) AddAnimalsToList();
