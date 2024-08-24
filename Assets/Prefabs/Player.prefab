@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 1552239417561302756}
   - component: {fileID: 2580658221241061163}
   - component: {fileID: 904345605646537732}
+  - component: {fileID: 1454177085889166038}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -653,10 +654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2aadb9f5b2e8c43a67cbd6d046b220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pullStrength: 1
+  strength: 1
   speed: 5
   playerCollider: {fileID: 904345605646537732}
-  lassoBelt: {fileID: 0}
   merchantMask:
     serializedVersion: 2
     m_Bits: 128
@@ -664,6 +664,8 @@ MonoBehaviour:
   lassoRange: 10
   lassoChargeTime: 0.5
   pullTime: 2
+  speedModifier: 1
+  strengthModifier: 1
 --- !u!50 &8605471254565533365
 Rigidbody2D:
   serializedVersion: 4
@@ -719,7 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 7372815462625742959}
   pullFillBar: {fileID: 8815463971547026729}
-  timeFillBar: {fileID: 0}
+  timeFillBar: {fileID: 5912347950777902714}
 --- !u!61 &904345605646537732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -765,6 +767,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1454177085889166038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561094434964019152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca66195ac03282148be487c0d7d38ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lassos:
+  - {fileID: 0}
+  lassoPrefab: {fileID: 6117795003140371552, guid: 39093b1564eb3644386567a66021cac5, type: 3}
+  lassoLimit: 4
 --- !u!1 &7372815462625742959
 GameObject:
   m_ObjectHideFlags: 0

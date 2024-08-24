@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float pullStrength;
+    public float strength;
     public float speed;
     public LassoBelt lassoBelt {get; private set;}
     [SerializeField] private Collider2D playerCollider;
@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f; 
     [SerializeField] private float pullTime;
+    [SerializeField] private float speedModifier;
+    [SerializeField] private float strengthModifier;
     private Controls playerControls;
     private Merchant merchant;
     private Rigidbody2D rb2d;
@@ -101,7 +103,7 @@ public class PlayerController : MonoBehaviour
         }
         if(state == State.Wrangling) 
         {
-            moveCounter -= pullStrength;
+            moveCounter -= strength;
             playerWorldUI.FillPullBar(1f - moveCounter/lassoBelt.GetFreeLasso().animal.moveNum); 
             if(moveCounter <= 0)
             {
@@ -180,6 +182,18 @@ public class PlayerController : MonoBehaviour
         float x = (end.x - start.x)/2;
         float y = (end.y - start.y)/2;
         return new Vector2(x,y);
+    }
+
+    public void UpgradePlayerStat(string stat)
+    {
+        if(stat.Contains("speed")) 
+            speed += speedModifier;
+
+        if(stat.Contains("strength"))
+            strength += strengthModifier;
+
+        if(stat.Contains("lasso"))
+            lassoBelt.AddLasso();
     }
 
     private IEnumerator ChargeLasso()

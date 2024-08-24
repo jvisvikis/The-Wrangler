@@ -11,10 +11,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Animator upgradePanelAnim;
     [SerializeField] private List<Image> animalsWanted;
     [SerializeField] private List<TextMeshProUGUI> animalsWantedNums;
+    [SerializeField] private List<TextMeshProUGUI> stats;
     [SerializeField] private List<Sprite> animalSprites;
     [SerializeField] private List<string> animalNames;
 
     private Dictionary<string,Sprite> animalDictionary = new Dictionary<string, Sprite>();
+    private PlayerController player;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,11 +28,22 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-            for(int i = 0; i<animalNames.Count; i++)
-            {
-                animalDictionary.Add(animalNames[i],animalSprites[i]);
-            }
+            DontDestroyOnLoad(this);
         }
+    }
+
+    void Start()
+    {
+        for(int i = 0; i<animalNames.Count; i++)
+        {
+            animalDictionary.Add(animalNames[i],animalSprites[i]);
+        }
+        player = FindObjectOfType<PlayerController>();
+        stats[0].text = $"Speed: {player.speed}";
+        stats[1].text = $"Strength: {player.strength}";
+        stats[2].text = $"Lassos: {player.lassoBelt.GetNumLassos()}";
+
+        upgradePanelAnim.gameObject.SetActive(false);
     }
 
     public void SetGamePanel(bool active)
@@ -80,6 +94,25 @@ public class UIManager : MonoBehaviour
 
     public void ToggleUpgradePanelState()
     {
+        if(upgradePanelAnim.gameObject.activeSelf)
+            StartCoroutine(DelayActiveState(upgradePanelAnim.gameObject, false, 0.5f));
+        else
+            upgradePanelAnim.gameObject.SetActive(true);
+
         upgradePanelAnim.SetTrigger("SwitchState");
+    }
+
+    public void UpgradePlayerStat(string stat)
+    {
+        GameManager.instance.UpgradePlayerStat(stat);
+        stats[0].text = $"Speed: {player.speed}";
+        stats[1].text = $"Strength: {player.strength}";
+        stats[2].text = $"Lassos: {player.lassoBelt.GetNumLassos()}";
+    }
+
+    public IEnumerator DelayActiveState(GameObject gameobject, bool state, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameobject.SetActive(state);
     }
 }

@@ -21,6 +21,11 @@ public class LassoBelt : MonoBehaviour
         if(followPlayer)
             Follow(transform);
     }
+
+    public int GetNumLassos()
+    {
+        return lassos.Count;
+    }
     
     public List<string> GetAnimalNames()
     {

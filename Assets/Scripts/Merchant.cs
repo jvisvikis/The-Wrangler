@@ -16,7 +16,6 @@ public class Merchant : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         animalsWanted = new List<string>();
         animalsWanted.Add(animals[0]);
-        animalsWanted.Add(animals[0]);
         UIManager.instance.SetImages(animalsWanted);
 
     }
@@ -32,14 +31,14 @@ public class Merchant : MonoBehaviour
 
         if(animalsWanted.Count <= 0) 
         {
-            AddAnimalsToList();
             UIManager.instance.ToggleUpgradePanelState();
+            GameManager.instance.pickingUpgrade = true;
         }
     }
 
-    private void AddAnimalsToList()
+    public void AddAnimalsToList()
     {
-        int idx = Random.Range(0,(int)player.pullStrength);
+        int idx = Random.Range(0,(int)player.strength);
         animalsWanted.Add(animals[idx]);
         UIManager.instance.SetImages(animalsWanted);
     }
