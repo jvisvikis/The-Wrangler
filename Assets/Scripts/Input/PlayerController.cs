@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public float pullStrength;
     public float speed;
+    public LassoBelt lassoBelt {get; private set;}
     [SerializeField] private Collider2D playerCollider;
-    [SerializeField] private LassoBelt lassoBelt;
     [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
     [SerializeField] private float lassoRange = 5f;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Wrangle.canceled += ctx => ReleaseLasso();
         playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
-        lassoBelt = FindObjectOfType<LassoBelt>();
+        lassoBelt = GetComponent<LassoBelt>();
         merchant = FindObjectOfType<Merchant>();
         rb2d = GetComponent<Rigidbody2D>();
         playerWorldUI = GetComponent<PlayerWorldUI>();
@@ -108,11 +108,13 @@ public class PlayerController : MonoBehaviour
                 pullTimer = pullTime;
                 moveCounter = lassoBelt.GetFreeLasso().animal.moveNum;
                 timesPulled++;
+                playerWorldUI.ResetFillBars(); 
                 if(timesPulled >= 3)
                 {
                     lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
                     lassoBelt.GrabAnimal();
                     switchCam.SwitchPriority();
+                    UIManager.instance.SetGamePanel(true);
                     playerWorldUI.SetCanvas(false);
                     timesPulled = 0;
                     state = State.Roaming;
@@ -130,8 +132,9 @@ public class PlayerController : MonoBehaviour
         if(lassoBelt.GetFreeLasso().animal != null)
         {
             timesPulled = 0;
+            UIManager.instance.SetGamePanel(true);
             playerWorldUI.SetCanvas(false);
-            playerWorldUI.FillPullBar(0f);
+            playerWorldUI.ResetFillBars();
             lassoBelt.GetFreeLasso().ReleaseAnimal();
             lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
             lassoBelt.GetFreeLasso().isWrangling = false;
@@ -160,8 +163,9 @@ public class PlayerController : MonoBehaviour
             switchCam.SwitchPriority();
             Vector2 point = GetMidPoint(Vector2.zero, (Vector2)lassoBelt.GetFreeLasso().transform.localPosition);
             wrangleCam.localPosition = new Vector3(point.x, point.y, -10); 
+            UIManager.instance.SetGamePanel(false);
             playerWorldUI.SetCanvas(true);
-            playerWorldUI.FillPullBar(0f);
+            playerWorldUI.ResetFillBars();
             state = State.Wrangling;
         }
         if(state == State.Charging && lassoBelt.GetFreeLasso().animal == null) 

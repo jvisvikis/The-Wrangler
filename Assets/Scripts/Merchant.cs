@@ -30,7 +30,11 @@ public class Merchant : MonoBehaviour
             UIManager.instance.SetNumText(animal.animalName);
         }
 
-        if(animalsWanted.Count <= 0) AddAnimalsToList();
+        if(animalsWanted.Count <= 0) 
+        {
+            AddAnimalsToList();
+            UIManager.instance.ToggleUpgradePanelState();
+        }
     }
 
     private void AddAnimalsToList()

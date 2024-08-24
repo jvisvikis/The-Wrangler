@@ -7,6 +7,8 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance {get; private set;}
+    [SerializeField] private GameObject gamePanel;
+    [SerializeField] private Animator upgradePanelAnim;
     [SerializeField] private List<Image> animalsWanted;
     [SerializeField] private List<TextMeshProUGUI> animalsWantedNums;
     [SerializeField] private List<Sprite> animalSprites;
@@ -28,6 +30,11 @@ public class UIManager : MonoBehaviour
                 animalDictionary.Add(animalNames[i],animalSprites[i]);
             }
         }
+    }
+
+    public void SetGamePanel(bool active)
+    {
+        gamePanel.SetActive(active);
     }
 
     public void SetNumText(string animalName)
@@ -69,5 +76,10 @@ public class UIManager : MonoBehaviour
         {
             animalsWanted[i].gameObject.SetActive(false);
         }
+    }
+
+    public void ToggleUpgradePanelState()
+    {
+        upgradePanelAnim.SetTrigger("SwitchState");
     }
 }

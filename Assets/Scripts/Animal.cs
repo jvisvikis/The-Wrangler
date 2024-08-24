@@ -43,7 +43,6 @@ public class Animal : MonoBehaviour
 
     private IEnumerator GoTo(Vector2 target, float duration)
     {
-        Debug.Log("Move");
         float timer = 0;
         Vector2 startPos = (Vector2)transform.position;
         while(timer < duration)
