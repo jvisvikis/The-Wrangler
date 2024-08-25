@@ -32,7 +32,7 @@ public class Merchant : MonoBehaviour
 
         if(animalsWanted.Count <= 0) 
         {
-            GameManager.AddTime(1+numShinies);
+            GameManager.instance.AddTime(1+numShinies);
             UIManager.instance.ToggleUpgradePanelState();
             GameManager.instance.pickingUpgrade = true;
         }

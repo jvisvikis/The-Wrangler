@@ -50,6 +50,10 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         SetTimerText();
+        if(GameManager.instance.gameOver)
+        {
+            //Activate Game Over Panel
+        }
     }
 
     public void SetGamePanel(bool active)

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeGiven;
     public float timeElapsed => Time.time - startTime;
     public float timeLeft => Mathf.Max(0f,timeGiven - timeElapsed + extraTime);
+    public bool gameOver => timeLeft <= 0;
     private float startTime;
     private float extraTime;
 
