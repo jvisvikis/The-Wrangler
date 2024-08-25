@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float followDistance = 2f; 
     [SerializeField] private float pullTime;
     [SerializeField] private float speed = 2f;
+
+    [Header("FMOD")]
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodThrowLasso;
+
     private Controls playerControls;
     private Merchant merchant;
     private Rigidbody2D rb2d;
@@ -91,7 +95,12 @@ public class PlayerController : MonoBehaviour
 
     private void Wrangle()
     {
-        if(!bringingBackLasso && lassoBelt.GetFreeLasso() != null) StartCoroutine(ChargeLasso());
+        if(!bringingBackLasso && lassoBelt.GetFreeLasso() != null)
+        {
+            StartCoroutine(ChargeLasso());
+            fmodThrowLasso.Play();
+        }
+
         if(bringingAnimalBack) 
         {
             moveCounter -= pullStrength;
