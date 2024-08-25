@@ -90,10 +90,10 @@ public class LassoBelt : MonoBehaviour
 
     private void Follow(Transform target)
     {
-        foreach(Lasso lasso in lassos)
+        for(int i = 0; i< lassos.Count; i++)
         {
-            if(!lasso.isWrangling)
-                lasso.Follow(target);
+            if(!lassos[i].isWrangling)
+                lassos[i].Follow(target);
         }
     }   
 

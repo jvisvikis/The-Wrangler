@@ -6,8 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
     public bool pickingUpgrade {get; set;}
+    [SerializeField] private float extraTimeModifier;
+    [SerializeField] private float timeGiven;
+    public float timeElapsed => Time.time - startTime;
+    public float timeLeft => Mathf.Max(0f,timeGiven - timeElapsed + extraTime);
     private float startTime;
-    private float timer => Time.time - startTime;
+    private float extraTime;
 
     private Merchant merchant;
     private PlayerController player;
@@ -36,6 +40,11 @@ public class GameManager : MonoBehaviour
         player.UpgradePlayerStat(stat);
         merchant.AddAnimalsToList();
         pickingUpgrade = false;
+    }
+
+    public void AddTime(int modifierMultiplier)
+    {
+        extraTime = extraTimeModifier*modifierMultiplier;
     }
 
 }

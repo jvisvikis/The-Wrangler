@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance {get; private set;}
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private Animator upgradePanelAnim;
+    [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private List<Image> animalsWanted;
     [SerializeField] private List<TextMeshProUGUI> animalsWantedNums;
     [SerializeField] private List<TextMeshProUGUI> stats;
@@ -46,6 +47,11 @@ public class UIManager : MonoBehaviour
         upgradePanelAnim.gameObject.SetActive(false);
     }
 
+    void Update()
+    {
+        SetTimerText();
+    }
+
     public void SetGamePanel(bool active)
     {
         gamePanel.SetActive(active);
@@ -59,6 +65,15 @@ public class UIManager : MonoBehaviour
         
         char num = (char)((animalsWantedNums[idx].text[animalsWantedNums[idx].text.Length-1]) - 1);
         animalsWantedNums[idx].text = $"x{num}";
+    }
+
+    public void SetTimerText()
+    {
+        float timeLeft = GameManager.instance.timeLeft;
+        string minutes = $"{(int)timeLeft/60}";
+        string seconds = (int)timeLeft%60 >= 10 ? $"{(int)timeLeft%60}" : $"0{(int)timeLeft%60}";
+        timerText.color = (int)timeLeft <= 20 ? Color.red : Color.white;
+        timerText.text = $"{minutes}:{seconds}";
     }
 
     public void SetImages(List<string> animals)

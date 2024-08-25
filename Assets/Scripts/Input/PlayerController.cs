@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(state == State.Roaming) rb2d.velocity = GetDirection() * speed;
+        if(state == State.Roaming && !GameManager.instance.pickingUpgrade) rb2d.velocity = GetDirection() * speed;
         else rb2d.velocity = Vector2.zero;
 
         lassoBelt.followPlayer = !(state == State.Wrangling);
