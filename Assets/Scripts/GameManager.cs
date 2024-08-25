@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void AddTime(int modifierMultiplier)
     {
-        extraTime = extraTimeModifier*modifierMultiplier;
+        extraTime += extraTimeModifier*modifierMultiplier;
     }
 
 }
