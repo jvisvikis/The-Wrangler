@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float pullTime;
     [SerializeField] private float speedModifier;
     [SerializeField] private float strengthModifier;
+
+    [Header("FMOD")]
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodThrowLasso;
+
     private Controls playerControls;
     private Merchant merchant;
     private Rigidbody2D rb2d;
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour
         {
             state = State.Charging;
             StartCoroutine(ChargeLasso());
+            fmodThrowLasso.Play();
         }
         if(state == State.Wrangling) 
         {
