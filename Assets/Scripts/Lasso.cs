@@ -18,21 +18,15 @@ public class Lasso : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
-    
-    public void OnTriggerEnter2D(Collider2D other)
+
+    public void SetAnimal(Animal animal)
     {
-        if((animalLayerMask & (1 << other.gameObject.layer)) != 0)
-        {
-            animal = other.gameObject.GetComponent<Animal>();
-            animal.GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        this.animal = animal;
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public void SetPosition(Vector2 pos)
     {
-        if(animal == null || gotAnimal) return;
-        animal.GetComponent<SpriteRenderer>().color = Color.white;
-        animal = null;
+        transform.position = pos;
     }
 
     public void AnimalWrangled()
@@ -43,7 +37,7 @@ public class Lasso : MonoBehaviour
     public void BringAnimal(Vector2 dir)
     {
         gotAnimal = true;
-        transform.position = animal.transform.position;
+        transform.position = animal.transform.position; // change this to move towards position overtime
         animal.transform.parent = transform;
         animal.transform.localPosition = Vector2.zero;
         animal.PullBack(-dir, this.gameObject);
@@ -63,8 +57,7 @@ public class Lasso : MonoBehaviour
     {
         if(Vector2.Distance(target.position, transform.position) > followDist)
         {
-            transform.position = Vector2.Lerp(transform.position, target.position, Time.deltaTime*followSharpness);
-            
+            transform.position = Vector2.Lerp(transform.position, target.position, Time.deltaTime*followSharpness);   
         }
     }
 }

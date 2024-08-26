@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private FMODUnity.StudioEventEmitter fmodThrowLasso;
 
     private Controls playerControls;
+    private LassoAimer lassoAimer;
     private Merchant merchant;
     private Rigidbody2D rb2d;
     private PlayerWorldUI playerWorldUI;
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private float lassoTimer;
     private int timesPulled;
     
-    private enum State{Charging, Wrangling, Roaming};
+    private enum State{Charging, Throwing, Wrangling, Roaming};
     private State state = State.Roaming;
     void Awake()
     {
@@ -41,12 +42,14 @@ public class PlayerController : MonoBehaviour
         playerControls.Player.Wrangle.canceled += ctx => ReleaseLasso();
         playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
-        lassoBelt = GetComponent<LassoBelt>();
         merchant = FindObjectOfType<Merchant>();
+        lassoAimer = FindObjectOfType<LassoAimer>();
+        lassoBelt = GetComponent<LassoBelt>();
         rb2d = GetComponent<Rigidbody2D>();
         playerWorldUI = GetComponent<PlayerWorldUI>();
         switchCam = GetComponent<SwitchCamera>();
 
+        lassoAimer.gameObject.SetActive(false);
         playerWorldUI.SetCanvas(false);
         playerWorldUI.FillPullBar(0f);
     }
@@ -104,7 +107,6 @@ public class PlayerController : MonoBehaviour
         {
             state = State.Charging;
             StartCoroutine(ChargeLasso());
-            fmodThrowLasso.Play();
         }
         if(state == State.Wrangling) 
         {
@@ -162,24 +164,8 @@ public class PlayerController : MonoBehaviour
 
     private void ReleaseLasso()
     {
-        if(state == State.Charging && lassoBelt.GetFreeLasso().animal != null) 
-        {
-            pullTimer = pullTime;
-            lassoBelt.BringAnimal(transform.position-lassoBelt.GetFreeLasso().transform.position);
-            moveCounter = lassoBelt.GetFreeLasso().animal.moveNum;
-            switchCam.SwitchPriority();
-            Vector2 point = GetMidPoint(Vector2.zero, (Vector2)lassoBelt.GetFreeLasso().transform.localPosition);
-            wrangleCam.localPosition = new Vector3(point.x, point.y, -10); 
-            UIManager.instance.SetGamePanel(false);
-            playerWorldUI.SetCanvas(true);
-            playerWorldUI.ResetFillBars();
-            state = State.Wrangling;
-        }
-        if(state == State.Charging && lassoBelt.GetFreeLasso().animal == null) 
-        {
-            state = State.Roaming;
-            lassoBelt.GetFreeLasso().transform.parent = transform.parent;
-        }
+        if(state == State.Charging)
+            StartCoroutine(ThrowLasso(0.25f));
     }
 
     private Vector2 GetMidPoint(Vector2 start, Vector2 end)
@@ -207,35 +193,93 @@ public class PlayerController : MonoBehaviour
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
         Vector2 dir = ((Vector2)worldPos - (Vector2)transform.position).normalized;
-        
-        Lasso lasso = lassoBelt.GetFreeLasso();
-        lasso.transform.position = transform.position;
-        lasso.transform.parent = lassoBelt.transform;
+        lassoAimer.gameObject.SetActive(true);
+        // Lasso lasso = lassoBelt.GetFreeLasso();
+        // lasso.transform.position = transform.position;
+        // lasso.transform.parent = lassoBelt.transform;
         while(state == State.Charging)
         {
-            lasso.transform.localPosition = Vector2.Lerp(Vector2.zero, dir*lassoRange, Mathf.PingPong(lassoTimer/lassoChargeTime,1));
+            lassoAimer.transform.localPosition = Vector2.Lerp(Vector2.zero, dir*lassoRange, Mathf.PingPong(lassoTimer/lassoChargeTime,1));
             lassoTimer += Time.deltaTime;
             yield return null;
         }
+        
         lassoTimer = 0;
     }
 
     private IEnumerator BringAnimalBack(float duration)
     {
-        Vector2 startPos = (Vector2)lassoBelt.GetFreeLasso().transform.localPosition;
-        Vector2 endPos = new Vector2(startPos.x/3*2, startPos.y/3*2);
+        Vector2 startPos = (Vector2)lassoBelt.GetFreeLasso().transform.position;
+        Vector2 endPos = (Vector2)transform.position + (startPos - (Vector2)transform.position)/3*2;
         Vector3 camStartPoint = wrangleCam.localPosition;
-        Vector2 point = GetMidPoint(Vector2.zero, endPos);
+        Vector2 point = GetMidPoint((Vector2)transform.position, endPos);
         Vector3 camEndPoint = new Vector3(point.x, point.y, -10);
         float timer = 0;
         
         while(timer < duration && state == State.Wrangling)
         {
-            lassoBelt.GetFreeLasso().transform.localPosition = Vector2.Lerp(startPos, endPos, timer/duration);
+            lassoBelt.GetFreeLasso().transform.position = Vector2.Lerp(startPos, endPos, timer/duration);
             wrangleCam.localPosition = Vector3.Lerp(camStartPoint, camEndPoint, timer/duration);
             timer += Time.deltaTime;
                
             yield return null;
         }
+    }
+
+    private IEnumerator ThrowLasso(float duration)
+    {
+        fmodThrowLasso.Play();
+        state = State.Throwing;
+        float timer = 0;
+        //Calculate the 3 points for curved path
+        Vector2 startPoint = (Vector2)lassoBelt.GetFreeLasso().transform.position;
+        Vector2 endPoint = (Vector2)lassoAimer.transform.position;
+        Vector2 midPoint = startPoint + (endPoint-startPoint)/2 + Vector2.up;
+        while(timer<duration)
+        {
+            Vector2 p1 = Vector2.Lerp(startPoint,midPoint, timer/duration);
+            Vector2 p2 = Vector2.Lerp(midPoint,endPoint, timer/duration);
+            lassoBelt.GetFreeLasso().SetPosition(Vector2.Lerp(p1,p2,timer/duration));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        LassoThrown(lassoAimer.animal != null);
+    }
+
+    private void LassoThrown(bool successfulThrow)
+    {
+        lassoBelt.GetFreeLasso().SetAnimal(lassoAimer.animal);
+        lassoAimer.gameObject.SetActive(false);
+        if(successfulThrow)
+        {
+            pullTimer = pullTime;
+            moveCounter = lassoBelt.GetFreeLasso().animal.moveNum;
+            lassoBelt.BringAnimal(transform.position-lassoAimer.transform.position);
+            switchCam.SwitchPriority();
+            SetWrangleCamMidPos(lassoAimer.transform);
+            SetWranglingUI(true);
+            state = State.Wrangling;
+        }
+        else
+        {
+            state = State.Roaming;
+        }
+    }
+
+    private void SetWranglingUI(bool isWrangling)
+    {
+        if(isWrangling)
+        {
+            UIManager.instance.SetGamePanel(false);
+            playerWorldUI.SetCanvas(true);
+            playerWorldUI.ResetFillBars();
+        }
+        
+    }
+
+    private void SetWrangleCamMidPos(Transform endObj)
+    {
+        Vector2 point = GetMidPoint(Vector2.zero, (Vector2)endObj.localPosition);
+        wrangleCam.localPosition = new Vector3(point.x, point.y, -10); 
     }
 }
