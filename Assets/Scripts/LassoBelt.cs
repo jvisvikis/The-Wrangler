@@ -52,23 +52,23 @@ public class LassoBelt : MonoBehaviour
         return (Vector2)lassos[idx].transform.position;
     }
 
-    public void ReleaseLast()
+    public void ReleaseLast(bool isFree)
     {
         if(freeIdx == 0)
             return;
         
         freeIdx--;
-        lassos[freeIdx].ReleaseAnimal();
+        lassos[freeIdx].ReleaseAnimal(isFree);
     }
 
-    public void ReleaseAll()
-    {
-        foreach(Lasso lasso in lassos)
-        {
-            if(!lasso.gotAnimal) return;
-            lasso.ReleaseAnimal();
-        }
-    }
+    // public void ReleaseAll()
+    // {
+    //     foreach(Lasso lasso in lassos)
+    //     {
+    //         if(!lasso.gotAnimal) return;
+    //         lasso.ReleaseAnimal();
+    //     }
+    // }
 
     public void BringAnimal(Vector2 dir)
     {

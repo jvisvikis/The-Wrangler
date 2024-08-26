@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Animal : MonoBehaviour
 {
@@ -10,6 +11,81 @@ public class Animal : MonoBehaviour
     public float moveNum = 10;
     public string animalName;
     [SerializeField] private float pullStrength;
+    [SerializeField] private float wanderRadius;
+    [SerializeField] private float maxIdleTime;
+    [SerializeField] private float minIdleTime;
+    private NavMeshAgent agent;
+    private float idleTimer;
+    private float waitTime;
+
+    void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        EnterIdleState();
+    }
+
+    void Update()
+    {
+        switch(state)
+        {
+            case State.Idle:
+                if(idleTimer < waitTime)
+                {
+                    idleTimer += Time.deltaTime;
+                }
+                else
+                {
+                    EnterMovingState();
+                }
+                break;
+
+            case State.Moving:
+                if((Vector2)agent.destination == (Vector2)transform.position)
+                {
+                    EnterIdleState();
+                }
+                break;
+            case State.BeingWrangled:
+                agent.SetDestination(transform.position);
+                break;
+
+            case State.Follow:
+                agent.SetDestination(transform.position);
+                break;
+
+        }
+    }
+
+    public void EnterIdleState()
+    {
+        idleTimer = 0;
+        waitTime = Random.Range(minIdleTime, maxIdleTime);
+        state = State.Idle;
+    }
+
+    public void EnterMovingState()
+    {
+        Vector2 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+        agent.SetDestination(newPos);
+        state = State.Moving;
+    }
+
+    public void EnterBeingWrangledState()
+    {
+        state = State.BeingWrangled;
+    }
+
+    public void EnterFollowState()
+    {
+        state = State.Follow;
+    }
+
+    public void ExitFollowState()
+    {
+        EnterIdleState();
+    }
 
     public void PullBack(Vector2 dir, GameObject lasso)
     {
@@ -19,12 +95,16 @@ public class Animal : MonoBehaviour
 
     public void Wrangled()
     {
-        state = State.Follow;
+        EnterFollowState();
     }
 
-    public void Release()
+    public void Release(bool isFree)
     {
-        state = State.Idle;
+        if(isFree)
+        {
+            agent.enabled = true;
+            EnterIdleState();
+        }
     }
 
     public void MoveTo(Vector2 target, float duration)
@@ -52,5 +132,17 @@ public class Animal : MonoBehaviour
             yield return null;
         }
         Destroy(this.gameObject);
+    }
+
+     public Vector2 RandomNavSphere(Vector2 origin, float dist, int layermask) {
+        Vector2 randDirection = Random.insideUnitSphere * dist;
+ 
+        randDirection += origin;
+ 
+        NavMeshHit navHit;
+ 
+        NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
+ 
+        return navHit.position;
     }
 }

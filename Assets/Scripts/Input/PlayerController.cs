@@ -144,8 +144,7 @@ public class PlayerController : MonoBehaviour
             UIManager.instance.SetGamePanel(true);
             playerWorldUI.SetCanvas(false);
             playerWorldUI.ResetFillBars();
-            lassoBelt.GetFreeLasso().ReleaseAnimal();
-            lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
+            lassoBelt.GetFreeLasso().ReleaseAnimal(true);
             lassoBelt.GetFreeLasso().isWrangling = false;
         }
     }
@@ -154,10 +153,14 @@ public class PlayerController : MonoBehaviour
     {
         if(lassoBelt.GetLastInUse() != null)
         {
-            if(playerCollider.IsTouchingLayers(merchantMask)) 
-                merchant.TakeAnimal(lassoBelt.GetLastInUse().animal);
-
-            lassoBelt.ReleaseLast();
+            bool isFree = true;
+            if(playerCollider.IsTouchingLayers(merchantMask))
+            {
+                 merchant.TakeAnimal(lassoBelt.GetLastInUse().animal);
+                 isFree = false;
+            } 
+               
+            lassoBelt.ReleaseLast(isFree);
             lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
         }
     }
@@ -194,9 +197,6 @@ public class PlayerController : MonoBehaviour
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
         Vector2 dir = ((Vector2)worldPos - (Vector2)transform.position).normalized;
         lassoAimer.gameObject.SetActive(true);
-        // Lasso lasso = lassoBelt.GetFreeLasso();
-        // lasso.transform.position = transform.position;
-        // lasso.transform.parent = lassoBelt.transform;
         while(state == State.Charging)
         {
             lassoAimer.transform.localPosition = Vector2.Lerp(Vector2.zero, dir*lassoRange, Mathf.PingPong(lassoTimer/lassoChargeTime,1));

@@ -41,15 +41,16 @@ public class Lasso : MonoBehaviour
         animal.transform.parent = transform;
         animal.transform.localPosition = Vector2.zero;
         animal.PullBack(-dir, this.gameObject);
+        animal.EnterBeingWrangledState();
     }
 
-    public void ReleaseAnimal()
+    public void ReleaseAnimal(bool isFree)
     {
         gotAnimal = false;
         isWrangling = false;
         animal.transform.parent = null;
         animal.GetComponent<SpriteRenderer>().color = Color.white;
-        animal.Release();
+        animal.Release(isFree);
         animal = null;
     }
 
