@@ -5,25 +5,28 @@ using UnityEngine;
 public class Lasso : MonoBehaviour
 {
     [SerializeField] private LayerMask animalLayerMask;
+    [SerializeField] private float followDist = 2;
+    [SerializeField] private float followSharpness = 0.05f;
     
     public Animal animal {get; private set;}
-
     public bool gotAnimal{get; private set;}
-    
-    public void OnTriggerEnter2D(Collider2D other)
+    public bool isWrangling{get; set;}
+
+    private Rigidbody2D rb2d;
+
+    void Start()
     {
-        if((animalLayerMask & (1 << other.gameObject.layer)) != 0)
-        {
-            animal = other.gameObject.GetComponent<Animal>();
-            animal.GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public void SetAnimal(Animal animal)
     {
-        if(animal == null || gotAnimal) return;
-        animal.GetComponent<SpriteRenderer>().color = Color.white;
-        animal = null;
+        this.animal = animal;
+    }
+
+    public void SetPosition(Vector2 pos)
+    {
+        transform.position = pos;
     }
 
     public void AnimalWrangled()
@@ -34,19 +37,28 @@ public class Lasso : MonoBehaviour
     public void BringAnimal(Vector2 dir)
     {
         gotAnimal = true;
-        transform.position = animal.transform.position;
+        transform.position = animal.transform.position; // change this to move towards position overtime
         animal.transform.parent = transform;
         animal.transform.localPosition = Vector2.zero;
         animal.PullBack(-dir, this.gameObject);
+        animal.EnterBeingWrangledState();
     }
 
-    public void ReleaseAnimal()
+    public void ReleaseAnimal(bool isFree)
     {
         gotAnimal = false;
+        isWrangling = false;
         animal.transform.parent = null;
         animal.GetComponent<SpriteRenderer>().color = Color.white;
-        animal.Release();
+        animal.Release(isFree);
         animal = null;
+    }
 
+    public void Follow(Transform target)
+    {
+        if(Vector2.Distance(target.position, transform.position) > followDist)
+        {
+            transform.position = Vector2.Lerp(transform.position, target.position, Time.deltaTime*followSharpness);   
+        }
     }
 }

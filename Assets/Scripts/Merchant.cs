@@ -6,21 +6,17 @@ using TMPro;
 
 public class Merchant : MonoBehaviour
 {
-    [SerializeField] private Image animalWantedImage;
-    [SerializeField] private TextMeshProUGUI animalNameText;
     public List<string> animalsWanted{get; private set;}
-    public List<Sprite> animalSprites;
     private PlayerController player;
     private string [] animals =  {"Chicken", "Boar", "Cattle", "Horse"};
-    
+    private int numShinies;
 
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
         animalsWanted = new List<string>();
         animalsWanted.Add(animals[0]);
-        SetAnimalImage(0);
-        SetAnimalName(animals[0]);
+        UIManager.instance.SetImages(animalsWanted);
     }
     
     public void TakeAnimal(Animal animal)
@@ -29,27 +25,26 @@ public class Merchant : MonoBehaviour
         {
             animalsWanted.Remove(animal.animalName);
             animal.MoveTo((Vector2)transform.position, 1f);
+            if(animal.isShiny) 
+                numShinies++;
+            UIManager.instance.SetNumText(animal.animalName);
+            AnimalManager.instance.AnimalDelivered(animal);
         }
 
-        if(animalsWanted.Count <= 0) AddAnimalsToList();
+        if(animalsWanted.Count <= 0) 
+        {
+            GameManager.instance.AddTime(1+numShinies);
+            UIManager.instance.ToggleUpgradePanelState();
+            GameManager.instance.pickingUpgrade = true;
+        }
     }
 
-    private void AddAnimalsToList()
+    public void AddAnimalsToList()
     {
-        int idx = Random.Range(0,(int)player.pullStrength);
+        numShinies = 0;
+        int idx = Random.Range(0,(int)player.strength);
         animalsWanted.Add(animals[idx]);
-        SetAnimalImage(idx);
-        SetAnimalName(animals[idx]);
-    }
-
-    private void SetAnimalImage(int idx)
-    {
-        animalWantedImage.sprite = animalSprites[idx];
-    }
-
-    private void SetAnimalName(string text)
-    {
-        animalNameText.text = text;
+        UIManager.instance.SetImages(animalsWanted);
     }
  
 
