@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{fe5b5ab5-c1c5-4f52-8c59-3fa34ca3b42e}">
+		<property name="name">
+			<value>flies</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e65a55b0-d8d5-4e03-8bfc-587db7910316}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{986c6aef-b73e-4123-894e-f19d685dfaa3}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{986c6aef-b73e-4123-894e-f19d685dfaa3}">
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float strengthModifier;
 
     [Header("FMOD")]
-    [SerializeField] private FMODUnity.StudioEventEmitter fmodThrowLasso;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoThrow;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoCharge;
 
     private Controls playerControls;
     private LassoAimer lassoAimer;
@@ -197,13 +198,16 @@ public class PlayerController : MonoBehaviour
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
         Vector2 dir = ((Vector2)worldPos - (Vector2)transform.position).normalized;
         lassoAimer.gameObject.SetActive(true);
+        fmodLassoCharge.Play();
+
         while(state == State.Charging)
         {
             lassoAimer.transform.localPosition = Vector2.Lerp(Vector2.zero, dir*lassoRange, Mathf.PingPong(lassoTimer/lassoChargeTime,1));
             lassoTimer += Time.deltaTime;
             yield return null;
         }
-        
+
+        fmodLassoCharge.Stop();
         lassoTimer = 0;
     }
 
@@ -228,7 +232,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ThrowLasso(float duration)
     {
-        fmodThrowLasso.Play();
+        fmodLassoThrow.Play();
         state = State.Throwing;
         float timer = 0;
         //Calculate the 3 points for curved path
