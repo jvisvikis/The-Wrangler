@@ -20,6 +20,7 @@ public class Animal : MonoBehaviour
 
     void Start()
     {
+        transform.eulerAngles = Vector3.zero;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;

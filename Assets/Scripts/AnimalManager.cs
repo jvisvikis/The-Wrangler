@@ -8,9 +8,9 @@ public class AnimalManager : MonoBehaviour
     [SerializeField] private List<Animal> animalPrefabs;
     [SerializeField] private List<AnimalSpawner> animalSpawners;
     [SerializeField] private int maxNumAnimals;
+    [SerializeField] private int minNumAnimal;
     
     private Dictionary<string,int> animalsActive;
-    private int activeAnimalCount;
 
     void Awake()
     {
@@ -35,15 +35,20 @@ public class AnimalManager : MonoBehaviour
 
         for(int i = 0; i<maxNumAnimals; i++)
         {
-            animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i%animalPrefabs.Count]);
+            animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i%animalPrefabs.Count].gameObject);
             animalsActive[animalPrefabs[i%animalPrefabs.Count].animalName]++;
-            activeAnimalCount++;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AnimalDelivered(Animal animal)
     {
-        
+        for(int i = 0; i<animalPrefabs.Count; i++)
+        {
+            if(animal.animalName.Contains(animalPrefabs[i].animalName))
+            {
+                animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i].gameObject);
+            }
+        }
     }
+
 }

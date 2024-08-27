@@ -28,6 +28,7 @@ public class Merchant : MonoBehaviour
             if(animal.isShiny) 
                 numShinies++;
             UIManager.instance.SetNumText(animal.animalName);
+            AnimalManager.instance.AnimalDelivered(animal);
         }
 
         if(animalsWanted.Count <= 0) 

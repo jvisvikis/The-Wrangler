@@ -8,7 +8,7 @@ public class AnimalSpawner : MonoBehaviour
     public float rectHeight;
     public float rectWidth;
     
-    public void SpawnAnimal(Animal animal)
+    public void SpawnAnimal(GameObject animal)
     {
         Vector2 midPoint = transform.position;
         float x = Random.Range(midPoint.x - rectWidth/2, midPoint.x + rectWidth/2);
@@ -17,6 +17,7 @@ public class AnimalSpawner : MonoBehaviour
         NavMeshHit navHit;
  
         NavMesh.SamplePosition (spawnPoint, out navHit, rectWidth, -1);
-        Instantiate(animal,navHit.position,Quaternion.identity);
+        GameObject spawnedAnimal = Instantiate(animal,navHit.position,Quaternion.identity);
+        spawnedAnimal.transform.eulerAngles = Vector3.zero;
     }
 }
