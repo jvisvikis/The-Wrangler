@@ -21,11 +21,11 @@ public class PlayerWalkEmitter : MonoBehaviour
     [SerializeField]
     StudioEventEmitter playerWalk;
 
-    // [SerializeField]
-    // StudioEventEmitter playerWalkStart;
+    [SerializeField]
+    StudioEventEmitter playerWalkStart;
 
-    // [SerializeField]
-    // StudioEventEmitter playerWalkStop;
+    [SerializeField]
+    StudioEventEmitter playerWalkStop;
 
     void Start()
     {
@@ -35,6 +35,7 @@ public class PlayerWalkEmitter : MonoBehaviour
     IEnumerator WalkAsync()
     {
         bool first = true;
+        bool started = false;
         float distance = 0;
         var rb = GetComponentInParent<Rigidbody2D>();
 
@@ -43,10 +44,17 @@ public class PlayerWalkEmitter : MonoBehaviour
             float velocity = rb.velocity.magnitude;
             distance += velocity * Time.deltaTime;
 
+            if (velocity > velocity0Epsilon && !started)
+            {
+                playerWalkStart.Play();
+                started = true;
+                distance = 0;
+            }
             if (velocity < velocity0Epsilon && !first)
             {
-                // playerWalkStop.Play();
+                playerWalkStop.Play();
                 first = true;
+                started = false;
                 distance = 0;
             }
             else if (first && distance > firstFootstepDistance)

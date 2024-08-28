@@ -247,6 +247,7 @@ public class PlayerController : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        fmodLassoThrow.Stop();
         LassoThrown(lassoAimer.animal != null);
     }
 
