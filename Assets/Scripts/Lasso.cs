@@ -54,11 +54,10 @@ public class Lasso : MonoBehaviour
         animal = null;
     }
 
-    public void Follow(Transform target)
+    public void Follow(Vector2 target)
     {
-        if(Vector2.Distance(target.position, transform.position) > followDist)
-        {
-            transform.position = Vector2.Lerp(transform.position, target.position, Time.deltaTime*followSharpness);   
-        }
+       
+        transform.position = Vector2.Lerp(transform.position, target, Time.deltaTime*followSharpness);   
+        
     }
 }

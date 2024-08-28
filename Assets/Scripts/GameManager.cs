@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
             addStartTime = timeElapsed;
             merchant.IncrementCurrentMaxAnimals();
         }
+
     }
 
     public void UpgradePlayerStat(string stat)

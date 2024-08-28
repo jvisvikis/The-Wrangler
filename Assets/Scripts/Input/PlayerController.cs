@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
+    [SerializeField] private GameObject playerSprite;
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f; 
     [SerializeField] private float pullTime;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private PlayerWorldUI playerWorldUI;
     private SwitchCamera switchCam;
+    private Vector3 originalSpriteScale;
     private float pullTimer;
     private float moveCounter;
     
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
         lassoAimer.gameObject.SetActive(false);
         playerWorldUI.SetCanvas(false);
         playerWorldUI.FillPullBar(0f);
+        originalSpriteScale = playerSprite.transform.localScale;
     }
 
     void OnEnable()
@@ -67,8 +70,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(state == State.Roaming && !GameManager.instance.pickingUpgrade) rb2d.velocity = GetDirection() * speed;
-        else rb2d.velocity = Vector2.zero;
+        if(state == State.Roaming && !GameManager.instance.pickingUpgrade) 
+        {
+            Vector2 dir = GetDirection();
+            rb2d.velocity = dir * speed;
+            if(dir.x!=0)
+                SetSpriteDirection(dir.x<0);
+            
+        }
+        else 
+            rb2d.velocity = Vector2.zero;
+
 
         lassoBelt.followPlayer = !(state == State.Wrangling);
 
@@ -85,6 +97,13 @@ public class PlayerController : MonoBehaviour
         }
             
 
+    }
+    public void SetSpriteDirection(bool isLeft)
+    {
+        if(isLeft)
+            playerSprite.transform.localScale = new Vector3(-originalSpriteScale.x,originalSpriteScale.y,originalSpriteScale.z);
+        else
+            playerSprite.transform.localScale = originalSpriteScale;
     }
 
     public Vector2 GetDirection()
