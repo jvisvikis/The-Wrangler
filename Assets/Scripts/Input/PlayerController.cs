@@ -140,7 +140,6 @@ public class PlayerController : MonoBehaviour
                 playerWorldUI.ResetFillBars(); 
                 if(timesPulled >= 3)
                 {
-                    lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
                     lassoBelt.GrabAnimal();
                     switchCam.SwitchPriority();
                     UIManager.instance.SetGamePanel(true);
@@ -181,7 +180,6 @@ public class PlayerController : MonoBehaviour
             } 
                
             lassoBelt.ReleaseLast(isFree);
-            lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
         }
     }
 
@@ -232,7 +230,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator BringAnimalBack(float duration)
     {
-        Vector2 startPos = (Vector2)lassoBelt.GetFreeLasso().transform.position;
+        Vector2 startPos = (Vector2)lassoBelt.GetFreeLasso().animal.transform.position;
         Vector2 endPos = (Vector2)transform.position + (startPos - (Vector2)transform.position)/3*2;
         Vector3 camStartPoint = wrangleCam.localPosition;
         Vector2 point = GetMidPoint((Vector2)transform.position, endPos);
@@ -241,7 +239,7 @@ public class PlayerController : MonoBehaviour
         
         while(timer < duration && state == State.Wrangling)
         {
-            lassoBelt.GetFreeLasso().transform.position = Vector2.Lerp(startPos, endPos, timer/duration);
+            lassoBelt.GetFreeLasso().animal.transform.position = Vector2.Lerp(startPos, endPos, timer/duration);
             wrangleCam.localPosition = Vector3.Lerp(camStartPoint, camEndPoint, timer/duration);
             timer += Time.deltaTime;
                

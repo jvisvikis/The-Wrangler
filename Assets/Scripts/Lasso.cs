@@ -13,9 +13,11 @@ public class Lasso : MonoBehaviour
     public bool isWrangling{get; set;}
 
     private Rigidbody2D rb2d;
+    private PlayerController player;
 
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -37,9 +39,8 @@ public class Lasso : MonoBehaviour
     public void BringAnimal(Vector2 dir)
     {
         gotAnimal = true;
-        transform.position = animal.transform.position; // change this to move towards position overtime
-        animal.transform.parent = transform;
-        animal.transform.localPosition = Vector2.zero;
+        transform.position = animal.transform.position;
+        transform.parent = animal.transform;
         animal.PullBack(-dir, this.gameObject);
         animal.EnterBeingWrangledState();
     }
@@ -48,7 +49,7 @@ public class Lasso : MonoBehaviour
     {
         gotAnimal = false;
         isWrangling = false;
-        animal.transform.parent = null;
+        transform.parent = player.transform.parent;
         animal.GetComponent<SpriteRenderer>().color = Color.white;
         animal.Release(isFree);
         animal = null;
@@ -56,8 +57,10 @@ public class Lasso : MonoBehaviour
 
     public void Follow(Vector2 target)
     {
-       
-        transform.position = Vector2.Lerp(transform.position, target, Time.deltaTime*followSharpness);   
+        if(animal != null)
+            animal.Follow(target);
+        else
+            transform.position = Vector2.Lerp(transform.position, target, Time.deltaTime*followSharpness);   
         
     }
 }

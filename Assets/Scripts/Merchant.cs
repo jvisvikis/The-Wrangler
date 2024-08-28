@@ -50,7 +50,6 @@ public class Merchant : MonoBehaviour
 
     public void AddAnimalsToList()
     {
-         
         numShinies = 0;
         List<int> uniqueAnimalsIdx = new List<int>();
         for(int i = 0; i<currentMaxAnimals; i++)

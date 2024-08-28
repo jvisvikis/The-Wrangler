@@ -87,7 +87,11 @@ public class LassoBelt : MonoBehaviour
     public void AddLasso()
     {
         if(lassos.Count < lassoLimit)
+        {
             lassos.Add(Instantiate(lassoPrefab, this.transform.position, Quaternion.identity));
+            lassos[lassos.Count-1].transform.parent = transform.parent;
+        }
+
     }
 
     private void Follow(Transform target)
