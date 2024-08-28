@@ -47,6 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c3d9f354f445643a6c9c4c3c1230a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxAnimals: 8
+  animals:
+  - Chicken
+  - Boar
+  - Cattle
+  - Horse
 --- !u!1 &1915709068366551398
 GameObject:
   m_ObjectHideFlags: 0

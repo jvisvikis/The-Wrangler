@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<string> animalNames;
 
     private Dictionary<string,Sprite> animalDictionary = new Dictionary<string, Sprite>();
+    private List<string> animalNamesWanted;
+    
     private PlayerController player;
 
     // Start is called before the first frame update
@@ -63,7 +65,7 @@ public class UIManager : MonoBehaviour
 
     public void SetNumText(string animalName)
     {
-        int idx = animalNames.IndexOf(animalName);
+        int idx = animalNamesWanted.IndexOf(animalName);
         if(idx <= -1)
             return;
         
@@ -95,12 +97,15 @@ public class UIManager : MonoBehaviour
         }
 
         int imageIdx = 0;
+        animalNamesWanted = new List<string>();
         foreach(KeyValuePair<string, int> kvp in dict)
         {
             if(kvp.Value > 0)
             {
                 animalsWanted[imageIdx].sprite = animalDictionary[kvp.Key];
                 animalsWantedNums[imageIdx].text = $"x{kvp.Value}";
+                animalsWanted[imageIdx].gameObject.SetActive(true);
+                animalNamesWanted.Add(kvp.Key);
                 imageIdx++;
             }
         }
