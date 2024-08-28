@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{72c69362-6f05-4296-9f3d-6467bc6b71dd}">
+		<property name="name">
+			<value>wranglePressProgress</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e65a55b0-d8d5-4e03-8bfc-587db7910316}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0464dd71-52a9-4dae-babd-0d37bc3ba244}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0464dd71-52a9-4dae-babd-0d37bc3ba244}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

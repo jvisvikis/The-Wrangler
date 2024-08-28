@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
     [SerializeField] private float lassoRange = 5f;
-    [SerializeField] private float lassoChargeTime = 1f; 
+    [SerializeField] private float lassoChargeTime = 1f;
     [SerializeField] private float pullTime;
     [SerializeField] private float speedModifier;
     [SerializeField] private float strengthModifier;
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [Header("FMOD")]
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoThrow;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoCharge;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodWranglePress;
 
     private Controls playerControls;
     private LassoAimer lassoAimer;
@@ -30,10 +31,10 @@ public class PlayerController : MonoBehaviour
     private SwitchCamera switchCam;
     private float pullTimer;
     private float moveCounter;
-    
+
     private float lassoTimer;
     private int timesPulled;
-    
+
     private enum State{Charging, Throwing, Wrangling, Roaming};
     private State state = State.Roaming;
     void Awake()
@@ -72,18 +73,18 @@ public class PlayerController : MonoBehaviour
 
         lassoBelt.followPlayer = !(state == State.Wrangling);
 
-        if(state == State.Wrangling && pullTimer <= 0) 
+        if(state == State.Wrangling && pullTimer <= 0)
         {
             AnimalEscaped();
             switchCam.SwitchPriority();
             state = State.Roaming;
         }
-        else 
+        else
         {
             pullTimer -= Time.deltaTime;
             playerWorldUI.FillTimeBar(pullTimer/pullTime);
         }
-            
+
 
     }
 
@@ -104,21 +105,26 @@ public class PlayerController : MonoBehaviour
 
     private void Wrangle()
     {
-        if(state == State.Roaming && lassoBelt.GetFreeLasso() != null) 
+        if(state == State.Roaming && lassoBelt.GetFreeLasso() != null)
         {
             state = State.Charging;
             StartCoroutine(ChargeLasso());
         }
-        if(state == State.Wrangling) 
+        if(state == State.Wrangling)
         {
             moveCounter -= strength;
-            playerWorldUI.FillPullBar(1f - moveCounter/lassoBelt.GetFreeLasso().animal.moveNum); 
+            float progress = 1f - moveCounter/lassoBelt.GetFreeLasso().animal.moveNum;
+            playerWorldUI.FillPullBar(progress);
+
+            fmodWranglePress.Play();
+            fmodWranglePress.EventInstance.setParameterByName("wranglePressProgress", progress);
+
             if(moveCounter <= 0)
             {
                 pullTimer = pullTime;
                 moveCounter = lassoBelt.GetFreeLasso().animal.moveNum;
                 timesPulled++;
-                playerWorldUI.ResetFillBars(); 
+                playerWorldUI.ResetFillBars();
                 if(timesPulled >= 3)
                 {
                     lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
@@ -132,8 +138,8 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     StartCoroutine(BringAnimalBack(0.25f));
-                }  
-            }  
+                }
+            }
         }
     }
 
@@ -159,8 +165,8 @@ public class PlayerController : MonoBehaviour
             {
                  merchant.TakeAnimal(lassoBelt.GetLastInUse().animal);
                  isFree = false;
-            } 
-               
+            }
+
             lassoBelt.ReleaseLast(isFree);
             lassoBelt.GetFreeLasso().transform.parent = lassoBelt.transform.parent;
         }
@@ -181,7 +187,7 @@ public class PlayerController : MonoBehaviour
 
     public void UpgradePlayerStat(string stat)
     {
-        if(stat.Contains("speed")) 
+        if(stat.Contains("speed"))
             speed += speedModifier;
 
         if(stat.Contains("strength"))
@@ -193,7 +199,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ChargeLasso()
     {
-        Vector3 mousePos = Mouse.current.position.ReadValue();   
+        Vector3 mousePos = Mouse.current.position.ReadValue();
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
         Vector2 dir = ((Vector2)worldPos - (Vector2)transform.position).normalized;
@@ -219,13 +225,13 @@ public class PlayerController : MonoBehaviour
         Vector2 point = GetMidPoint((Vector2)transform.position, endPos);
         Vector3 camEndPoint = new Vector3(point.x, point.y, -10);
         float timer = 0;
-        
+
         while(timer < duration && state == State.Wrangling)
         {
             lassoBelt.GetFreeLasso().transform.position = Vector2.Lerp(startPos, endPos, timer/duration);
             wrangleCam.localPosition = Vector3.Lerp(camStartPoint, camEndPoint, timer/duration);
             timer += Time.deltaTime;
-               
+
             yield return null;
         }
     }
@@ -279,12 +285,12 @@ public class PlayerController : MonoBehaviour
             playerWorldUI.SetCanvas(true);
             playerWorldUI.ResetFillBars();
         }
-        
+
     }
 
     private void SetWrangleCamMidPos(Transform endObj)
     {
         Vector2 point = GetMidPoint(Vector2.zero, (Vector2)endObj.localPosition);
-        wrangleCam.localPosition = new Vector3(point.x, point.y, -10); 
+        wrangleCam.localPosition = new Vector3(point.x, point.y, -10);
     }
 }

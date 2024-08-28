@@ -850,6 +850,7 @@ MonoBehaviour:
   strengthModifier: 1
   fmodLassoThrow: {fileID: 8786806643942559219}
   fmodLassoCharge: {fileID: 2794005834275800046}
+  fmodWranglePress: {fileID: 5392414694742231723}
 --- !u!50 &8605471254565533365
 Rigidbody2D:
   serializedVersion: 4
@@ -1100,7 +1101,7 @@ Transform:
   m_GameObject: {fileID: 8342221546010918966}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.245173, y: 0.78617835, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1389,6 +1390,17 @@ PrefabInstance:
 --- !u!114 &2794005834275800046 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7010837465019003468, guid: e9ab01c380ca54665be1344381628b1c, type: 3}
+  m_PrefabInstance: {fileID: 5155832155331752354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5392414694742231723 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 961666539875007241, guid: e9ab01c380ca54665be1344381628b1c, type: 3}
   m_PrefabInstance: {fileID: 5155832155331752354}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
