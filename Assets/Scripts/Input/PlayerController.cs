@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoThrow;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoCharge;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodWranglePress;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodWranglePull;
 
     private Controls playerControls;
     private LassoAimer lassoAimer;
@@ -116,9 +117,6 @@ public class PlayerController : MonoBehaviour
             float progress = 1f - moveCounter/lassoBelt.GetFreeLasso().animal.moveNum;
             playerWorldUI.FillPullBar(progress);
 
-            fmodWranglePress.Play();
-            fmodWranglePress.EventInstance.setParameterByName("wranglePressProgress", progress);
-
             if(moveCounter <= 0)
             {
                 pullTimer = pullTime;
@@ -138,7 +136,13 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     StartCoroutine(BringAnimalBack(0.25f));
+                    fmodWranglePull.Play();
                 }
+            }
+            else
+            {
+                fmodWranglePress.Play();
+                fmodWranglePress.EventInstance.setParameterByName("wranglePressProgress", progress);
             }
         }
     }
