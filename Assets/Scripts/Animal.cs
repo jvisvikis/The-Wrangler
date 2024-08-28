@@ -52,10 +52,6 @@ public class Animal : MonoBehaviour
                 agent.SetDestination(transform.position);
                 break;
 
-            case State.Follow:
-                agent.SetDestination(transform.position);
-                break;
-
         }
     }
 
@@ -81,6 +77,14 @@ public class Animal : MonoBehaviour
     public void EnterFollowState()
     {
         state = State.Follow;
+    }
+
+    public void Follow(Vector2 position)
+    {
+        if(state == State.Follow)
+        {
+            agent.SetDestination(position);
+        }
     }
 
     public void ExitFollowState()
@@ -117,7 +121,7 @@ public class Animal : MonoBehaviour
     {
         while(state == State.BeingWrangled)
         {
-            lasso.transform.position = (Vector2)lasso.transform.position + dir * Random.Range(0,pullStrength) * Time.deltaTime;
+            transform.position = (Vector2)transform.position + dir * Random.Range(0,pullStrength) * Time.deltaTime;
             yield return null;
         }
     }

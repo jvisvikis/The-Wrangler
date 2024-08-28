@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraTimeModifier: 15
-  timeGiven: 23
+  timeGiven: 240
+  timeToAdd: 30

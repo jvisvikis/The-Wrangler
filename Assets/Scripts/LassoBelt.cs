@@ -6,6 +6,8 @@ public class LassoBelt : MonoBehaviour
 {
     [SerializeField] private List<Lasso> lassos;
     [SerializeField] private Lasso lassoPrefab;
+    [SerializeField] private Transform lassoHome;
+    [SerializeField] private float distFromLassoHome;
     [SerializeField] private int lassoLimit = 4;
 
     public bool followPlayer {get; set;}
@@ -19,7 +21,7 @@ public class LassoBelt : MonoBehaviour
     void FixedUpdate()
     {
         if(followPlayer)
-            Follow(transform);
+            Follow(lassoHome);
     }
 
     public int GetNumLassos()
@@ -85,15 +87,23 @@ public class LassoBelt : MonoBehaviour
     public void AddLasso()
     {
         if(lassos.Count < lassoLimit)
+        {
             lassos.Add(Instantiate(lassoPrefab, this.transform.position, Quaternion.identity));
+            lassos[lassos.Count-1].transform.parent = transform.parent;
+        }
+
     }
 
     private void Follow(Transform target)
     {
+
         for(int i = 0; i< lassos.Count; i++)
         {
             if(!lassos[i].isWrangling)
-                lassos[i].Follow(target);
+            {
+                Vector2 yOffset = new Vector2(0,distFromLassoHome - (i+1)*distFromLassoHome*2/(lassos.Count+1));
+                lassos[i].Follow((Vector2)target.position + yOffset);
+            }
         }
     }   
 

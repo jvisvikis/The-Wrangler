@@ -8,10 +8,14 @@ public class GameManager : MonoBehaviour
     public bool pickingUpgrade {get; set;}
     [SerializeField] private float extraTimeModifier;
     [SerializeField] private float timeGiven;
+    [SerializeField] private float timeToAdd;
     public float timeElapsed => Time.time - startTime;
     public float timeLeft => Mathf.Max(0f,timeGiven - timeElapsed + extraTime);
+
+    public float addTimer => timeElapsed - addStartTime;
     public bool gameOver => timeLeft <= 0;
     private float startTime;
+    private float addStartTime;
     private float extraTime;
 
     private Merchant merchant;
@@ -27,6 +31,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             startTime = Time.time;
+            addStartTime = startTime;
         }
     }
 
@@ -34,6 +39,16 @@ public class GameManager : MonoBehaviour
     {
         merchant = FindObjectOfType<Merchant>();
         player = FindObjectOfType<PlayerController>();
+    }
+
+    void Update()
+    {
+        if(addTimer >= timeToAdd)
+        {
+            addStartTime = timeElapsed;
+            merchant.IncrementCurrentMaxAnimals();
+        }
+
     }
 
     public void UpgradePlayerStat(string stat)
