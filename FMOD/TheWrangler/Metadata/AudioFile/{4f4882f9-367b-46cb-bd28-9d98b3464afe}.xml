@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{d6acdcff-6028-4405-b873-9e165cd34931}">
+	<object class="AudioFile" id="{4f4882f9-367b-46cb-bd28-9d98b3464afe}">
 		<property name="assetPath">
-			<value>player/wranglePull/player-wranglePull-leather-010.wav</value>
+			<value>player/wranglePull/player-wranglePull-leatherSlow-004.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>1</value>
+			<value>2.6175625</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{9c161ed6-92b0-4439-948e-47d7e9ebaab4}</destination>
