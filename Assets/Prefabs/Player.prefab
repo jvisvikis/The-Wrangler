@@ -847,6 +847,7 @@ MonoBehaviour:
   playerSprite: {fileID: 6506249198965633566}
   lassoRange: 10
   lassoChargeTime: 0.5
+  lassoCooldown: 0
   pullTime: 2
   speedModifier: 1
   strengthModifier: 1
@@ -1112,7 +1113,7 @@ Transform:
   m_Children:
   - {fileID: 1982090424779081899}
   m_Father: {fileID: 8641177373924019005}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5, y: 0, z: 0}
 --- !u!20 &6696440384501703767
 Camera:
   m_ObjectHideFlags: 0
@@ -1195,10 +1196,10 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
-  m_StopNaN: 0
+  m_StopNaN: 1
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1

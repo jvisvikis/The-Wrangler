@@ -1400,10 +1400,6 @@ PrefabInstance:
       propertyPath: m_Lens.OrthographicSize
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 824773921187031570, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 828482343852883405, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_Name
       value: PlayerContainer
@@ -1475,10 +1471,6 @@ PrefabInstance:
     - target: {fileID: 8417569370727254903, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8776678078262843019, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9000035244405203045, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalPosition.x

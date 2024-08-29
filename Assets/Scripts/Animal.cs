@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Animal : MonoBehaviour
 {
     private State state = State.Idle;
-    private enum State {Idle, Moving, BeingWrangled, Follow}
+    private enum State {Idle, Moving, Scared, BeingWrangled, Follow}
     public bool isShiny;
     public bool captured => state == State.Follow;
     public float moveNum = 10;
@@ -16,8 +16,11 @@ public class Animal : MonoBehaviour
     [SerializeField] private float wanderRadius;
     [SerializeField] private float maxIdleTime;
     [SerializeField] private float minIdleTime;
+    [SerializeField] private float scaredDistance;
+    private Merchant merchant;
+    private PlayerController player;
     private NavMeshAgent agent;
-    private Vector3 originalScale;
+    private Vector3 originalSpriteScale;
     private float idleTimer;
     private float waitTime;
 
@@ -27,7 +30,9 @@ public class Animal : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        originalScale = animalSprite.transform.localScale;
+        originalSpriteScale = animalSprite.transform.localScale;
+        merchant = FindObjectOfType<Merchant>();
+        player = FindObjectOfType<PlayerController>();
         EnterIdleState();
     }
 
@@ -36,6 +41,18 @@ public class Animal : MonoBehaviour
         switch(state)
         {
             case State.Idle:
+                if(Vector2.Distance((Vector2)transform.position,(Vector2)player.transform.position) < scaredDistance )
+                {
+                    EnterScaredState(player.transform);
+                    break;
+                }
+
+                if(Vector2.Distance((Vector2)transform.position,(Vector2)merchant.transform.position) < scaredDistance)
+                {
+                    EnterScaredState(merchant.transform);
+                    break;
+                }
+
                 if(idleTimer < waitTime)
                 {
                     idleTimer += Time.deltaTime;
@@ -47,6 +64,18 @@ public class Animal : MonoBehaviour
                 break;
 
             case State.Moving:
+                if(Vector2.Distance((Vector2)transform.position,(Vector2)player.transform.position) < scaredDistance )
+                {
+                    EnterScaredState(player.transform);
+                    break;
+                }
+
+                if(Vector2.Distance((Vector2)transform.position,(Vector2)merchant.transform.position) < scaredDistance)
+                {
+                    EnterScaredState(merchant.transform);
+                    break;
+                }
+                
                 if((Vector2)agent.destination == (Vector2)transform.position)
                 {
                     EnterIdleState();
@@ -54,6 +83,12 @@ public class Animal : MonoBehaviour
                 break;
             case State.BeingWrangled:
                 agent.SetDestination(transform.position);
+                break;
+            case State.Scared:
+                if((Vector2)agent.destination == (Vector2)transform.position)
+                {
+                    EnterIdleState();
+                }
                 break;
 
         }
@@ -80,6 +115,17 @@ public class Animal : MonoBehaviour
         agent.SetDestination(newPos);
         SetSpriteDirection(newPos.x-transform.position.x < 0);
         state = State.Moving;
+    }
+
+    public void EnterScaredState(Transform scaredOf)
+    {
+        Vector2 newPos = RandomNavSphere(-3*(scaredOf.position-transform.position), 1, -1);
+        agent.SetDestination(newPos);
+        /*
+            make speed of agent faster here
+        */ 
+        SetSpriteDirection(newPos.x-transform.position.x < 0);
+        state = State.Scared;
     }
 
     public void EnterBeingWrangledState()

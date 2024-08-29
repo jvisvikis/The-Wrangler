@@ -99,11 +99,8 @@ public class LassoBelt : MonoBehaviour
 
         for(int i = 0; i< lassos.Count; i++)
         {
-            if(!lassos[i].isWrangling)
-            {
-                Vector2 yOffset = new Vector2(0,distFromLassoHome - (i+1)*distFromLassoHome*2/(lassos.Count+1));
-                lassos[i].Follow((Vector2)target.position + yOffset);
-            }
+            Vector2 yOffset = new Vector2(0,distFromLassoHome - (i+1)*distFromLassoHome*2/(lassos.Count+1));
+            lassos[i].Follow((Vector2)target.position + yOffset);
         }
     }   
 

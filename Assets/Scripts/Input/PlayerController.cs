@@ -74,10 +74,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 mousePos = Mouse.current.position.ReadValue();
-        mousePos.z = Camera.main.nearClipPlane;
-        Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
-        Debug.Log(worldPos);
         if(state == State.Roaming && !GameManager.instance.pickingUpgrade) 
         {
             Vector2 dir = GetDirection();
@@ -231,10 +227,12 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePos = Mouse.current.position.ReadValue();
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
+        
         Vector2 dir = ((Vector2)worldPos - (Vector2)transform.position).normalized;
+        // Debug.Log($"{worldPos.x}, {worldPos.y} {transform.position.x}, {transform.position.y}");
         lassoAimer.gameObject.SetActive(true);
         fmodLassoCharge.Play();
-
+        
         while(state == State.Charging)
         {
             lassoAimer.transform.localPosition = Vector2.Lerp(Vector2.zero, dir*lassoRange, Mathf.PingPong(lassoTimer/lassoChargeTime,1));
@@ -302,6 +300,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            lassoBelt.GetFreeLasso().SetAnimal(null);
             state = State.Roaming;
         }
     }
