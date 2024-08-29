@@ -1484,6 +1484,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6786093698895940506, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786093698895940506, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786093698895940506, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dae97fb31c461c14fb89259b4ae005a5, type: 3}
+    - target: {fileID: 6786093698895940506, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Color.b
+      value: 0.014489126
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786093698895940506, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Color.g
+      value: 0.47694412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786093698895940506, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6981132
+      objectReference: {fileID: 0}
     - target: {fileID: 7132618280011926252, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_FlipX
       value: 0

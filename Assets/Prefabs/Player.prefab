@@ -849,6 +849,7 @@ MonoBehaviour:
   lassoRange: 10
   lassoChargeTime: 0.5
   lassoCooldown: 1
+  lassoThrowHeight: 5
   pullTime: 2
   speedModifier: 1
   strengthModifier: 1
@@ -955,7 +956,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 5}
   m_EdgeRadius: 0
 --- !u!114 &1454177085889166038
 MonoBehaviour:
