@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject playerSprite;
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f;
+    [SerializeField] private float lassoCooldown;
     [SerializeField] private float pullTime;
     [SerializeField] private float speedModifier;
     [SerializeField] private float strengthModifier;
@@ -34,9 +35,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 originalSpriteScale;
     private float pullTimer;
     private float moveCounter;
-
+    private float lassoReadyTime;
     private float lassoTimer;
     private int timesPulled;
+    private bool lassoReady => lassoReadyTime <= GameManager.instance.timeElapsed;
 
     private enum State{Charging, Throwing, Wrangling, Roaming};
     private State state = State.Roaming;
@@ -125,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
     private void Wrangle()
     {
-        if(state == State.Roaming && lassoBelt.GetFreeLasso() != null)
+        if(state == State.Roaming && lassoBelt.GetFreeLasso() != null && lassoReady)
         {
             state = State.Charging;
             StartCoroutine(ChargeLasso());
@@ -195,8 +197,11 @@ public class PlayerController : MonoBehaviour
 
     private void ReleaseLasso()
     {
-        if(state == State.Charging)
+        if(state == State.Charging && lassoReady)
+        {
+            lassoReadyTime = GameManager.instance.timeElapsed + lassoCooldown;
             StartCoroutine(ThrowLasso(0.25f));
+        }
     }
 
     private Vector2 GetMidPoint(Vector2 start, Vector2 end)
@@ -275,7 +280,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         fmodLassoThrow.Stop();
-        LassoThrown(lassoAimer.animal != null);
+        LassoThrown(lassoAimer.animal != null && !lassoAimer.animal.captured);
     }
 
     private void LassoThrown(bool successfulThrow)

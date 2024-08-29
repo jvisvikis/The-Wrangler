@@ -1468,6 +1468,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7470522958552373087, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: lassoCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8417569370727254903, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 25

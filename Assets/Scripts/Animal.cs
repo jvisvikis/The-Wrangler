@@ -8,6 +8,7 @@ public class Animal : MonoBehaviour
     private State state = State.Idle;
     private enum State {Idle, Moving, BeingWrangled, Follow}
     public bool isShiny;
+    public bool captured => state == State.Follow;
     public float moveNum = 10;
     public string animalName;
     [SerializeField] private float pullStrength;
