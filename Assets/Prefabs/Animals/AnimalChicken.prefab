@@ -49,20 +49,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4416515523620745421, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416515523620745421, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416515523620745421, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1cf18b97432e473409be9bf2e7188782, type: 3}
     - target: {fileID: 8639884569354036906, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Name
-      value: Animal Variant
+      value: AnimalChicken
       objectReference: {fileID: 0}
     - target: {fileID: 8859953335459145590, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 4.49
+      value: 1.2828572
       objectReference: {fileID: 0}
     - target: {fileID: 8859953335459145590, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3.89
+      value: 1.1114286
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

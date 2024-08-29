@@ -1416,6 +1416,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5048309261018434956, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Name
+      value: PlayerSprite
+      objectReference: {fileID: 0}
     - target: {fileID: 5571416843385158280, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -1508,28 +1512,16 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.6981132
       objectReference: {fileID: 0}
-    - target: {fileID: 7132618280011926252, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7132618280011926252, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7132618280011926252, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7692434790905577109, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -2.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 7692434790905577109, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_ConstrainProportionsScale
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8717492730981892875, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776678078262843019, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9000035244405203045, guid: 699f9e71ffc168f49823424213a68adb, type: 3}

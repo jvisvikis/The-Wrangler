@@ -110,12 +110,12 @@ public class PlayerController : MonoBehaviour
     {
         if(isLeft)
         {
-            playerSprite.flipY = true;
+            playerSprite.flipX = true;
             lassoHome.transform.localPosition = -lassoHomeXPosOrig;
         }
         else
         {
-            playerSprite.flipY = false;
+            playerSprite.flipX = false;
             lassoHome.transform.localPosition = lassoHomeXPosOrig;
         }
     }

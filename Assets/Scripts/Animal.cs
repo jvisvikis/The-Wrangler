@@ -95,9 +95,9 @@ public class Animal : MonoBehaviour
     public void SetSpriteDirection(bool isLeft)
     {
         if(isLeft)
-            animalSprite.flipY = true;
+            animalSprite.flipX = true;
         else
-            animalSprite.flipY = false;
+            animalSprite.flipX = false;
     }
 
     public void EnterIdleState()
