@@ -16,6 +16,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Sprite> animalSprites;
     [SerializeField] private List<string> animalNames;
 
+    [Header("FMOD")]
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodUpgradeReveal;
+
     private Dictionary<string,Sprite> animalDictionary = new Dictionary<string, Sprite>();
     private List<string> animalNamesWanted;
     
@@ -119,9 +122,14 @@ public class UIManager : MonoBehaviour
     public void ToggleUpgradePanelState()
     {
         if(upgradePanelAnim.gameObject.activeSelf)
+        {
             StartCoroutine(DelayActiveState(upgradePanelAnim.gameObject, false, 0.5f));
+        }
         else
+        {
             upgradePanelAnim.gameObject.SetActive(true);
+            fmodUpgradeReveal.Play();
+        }
 
         upgradePanelAnim.SetTrigger("SwitchState");
     }
