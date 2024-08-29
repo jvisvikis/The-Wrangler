@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private SwitchCamera switchCam;
     private Vector3 lassoHomeXPosOrig;
     private float pullTimer;
+    private float origSpeed;
     private float moveCounter;
     private float lassoReadyTime;
     private float lassoTimer;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
         playerWorldUI.SetCanvas(false);
         playerWorldUI.FillPullBar(0f);
         lassoHomeXPosOrig = lassoHome.transform.localPosition;
+        origSpeed = speed;
     }
 
     void OnEnable()
@@ -115,8 +117,6 @@ public class PlayerController : MonoBehaviour
             pullTimer -= Time.deltaTime;
             playerWorldUI.FillTimeBar(pullTimer/pullTime);
         }
-
-
     }
     public void SetSpriteDirection(bool isLeft)
     {
@@ -254,8 +254,10 @@ public class PlayerController : MonoBehaviour
     public void UpgradePlayerStat(string stat)
     {
         if(stat.Contains("speed"))
+        {
             speed += speedModifier;
-
+            animator.SetFloat("Speed", speed/origSpeed);
+        }
         if(stat.Contains("strength"))
             strength += strengthModifier;
 
