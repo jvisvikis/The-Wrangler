@@ -12,10 +12,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
-    [SerializeField] private GameObject playerSprite;
+    [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private GameObject lassoHome;
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f;
     [SerializeField] private float lassoCooldown;
+    [SerializeField] private float lassoThrowHeight = 5f;
     [SerializeField] private float pullTime;
     [SerializeField] private float speedModifier;
     [SerializeField] private float strengthModifier;
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private PlayerWorldUI playerWorldUI;
     private SwitchCamera switchCam;
-    private Vector3 originalSpriteScale;
+    private Vector3 lassoHomeXPosOrig;
     private float pullTimer;
     private float moveCounter;
     private float lassoReadyTime;
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour
         lassoAimer.gameObject.SetActive(false);
         playerWorldUI.SetCanvas(false);
         playerWorldUI.FillPullBar(0f);
-        originalSpriteScale = playerSprite.transform.localScale;
+        lassoHomeXPosOrig = lassoHome.transform.localPosition;
     }
 
     void OnEnable()
@@ -104,9 +106,15 @@ public class PlayerController : MonoBehaviour
     public void SetSpriteDirection(bool isLeft)
     {
         if(isLeft)
-            playerSprite.transform.localScale = new Vector3(-originalSpriteScale.x,originalSpriteScale.y,originalSpriteScale.z);
+        {
+            playerSprite.flipY = true;
+            lassoHome.transform.localPosition = -lassoHomeXPosOrig;
+        }
         else
-            playerSprite.transform.localScale = originalSpriteScale;
+        {
+            playerSprite.flipY = false;
+            lassoHome.transform.localPosition = lassoHomeXPosOrig;
+        }
     }
 
     public Vector2 GetDirection()
@@ -271,7 +279,11 @@ public class PlayerController : MonoBehaviour
         //Calculate the 3 points for curved path
         Vector2 startPoint = (Vector2)lassoBelt.GetFreeLasso().transform.position;
         Vector2 endPoint = (Vector2)lassoAimer.transform.position;
-        Vector2 midPoint = startPoint + (endPoint-startPoint)/2 + Vector2.up;
+        Vector2 midPoint = (startPoint + (endPoint-startPoint)/2);
+        Vector2 a = midPoint-startPoint;
+        Vector2 b = new Vector2(-a.y,a.x);
+        b = b.normalized;
+        midPoint = midPoint+b*3;
         while(timer<duration)
         {
             Vector2 p1 = Vector2.Lerp(startPoint,midPoint, timer/duration);
