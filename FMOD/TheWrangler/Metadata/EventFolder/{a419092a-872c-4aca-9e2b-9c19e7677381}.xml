@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{a419092a-872c-4aca-9e2b-9c19e7677381}">
+		<property name="name">
+			<value>wrangle</value>
+		</property>
+		<relationship name="folder">
+			<destination>{32c17391-f9f6-4a9d-b997-474b661e3f0f}</destination>
+		</relationship>
+	</object>
+</objects>

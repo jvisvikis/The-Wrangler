@@ -25,8 +25,11 @@ public class PlayerController : MonoBehaviour
     [Header("FMOD")]
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoThrow;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoCharge;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoMiss;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodWranglePress;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodWranglePull;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodWrangleLoop;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodWrangleSuccess;
 
     private Controls playerControls;
     private LassoAimer lassoAimer;
@@ -159,6 +162,7 @@ public class PlayerController : MonoBehaviour
                     playerWorldUI.SetCanvas(false);
                     timesPulled = 0;
                     state = State.Roaming;
+                    StopFMODWrangleLoop(true);
                 }
                 else
                 {
@@ -174,6 +178,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void StopFMODWrangleLoop(bool success)
+    {
+        fmodWrangleLoop.EventInstance.setParameterByName("stop", 1);
+        StartCoroutine(AsyncSetFMODParameter(fmodWrangleLoop, "stop", 0));
+        if (success)
+        {
+            fmodWrangleSuccess.Play();
+        }
+    }
+
+    private IEnumerator AsyncSetFMODParameter(FMODUnity.StudioEventEmitter emitter, string name, float value, float delay = 0.1f)
+    {
+        yield return new WaitForSeconds(delay);
+        emitter.EventInstance.setParameterByName(name, value);
+    }
+
     public void AnimalEscaped()
     {
         if(lassoBelt.GetFreeLasso().animal != null)
@@ -184,6 +204,7 @@ public class PlayerController : MonoBehaviour
             playerWorldUI.ResetFillBars();
             lassoBelt.GetFreeLasso().ReleaseAnimal(true);
             lassoBelt.GetFreeLasso().isWrangling = false;
+            StopFMODWrangleLoop(false);
         }
     }
 
@@ -309,11 +330,13 @@ public class PlayerController : MonoBehaviour
             SetWrangleCamMidPos(lassoAimer.transform);
             SetWranglingUI(true);
             state = State.Wrangling;
+            fmodWrangleLoop.Play();
         }
         else
         {
             lassoBelt.GetFreeLasso().SetAnimal(null);
             state = State.Roaming;
+            fmodLassoMiss.Play();
         }
     }
 

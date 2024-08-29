@@ -93,6 +93,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{072c4666-e254-41f1-8bf3-609a5ba02c93}">
+		<property name="volume">
+			<value>-4</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{10f8e022-aac5-4942-8a6b-66ee1e36d637}</destination>
 		</relationship>
@@ -173,7 +176,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{82421a2f-2d35-49cf-8329-ed4b699760da}">
 		<property name="volume">
-			<value>-5</value>
+			<value>-6</value>
 		</property>
 		<property name="name">
 			<value>pluck</value>
