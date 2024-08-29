@@ -11,11 +11,13 @@ public class Animal : MonoBehaviour
     public bool captured => state == State.Follow;
     public float moveNum = 10;
     public string animalName;
+    [SerializeField] private GameObject animalSprite;
     [SerializeField] private float pullStrength;
     [SerializeField] private float wanderRadius;
     [SerializeField] private float maxIdleTime;
     [SerializeField] private float minIdleTime;
     private NavMeshAgent agent;
+    private Vector3 originalScale;
     private float idleTimer;
     private float waitTime;
 
@@ -25,6 +27,7 @@ public class Animal : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        originalScale = animalSprite.transform.localScale;
         EnterIdleState();
     }
 
@@ -56,6 +59,14 @@ public class Animal : MonoBehaviour
         }
     }
 
+    public void SetSpriteDirection(bool isLeft)
+    {
+        if(isLeft)
+            animalSprite.transform.localScale = new Vector3(-originalSpriteScale.x,originalSpriteScale.y,originalSpriteScale.z);
+        else
+            animalSprite.transform.localScale = originalSpriteScale;
+    }
+
     public void EnterIdleState()
     {
         idleTimer = 0;
@@ -67,6 +78,7 @@ public class Animal : MonoBehaviour
     {
         Vector2 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
         agent.SetDestination(newPos);
+        SetSpriteDirection(newPos.x-transform.position.x < 0);
         state = State.Moving;
     }
 

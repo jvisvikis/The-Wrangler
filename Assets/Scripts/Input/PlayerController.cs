@@ -74,13 +74,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        mousePos.z = Camera.main.nearClipPlane;
+        Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
+        Debug.Log(worldPos);
         if(state == State.Roaming && !GameManager.instance.pickingUpgrade) 
         {
             Vector2 dir = GetDirection();
             rb2d.velocity = dir * speed;
             if(dir.x!=0)
                 SetSpriteDirection(dir.x<0);
-            
         }
         else 
             rb2d.velocity = Vector2.zero;
