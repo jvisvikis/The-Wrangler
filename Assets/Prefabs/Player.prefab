@@ -844,7 +844,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   wrangleCam: {fileID: 8239976867184578323}
-  playerSprite: {fileID: 0}
+  playerSprite: {fileID: 6506249198965633566}
   lassoRange: 10
   lassoChargeTime: 0.5
   pullTime: 2
@@ -1506,5 +1506,10 @@ Transform:
 --- !u!4 &2327402450192091825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8887848850603805360, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
+  m_PrefabInstance: {fileID: 6564950017218985985}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6506249198965633566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 95055455248478751, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
   m_PrefabInstance: {fileID: 6564950017218985985}
   m_PrefabAsset: {fileID: 0}

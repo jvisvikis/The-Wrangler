@@ -32,15 +32,15 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
+            for(int i = 0; i<animalNames.Count; i++)
+            {
+                animalDictionary.Add(animalNames[i],animalSprites[i]);
+            }
         }
     }
 
     void Start()
     {
-        for(int i = 0; i<animalNames.Count; i++)
-        {
-            animalDictionary.Add(animalNames[i],animalSprites[i]);
-        }
         player = FindObjectOfType<PlayerController>();
         stats[0].text = $"Speed: {player.speed}";
         stats[1].text = $"Strength: {player.strength}";

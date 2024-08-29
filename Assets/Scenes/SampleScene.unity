@@ -337,11 +337,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &238804532 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8633469465469961460, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-  m_PrefabInstance: {fileID: 1154524396672458623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &522692581
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,11 +496,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &653413260 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 997109311816744027, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-  m_PrefabInstance: {fileID: 1154524396672458623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &676697511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,14 +1416,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4878208551785968787, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: lassoHome
-      value: 
-      objectReference: {fileID: 238804532}
-    - target: {fileID: 4878208551785968787, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: distFromLassoHome
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5591239462170133980, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1486,10 +1468,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7470522958552373087, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: playerSprite
-      value: 
-      objectReference: {fileID: 653413260}
     - target: {fileID: 8417569370727254903, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 25
