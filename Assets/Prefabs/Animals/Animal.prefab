@@ -244,10 +244,12 @@ MonoBehaviour:
   isShiny: 0
   moveNum: 10
   animalName: Chicken
+  animalSprite: {fileID: 4416515523620745421}
   pullStrength: 0.1
   wanderRadius: 20
   maxIdleTime: 10
   minIdleTime: 3
+  scaredDistance: 7
 --- !u!195 &5438482484573799437
 NavMeshAgent:
   m_ObjectHideFlags: 0

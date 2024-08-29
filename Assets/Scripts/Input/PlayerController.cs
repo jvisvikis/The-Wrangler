@@ -304,7 +304,7 @@ public class PlayerController : MonoBehaviour
         Vector2 a = midPoint-startPoint;
         Vector2 b = new Vector2(-a.y,a.x);
         b = b.normalized;
-        midPoint = midPoint+b*3;
+        midPoint = midPoint+b*lassoThrowHeight;
         while(timer<duration)
         {
             Vector2 p1 = Vector2.Lerp(startPoint,midPoint, timer/duration);

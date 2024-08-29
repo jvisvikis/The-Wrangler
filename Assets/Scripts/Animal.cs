@@ -11,7 +11,7 @@ public class Animal : MonoBehaviour
     public bool captured => state == State.Follow;
     public float moveNum = 10;
     public string animalName;
-    [SerializeField] private GameObject animalSprite;
+    [SerializeField] private SpriteRenderer animalSprite;
     [SerializeField] private float pullStrength;
     [SerializeField] private float wanderRadius;
     [SerializeField] private float maxIdleTime;
@@ -20,7 +20,6 @@ public class Animal : MonoBehaviour
     private Merchant merchant;
     private PlayerController player;
     private NavMeshAgent agent;
-    private Vector3 originalSpriteScale;
     private float idleTimer;
     private float waitTime;
 
@@ -30,7 +29,6 @@ public class Animal : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        originalSpriteScale = animalSprite.transform.localScale;
         merchant = FindObjectOfType<Merchant>();
         player = FindObjectOfType<PlayerController>();
         EnterIdleState();
@@ -97,9 +95,9 @@ public class Animal : MonoBehaviour
     public void SetSpriteDirection(bool isLeft)
     {
         if(isLeft)
-            animalSprite.transform.localScale = new Vector3(-originalSpriteScale.x,originalSpriteScale.y,originalSpriteScale.z);
+            animalSprite.flipY = true;
         else
-            animalSprite.transform.localScale = originalSpriteScale;
+            animalSprite.flipY = false;
     }
 
     public void EnterIdleState()
