@@ -27,9 +27,19 @@ public class PlayerWalkEmitter : MonoBehaviour
     [SerializeField]
     StudioEventEmitter playerWalkStop;
 
+    Vector3 lastPosition;
+    Vector3 velocity;
+
     void Start()
     {
+        lastPosition = transform.position;
         StartCoroutine(WalkAsync());
+    }
+
+    void FixedUpdate()
+    {
+        velocity = (transform.position - lastPosition) / Time.deltaTime;
+        lastPosition = transform.position;
     }
 
     IEnumerator WalkAsync()
@@ -37,22 +47,27 @@ public class PlayerWalkEmitter : MonoBehaviour
         bool first = true;
         bool started = false;
         float distance = 0;
-        var rb = GetComponentInParent<Rigidbody2D>();
 
         while (true)
         {
-            float velocity = rb.velocity.magnitude;
-            distance += velocity * Time.deltaTime;
+            float velocityMagnitude = velocity.magnitude;
+            distance += velocityMagnitude * Time.deltaTime;
 
-            if (velocity > velocity0Epsilon && !started)
+            if (velocityMagnitude > velocity0Epsilon && !started)
             {
-                playerWalkStart.Play();
+                if (playerWalkStart != null)
+                {
+                    playerWalkStart.Play();
+                }
                 started = true;
                 distance = 0;
             }
-            if (velocity < velocity0Epsilon && !first)
+            if (velocityMagnitude < velocity0Epsilon && !first)
             {
-                playerWalkStop.Play();
+                if (playerWalkStop != null)
+                {
+                    playerWalkStop.Play();
+                }
                 first = true;
                 started = false;
                 distance = 0;
