@@ -839,6 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 1
   speed: 5
+  animator: {fileID: 5608779629849445000}
   playerCollider: {fileID: 904345605646537732}
   merchantMask:
     serializedVersion: 2
@@ -1555,5 +1556,10 @@ GameObject:
 --- !u!212 &3846214849512572073 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7961206652262139048, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
+  m_PrefabInstance: {fileID: 6564950017218985985}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5608779629849445000 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1642969547576689289, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
   m_PrefabInstance: {fileID: 6564950017218985985}
   m_PrefabAsset: {fileID: 0}

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float strength;
     public float speed;
     public LassoBelt lassoBelt {get; private set;}
+    [SerializeField] private Animator animator;
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
@@ -84,7 +85,18 @@ public class PlayerController : MonoBehaviour
             Vector2 dir = GetDirection();
             rb2d.velocity = dir * speed;
             if(dir.x!=0)
+            {
+                animator.SetBool("Walking",true);
                 SetSpriteDirection(dir.x<0);
+            }
+            else if(dir.y!=0)
+            {
+                animator.SetBool("Walking",true);
+            }
+            else
+            {
+                animator.SetBool("Walking",false);
+            }
         }
         else 
             rb2d.velocity = Vector2.zero;
