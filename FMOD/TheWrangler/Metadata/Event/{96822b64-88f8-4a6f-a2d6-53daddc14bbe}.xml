@@ -163,7 +163,7 @@
 	<object class="SpatialiserEffect" id="{d7ad7a09-643a-4550-a1fa-638c59a9ce37}" />
 	<object class="ThreeEQEffect" id="{59586271-ec6a-4a43-9987-5e6be230439d}">
 		<property name="lowGain">
-			<value>-80</value>
+			<value>-15.5</value>
 		</property>
 		<property name="lowCrossover">
 			<value>1000</value>

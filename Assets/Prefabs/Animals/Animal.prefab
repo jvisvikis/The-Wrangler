@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6667609617196316053}
   - component: {fileID: 4772782041351967087}
+  - component: {fileID: 4833606492427590705}
   m_Layer: 6
   m_Name: CardSprite
   m_TagString: Untagged
@@ -118,6 +119,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4833606492427590705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932510784898662158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196eacc6c9ac647a48f54d31d6370409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventEmitter: {fileID: 8368663811286856380}
+  eventEmitterStart: {fileID: 0}
+  eventEmitterStop: {fileID: 0}
 --- !u!1 &6166087445415788353
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +195,7 @@ MonoBehaviour:
   NonRigidbodyVelocity: 0
   Params: []
   OverrideAttenuation: 1
-  OverrideMinDistance: 2
+  OverrideMinDistance: 5
   OverrideMaxDistance: 5
 --- !u!1 &6229881831198678053
 GameObject:
@@ -278,7 +294,6 @@ GameObject:
   - component: {fileID: 8859953335459145590}
   - component: {fileID: 4601695311934304623}
   - component: {fileID: 5438482484573799437}
-  - component: {fileID: 7537706931706261008}
   m_Layer: 6
   m_Name: Animal
   m_TagString: Untagged
@@ -444,24 +459,6 @@ NavMeshAgent:
   m_BaseOffset: 2.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7537706931706261008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8639884569354036906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0ef8433a08c42a2910dc1e60373b94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstFootstepDistance: 0.1
-  footstepDistance: 1
-  velocity0Epsilon: 0.000001
-  playerWalk: {fileID: 8368663811286856380}
-  playerWalkStart: {fileID: 0}
-  playerWalkStop: {fileID: 0}
 --- !u!1001 &3023784824076272369
 PrefabInstance:
   m_ObjectHideFlags: 0
