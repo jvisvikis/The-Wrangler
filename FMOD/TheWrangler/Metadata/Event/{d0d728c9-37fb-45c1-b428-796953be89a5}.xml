@@ -182,7 +182,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{54fe9c30-ebf5-4abd-91b8-8b5672dfb291}">
 		<property name="volume">
-			<value>-8</value>
+			<value>-9</value>
 		</property>
 		<property name="name">
 			<value>pluck</value>
@@ -224,6 +224,9 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{bfe14ade-55e5-4bc4-aa3d-56f478bf972a}">
+		<property name="start">
+			<value>0.059999999999999998</value>
+		</property>
 		<property name="length">
 			<value>0.50002083333333336</value>
 		</property>
@@ -237,6 +240,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{ab909540-b932-4a73-9205-bfbef11ddf73}">
+		<property name="volume">
+			<value>-10</value>
+		</property>
 		<property name="name">
 			<value>synth</value>
 		</property>
