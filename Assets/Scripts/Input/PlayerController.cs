@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private FMODUnity.StudioEventEmitter fmodWranglePull;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodWrangleLoop;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodWrangleSuccess;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodWrangleFail;
 
     private Controls playerControls;
     private LassoAimer lassoAimer;
@@ -187,12 +188,13 @@ public class PlayerController : MonoBehaviour
                     playerWorldUI.SetCanvas(false);
                     timesPulled = 0;
                     state = State.Roaming;
-                    StopFMODWrangleLoop(true);
+                    StopFMODWrangleLoop(true, timesPulled);
                 }
                 else
                 {
                     StartCoroutine(BringAnimalBack(0.25f));
                     fmodWranglePull.Play();
+                    fmodWranglePull.EventInstance.setParameterByName("pullNumber", timesPulled);
                 }
             }
             else
@@ -203,7 +205,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void StopFMODWrangleLoop(bool success)
+    private void StopFMODWrangleLoop(bool success, int pullNumber)
     {
         // fmodWrangleLoop.EventInstance.setParameterByName("stop", 1);
         fmodWrangleLoop.SetParameter("stop", 1);
@@ -211,6 +213,11 @@ public class PlayerController : MonoBehaviour
         if (success)
         {
             fmodWrangleSuccess.Play();
+        }
+        else
+        {
+            fmodWrangleFail.Play();
+            fmodWrangleFail.EventInstance.setParameterByName("pullNumber", timesPulled);
         }
     }
 
@@ -231,7 +238,7 @@ public class PlayerController : MonoBehaviour
             playerWorldUI.ResetFillBars();
             lassoBelt.GetFreeLasso().ReleaseAnimal(true);
             lassoBelt.GetFreeLasso().isWrangling = false;
-            StopFMODWrangleLoop(false);
+            StopFMODWrangleLoop(false, 0);
         }
     }
 

@@ -1,5 +1,68 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &508388099812351405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4257400622008322771}
+  - component: {fileID: 7741526514106392876}
+  m_Layer: 3
+  m_Name: wrangleFail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4257400622008322771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508388099812351405}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1430055270140115266}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7741526514106392876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508388099812351405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1114868117
+      Data2: 1251309258
+      Data3: 1082060945
+      Data4: 869578182
+    Path: event:/wrangle/wrangleFail
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &768959200499449793
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1430055270140115266}
-  - component: {fileID: 9090326412714190564}
   m_Layer: 3
   m_Name: PlayerAudio
   m_TagString: Untagged
@@ -161,6 +223,7 @@ Transform:
   - {fileID: 4427002600829032849}
   - {fileID: 7949129456889855088}
   - {fileID: 5598861116331822194}
+  - {fileID: 4257400622008322771}
   - {fileID: 477971541790828992}
   - {fileID: 2401817319452908072}
   - {fileID: 5207884792449946193}
@@ -168,24 +231,6 @@ Transform:
   - {fileID: 9166762033118994273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9090326412714190564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608454255066930317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0ef8433a08c42a2910dc1e60373b94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstFootstepDistance: 0.1
-  footstepDistance: 2
-  velocity0Epsilon: 0.000001
-  playerWalk: {fileID: 2716903498721048424}
-  playerWalkStart: {fileID: 2927069662318126890}
-  playerWalkStop: {fileID: 564880318335182850}
 --- !u!1 &2384772909035763294
 GameObject:
   m_ObjectHideFlags: 0
