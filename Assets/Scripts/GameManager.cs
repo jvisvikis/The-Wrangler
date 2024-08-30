@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float extraTimeModifier;
     [SerializeField] private float timeGiven;
     [SerializeField] private float timeToAdd;
+
+    [Header("FMOD")]
+    [SerializeField] private int fmodWarningTicks = 3;
+    [SerializeField] FMODUnity.StudioEventEmitter fmodRoundCountdownTick;
+    [SerializeField] FMODUnity.StudioEventEmitter fmodGameOver;
+
     public float timeElapsed => Time.time - startTime;
     public float timeLeft => Mathf.Max(0f,timeGiven - timeElapsed + extraTime);
 
@@ -39,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         merchant = FindObjectOfType<Merchant>();
         player = FindObjectOfType<PlayerController>();
+        StartCoroutine(AsyncFMODEmitter());
     }
 
     void Update()
@@ -63,4 +70,20 @@ public class GameManager : MonoBehaviour
         extraTime += extraTimeModifier*modifierMultiplier;
     }
 
+    private IEnumerator AsyncFMODEmitter()
+    {
+        float prevTimeLeft = timeLeft;
+
+        while (!gameOver)
+        {
+            if (timeLeft < fmodWarningTicks && ((int)timeLeft) != ((int)prevTimeLeft))
+            {
+                fmodRoundCountdownTick.Play();
+            }
+            prevTimeLeft = timeLeft;
+            yield return null;
+        }
+
+        fmodGameOver.Play();
+    }
 }

@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
 
     [Header("FMOD")]
     [SerializeField] private FMODUnity.StudioEventEmitter fmodUpgradeReveal;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodUpgradeChosen;
 
     private Dictionary<string,Sprite> animalDictionary = new Dictionary<string, Sprite>();
     private List<string> animalNamesWanted;
@@ -140,6 +141,7 @@ public class UIManager : MonoBehaviour
         stats[0].text = $"Speed: {player.speed}";
         stats[1].text = $"Strength: {player.strength}";
         stats[2].text = $"Lassos: {player.lassoBelt.GetNumLassos()}";
+        fmodUpgradeChosen.Play();
     }
 
     public IEnumerator DelayActiveState(GameObject gameobject, bool state, float delay)
