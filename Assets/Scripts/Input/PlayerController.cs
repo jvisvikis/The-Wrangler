@@ -133,13 +133,13 @@ public class PlayerController : MonoBehaviour
         if(isLeft)
         {
             
-            lassoHome.transform.localPosition = -lassoHomeXPosOrig;
+            // lassoHome.transform.localPosition = -lassoHomeXPosOrig;
             playerSprite.transform.localScale = new Vector3(-origCardScale.x,origCardScale.y,origCardScale.z);
             playerTextCanvas.transform.localScale = new Vector3(-origTextScale.x,origTextScale.y,origTextScale.z);
         }
         else
         {
-            lassoHome.transform.localPosition = lassoHomeXPosOrig;
+            // lassoHome.transform.localPosition = lassoHomeXPosOrig;
             playerSprite.transform.localScale = new Vector3(origCardScale.x,origCardScale.y,origCardScale.z);
             playerTextCanvas.transform.localScale = new Vector3(origTextScale.x,origTextScale.y,origTextScale.z);
         }
