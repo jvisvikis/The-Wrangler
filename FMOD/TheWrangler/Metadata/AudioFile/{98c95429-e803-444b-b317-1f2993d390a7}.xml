@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{98c95429-e803-444b-b317-1f2993d390a7}">
 		<property name="assetPath">
-			<value>DRUMS3-v2-P0m-L38m-T152-4-4.wav</value>
+			<value>music/DRUMS3-v2-P0m-L38m-T152-4-4.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
