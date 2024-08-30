@@ -142,10 +142,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6696440384501703767, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
-      propertyPath: orthographic size
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 6738814419044322601, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
       propertyPath: m_Lens.OrthographicSize
       value: 15

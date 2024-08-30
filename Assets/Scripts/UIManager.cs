@@ -16,7 +16,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Sprite> animalSprites;
     [SerializeField] private List<string> animalNames;
 
+    [Header("FMOD")]
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodUpgradeReveal;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodUpgradeChosen;
+
     private Dictionary<string,Sprite> animalDictionary = new Dictionary<string, Sprite>();
+    private List<string> animalNamesWanted;
+    
     private PlayerController player;
 
     // Start is called before the first frame update
@@ -30,15 +36,15 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
+            for(int i = 0; i<animalNames.Count; i++)
+            {
+                animalDictionary.Add(animalNames[i],animalSprites[i]);
+            }
         }
     }
 
     void Start()
     {
-        for(int i = 0; i<animalNames.Count; i++)
-        {
-            animalDictionary.Add(animalNames[i],animalSprites[i]);
-        }
         player = FindObjectOfType<PlayerController>();
         stats[0].text = $"Speed: {player.speed}";
         stats[1].text = $"Strength: {player.strength}";
@@ -63,7 +69,7 @@ public class UIManager : MonoBehaviour
 
     public void SetNumText(string animalName)
     {
-        int idx = animalNames.IndexOf(animalName);
+        int idx = animalNamesWanted.IndexOf(animalName);
         if(idx <= -1)
             return;
         
@@ -95,12 +101,15 @@ public class UIManager : MonoBehaviour
         }
 
         int imageIdx = 0;
+        animalNamesWanted = new List<string>();
         foreach(KeyValuePair<string, int> kvp in dict)
         {
             if(kvp.Value > 0)
             {
                 animalsWanted[imageIdx].sprite = animalDictionary[kvp.Key];
                 animalsWantedNums[imageIdx].text = $"x{kvp.Value}";
+                animalsWanted[imageIdx].gameObject.SetActive(true);
+                animalNamesWanted.Add(kvp.Key);
                 imageIdx++;
             }
         }
@@ -114,9 +123,14 @@ public class UIManager : MonoBehaviour
     public void ToggleUpgradePanelState()
     {
         if(upgradePanelAnim.gameObject.activeSelf)
+        {
             StartCoroutine(DelayActiveState(upgradePanelAnim.gameObject, false, 0.5f));
+        }
         else
+        {
             upgradePanelAnim.gameObject.SetActive(true);
+            fmodUpgradeReveal.Play();
+        }
 
         upgradePanelAnim.SetTrigger("SwitchState");
     }
@@ -127,6 +141,7 @@ public class UIManager : MonoBehaviour
         stats[0].text = $"Speed: {player.speed}";
         stats[1].text = $"Strength: {player.strength}";
         stats[2].text = $"Lassos: {player.lassoBelt.GetNumLassos()}";
+        fmodUpgradeChosen.Play();
     }
 
     public IEnumerator DelayActiveState(GameObject gameobject, bool state, float delay)

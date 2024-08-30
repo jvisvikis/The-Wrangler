@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{f25579e1-022c-4ff8-849b-086a5955ed86}">
+		<property name="name">
+			<value>cicadas</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e65a55b0-d8d5-4e03-8bfc-587db7910316}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e926d367-9d35-496a-af06-dd06e4535561}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e926d367-9d35-496a-af06-dd06e4535561}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

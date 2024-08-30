@@ -9,6 +9,9 @@ public class AnimalManager : MonoBehaviour
     [SerializeField] private List<AnimalSpawner> animalSpawners;
     [SerializeField] private int maxNumAnimals;
     [SerializeField] private int minNumAnimal;
+
+    [Header("FMOD")]
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodAnimalDelivered;
     
     private Dictionary<string,int> animalsActive;
 
@@ -49,6 +52,8 @@ public class AnimalManager : MonoBehaviour
                 animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i].gameObject);
             }
         }
+
+        fmodAnimalDelivered.Play();
     }
 
 }

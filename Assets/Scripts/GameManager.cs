@@ -8,10 +8,20 @@ public class GameManager : MonoBehaviour
     public bool pickingUpgrade {get; set;}
     [SerializeField] private float extraTimeModifier;
     [SerializeField] private float timeGiven;
+    [SerializeField] private float timeToAdd;
+
+    [Header("FMOD")]
+    [SerializeField] private int fmodWarningTicks = 3;
+    [SerializeField] FMODUnity.StudioEventEmitter fmodRoundCountdownTick;
+    [SerializeField] FMODUnity.StudioEventEmitter fmodGameOver;
+
     public float timeElapsed => Time.time - startTime;
     public float timeLeft => Mathf.Max(0f,timeGiven - timeElapsed + extraTime);
+
+    public float addTimer => timeElapsed - addStartTime;
     public bool gameOver => timeLeft <= 0;
     private float startTime;
+    private float addStartTime;
     private float extraTime;
 
     private Merchant merchant;
@@ -27,6 +37,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             startTime = Time.time;
+            addStartTime = startTime;
         }
     }
 
@@ -34,6 +45,17 @@ public class GameManager : MonoBehaviour
     {
         merchant = FindObjectOfType<Merchant>();
         player = FindObjectOfType<PlayerController>();
+        StartCoroutine(AsyncFMODEmitter());
+    }
+
+    void Update()
+    {
+        if(addTimer >= timeToAdd)
+        {
+            addStartTime = timeElapsed;
+            merchant.IncrementCurrentMaxAnimals();
+        }
+
     }
 
     public void UpgradePlayerStat(string stat)
@@ -48,4 +70,20 @@ public class GameManager : MonoBehaviour
         extraTime += extraTimeModifier*modifierMultiplier;
     }
 
+    private IEnumerator AsyncFMODEmitter()
+    {
+        float prevTimeLeft = timeLeft;
+
+        while (!gameOver)
+        {
+            if (timeLeft < fmodWarningTicks && ((int)timeLeft) != ((int)prevTimeLeft))
+            {
+                fmodRoundCountdownTick.Play();
+            }
+            prevTimeLeft = timeLeft;
+            yield return null;
+        }
+
+        fmodGameOver.Play();
+    }
 }

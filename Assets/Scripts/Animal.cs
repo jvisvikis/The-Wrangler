@@ -6,14 +6,19 @@ using UnityEngine.AI;
 public class Animal : MonoBehaviour
 {
     private State state = State.Idle;
-    private enum State {Idle, Moving, BeingWrangled, Follow}
+    private enum State {Idle, Moving, Scared, BeingWrangled, Follow}
     public bool isShiny;
+    public bool captured => state == State.Follow;
     public float moveNum = 10;
     public string animalName;
+    [SerializeField] private SpriteRenderer animalSprite;
     [SerializeField] private float pullStrength;
     [SerializeField] private float wanderRadius;
     [SerializeField] private float maxIdleTime;
     [SerializeField] private float minIdleTime;
+    [SerializeField] private float scaredDistance;
+    private Merchant merchant;
+    private PlayerController player;
     private NavMeshAgent agent;
     private float idleTimer;
     private float waitTime;
@@ -24,6 +29,8 @@ public class Animal : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        merchant = FindObjectOfType<Merchant>();
+        player = FindObjectOfType<PlayerController>();
         EnterIdleState();
     }
 
@@ -32,6 +39,18 @@ public class Animal : MonoBehaviour
         switch(state)
         {
             case State.Idle:
+                if(Vector2.Distance((Vector2)transform.position,(Vector2)player.transform.position) < scaredDistance )
+                {
+                    EnterScaredState(player.transform);
+                    break;
+                }
+
+                if(Vector2.Distance((Vector2)transform.position,(Vector2)merchant.transform.position) < scaredDistance)
+                {
+                    EnterScaredState(merchant.transform);
+                    break;
+                }
+
                 if(idleTimer < waitTime)
                 {
                     idleTimer += Time.deltaTime;
@@ -43,6 +62,18 @@ public class Animal : MonoBehaviour
                 break;
 
             case State.Moving:
+                if(Vector2.Distance((Vector2)transform.position,(Vector2)player.transform.position) < scaredDistance )
+                {
+                    EnterScaredState(player.transform);
+                    break;
+                }
+
+                if(Vector2.Distance((Vector2)transform.position,(Vector2)merchant.transform.position) < scaredDistance)
+                {
+                    EnterScaredState(merchant.transform);
+                    break;
+                }
+                
                 if((Vector2)agent.destination == (Vector2)transform.position)
                 {
                     EnterIdleState();
@@ -51,12 +82,22 @@ public class Animal : MonoBehaviour
             case State.BeingWrangled:
                 agent.SetDestination(transform.position);
                 break;
-
-            case State.Follow:
-                agent.SetDestination(transform.position);
+            case State.Scared:
+                if((Vector2)agent.destination == (Vector2)transform.position)
+                {
+                    EnterIdleState();
+                }
                 break;
 
         }
+    }
+
+    public void SetSpriteDirection(bool isLeft)
+    {
+        if(isLeft)
+            animalSprite.flipX = true;
+        else
+            animalSprite.flipX = false;
     }
 
     public void EnterIdleState()
@@ -70,7 +111,19 @@ public class Animal : MonoBehaviour
     {
         Vector2 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
         agent.SetDestination(newPos);
+        SetSpriteDirection(newPos.x-transform.position.x < 0);
         state = State.Moving;
+    }
+
+    public void EnterScaredState(Transform scaredOf)
+    {
+        Vector2 newPos = RandomNavSphere(-3*(scaredOf.position-transform.position), 1, -1);
+        agent.SetDestination(newPos);
+        /*
+            make speed of agent faster here
+        */ 
+        SetSpriteDirection(newPos.x-transform.position.x < 0);
+        state = State.Scared;
     }
 
     public void EnterBeingWrangledState()
@@ -81,6 +134,14 @@ public class Animal : MonoBehaviour
     public void EnterFollowState()
     {
         state = State.Follow;
+    }
+
+    public void Follow(Vector2 position)
+    {
+        if(state == State.Follow)
+        {
+            agent.SetDestination(position);
+        }
     }
 
     public void ExitFollowState()
@@ -104,7 +165,7 @@ public class Animal : MonoBehaviour
         if(isFree)
         {
             agent.enabled = true;
-            EnterIdleState();
+            EnterScaredState(player.transform);
         }
     }
 
@@ -117,7 +178,7 @@ public class Animal : MonoBehaviour
     {
         while(state == State.BeingWrangled)
         {
-            lasso.transform.position = (Vector2)lasso.transform.position + dir * Random.Range(0,pullStrength) * Time.deltaTime;
+            transform.position = (Vector2)transform.position + dir * Random.Range(0,pullStrength) * Time.deltaTime;
             yield return null;
         }
     }

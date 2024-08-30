@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{dec0853e-6f6f-45c0-9431-5a267833d80e}">
+		<property name="name">
+			<value>_lassoPitch</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e65a55b0-d8d5-4e03-8bfc-587db7910316}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{4ca6ba4e-598a-4f36-a5ea-40a30efbabe0}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{4ca6ba4e-598a-4f36-a5ea-40a30efbabe0}">
+		<property name="maximum">
+			<value>11</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
