@@ -205,7 +205,8 @@ public class PlayerController : MonoBehaviour
 
     private void StopFMODWrangleLoop(bool success)
     {
-        fmodWrangleLoop.EventInstance.setParameterByName("stop", 1);
+        // fmodWrangleLoop.EventInstance.setParameterByName("stop", 1);
+        fmodWrangleLoop.SetParameter("stop", 1);
         StartCoroutine(AsyncSetFMODParameter(fmodWrangleLoop, "stop", 0));
         if (success)
         {
@@ -216,7 +217,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator AsyncSetFMODParameter(FMODUnity.StudioEventEmitter emitter, string name, float value, float delay = 0.1f)
     {
         yield return new WaitForSeconds(delay);
-        emitter.EventInstance.setParameterByName(name, value);
+        // emitter.EventInstance.setParameterByName(name, value);
+        emitter.SetParameter(name, value);
     }
 
     public void AnimalEscaped()
