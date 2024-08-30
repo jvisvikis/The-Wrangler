@@ -119,10 +119,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3472283570976594202, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
-      propertyPath: strength
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3472283570976594202, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
       propertyPath: fmodThrowLasso
       value: 
       objectReference: {fileID: 3345511073291371446}
@@ -133,10 +129,6 @@ PrefabInstance:
     - target: {fileID: 6561094434964019152, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6738814419044322601, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8641177373924019005, guid: bb0ed5e7651feac4ca7e5596a859905c, type: 3}
       propertyPath: m_LocalPosition.x
