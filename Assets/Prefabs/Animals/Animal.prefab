@@ -107,7 +107,7 @@ Animator:
   m_GameObject: {fileID: 4932510784898662158}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4956fad6de6f4ff48bbdc6bcf129d006, type: 2}
+  m_Controller: {fileID: 9100000, guid: 14671a41431722a40a035192d4484b1f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -476,7 +476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2230712288620836558, guid: 9a3e0a65562c98d42a2bb19f6d28f24b, type: 3}
       propertyPath: m_fontSize
-      value: 29.55
+      value: 44.35
       objectReference: {fileID: 0}
     - target: {fileID: 2230712288620836558, guid: 9a3e0a65562c98d42a2bb19f6d28f24b, type: 3}
       propertyPath: m_VerticalAlignment

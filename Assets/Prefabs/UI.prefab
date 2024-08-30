@@ -1305,9 +1305,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: be5a640986be5ea41bd7676c7100296b, type: 3}
   animalNames:
   - Chicken
-  - Boar
+  - Sheep
+  - Pig
   - Cattle
   - Horse
+  - Bandit
   fmodUpgradeReveal: {fileID: 7406539336510948232}
   fmodUpgradeChosen: {fileID: 7553355437572182621}
 --- !u!1 &3248474942264778377

@@ -120,6 +120,7 @@ public class Animal : MonoBehaviour
 
     public void EnterScaredState(Transform scaredOf)
     {
+        animator.SetTrigger("Scared");
         Vector2 newPos = RandomNavSphere(-3*(scaredOf.position-transform.position), 1, -1);
         agent.SetDestination(newPos);
         /*

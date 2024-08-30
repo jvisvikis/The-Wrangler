@@ -8471,12 +8471,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c3d9f354f445643a6c9c4c3c1230a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAnimals: 0
+  maxAnimals: 8
   animals:
   - Chicken
-  - Boar
+  - Pig
+  - Sheep
   - Cattle
   - Horse
+  - Bandit
 --- !u!1001 &459384488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11175,6 +11177,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: be5a640986be5ea41bd7676c7100296b, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: be5a640986be5ea41bd7676c7100296b, type: 3}
     - target: {fileID: 9041905160553524563, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -43204,7 +43218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7079532127163700138, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8129405107547340655, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
       propertyPath: m_LocalPosition.x
