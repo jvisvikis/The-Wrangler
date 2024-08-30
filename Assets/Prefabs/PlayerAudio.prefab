@@ -135,7 +135,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1430055270140115266}
-  - component: {fileID: 9090326412714190564}
   m_Layer: 3
   m_Name: PlayerAudio
   m_TagString: Untagged
@@ -168,24 +167,6 @@ Transform:
   - {fileID: 9166762033118994273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9090326412714190564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608454255066930317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0ef8433a08c42a2910dc1e60373b94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstFootstepDistance: 0.1
-  footstepDistance: 2
-  velocity0Epsilon: 0.000001
-  playerWalk: {fileID: 2716903498721048424}
-  playerWalkStart: {fileID: 2927069662318126890}
-  playerWalkStop: {fileID: 564880318335182850}
 --- !u!1 &2384772909035763294
 GameObject:
   m_ObjectHideFlags: 0
