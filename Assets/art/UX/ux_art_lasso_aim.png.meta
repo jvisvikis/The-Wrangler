@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 5551240e28eb4b94981f2ecfaa8de9fc
-=======
-guid: 9d9227177c19e4d678ef1ac6a01b6ff9
->>>>>>> f6529fa (Use animation events for footstep sounds)
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -67,16 +63,16 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,7 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,14 +93,12 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< HEAD
-=======
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,7 +106,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
->>>>>>> f6529fa (Use animation events for footstep sounds)
   spriteSheet:
     serializedVersion: 2
     sprites: []

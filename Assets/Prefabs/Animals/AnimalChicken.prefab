@@ -48,13 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3551916423716338491, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3964207016240444479, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_text
       value: Chicken
       objectReference: {fileID: 0}
     - target: {fileID: 3964207016240444479, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_fontSize
-      value: 42.65
+      value: 68.25
       objectReference: {fileID: 0}
     - target: {fileID: 4416515523620745421, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_FlipX
@@ -68,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1cf18b97432e473409be9bf2e7188782, type: 3}
+    - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6bec4812096bfd44d916972b29daa535, type: 3}
     - target: {fileID: 8639884569354036906, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Name
       value: AnimalChicken
