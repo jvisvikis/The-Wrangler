@@ -11,6 +11,7 @@ public class Animal : MonoBehaviour
     public bool captured => state == State.Follow;
     public float moveNum = 10;
     public string animalName;
+    [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer animalSprite;
     [SerializeField] private float pullStrength;
     [SerializeField] private float wanderRadius;
@@ -104,6 +105,7 @@ public class Animal : MonoBehaviour
     {
         idleTimer = 0;
         waitTime = Random.Range(minIdleTime, maxIdleTime);
+        animator.SetBool("Walking",false);
         state = State.Idle;
     }
 
@@ -112,6 +114,7 @@ public class Animal : MonoBehaviour
         Vector2 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
         agent.SetDestination(newPos);
         SetSpriteDirection(newPos.x-transform.position.x < 0);
+        animator.SetBool("Walking",true);
         state = State.Moving;
     }
 
@@ -123,16 +126,19 @@ public class Animal : MonoBehaviour
             make speed of agent faster here
         */ 
         SetSpriteDirection(newPos.x-transform.position.x < 0);
+        animator.SetBool("Walking",true);
         state = State.Scared;
     }
 
     public void EnterBeingWrangledState()
     {
+        animator.SetBool("Walking",false);
         state = State.BeingWrangled;
     }
 
     public void EnterFollowState()
     {
+        animator.SetBool("Walking",true);
         state = State.Follow;
     }
 
@@ -141,12 +147,16 @@ public class Animal : MonoBehaviour
         if(state == State.Follow)
         {
             agent.SetDestination(position);
+            if((Vector2)agent.destination == (Vector2)transform.position)
+                animator.SetBool("Walking",false);
+            else
+                animator.SetBool("Walking",true);
         }
     }
 
     public void ExitFollowState()
     {
-        EnterIdleState();
+        EnterScaredState(player.transform);
     }
 
     public void PullBack(Vector2 dir, GameObject lasso)

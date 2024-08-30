@@ -1529,6 +1529,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8776678078262843019, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776678078262843019, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1717,6 +1721,10 @@ PrefabInstance:
     - target: {fileID: 4300005966385521629, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
+      propertyPath: maxNumAnimals
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5266060758968970916, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
       propertyPath: rectWidth
