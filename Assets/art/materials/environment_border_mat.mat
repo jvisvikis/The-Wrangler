@@ -72,7 +72,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     m_Colors:
-    - _Background_Color: {r: 0.827451, g: 0.696016, b: 0.47058824, a: 0}
+    - _Background_Color: {r: 0.6830188, g: 0.5230571, b: 0.25645417, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Colour: {r: 0.1037736, g: 0.09349413, b: 0.09349413, a: 0}
