@@ -1416,9 +1416,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4202731137368390937, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4233223104304936052, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -15
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770995980201867443, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770995980201867443, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4786284759045413730, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_SortingOrder

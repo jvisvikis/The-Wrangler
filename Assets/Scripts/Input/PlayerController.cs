@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
-    [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private GameObject playerSprite;
+    [SerializeField] private GameObject playerTextCanvas;
     [SerializeField] private GameObject lassoHome;
     [SerializeField] private float lassoRange = 5f;
     [SerializeField] private float lassoChargeTime = 1f;
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private PlayerWorldUI playerWorldUI;
     private SwitchCamera switchCam;
     private Vector3 lassoHomeXPosOrig;
+    private Vector3 origCardScale;
+    private Vector3 origTextScale;
     private float pullTimer;
     private float origSpeed;
     private float moveCounter;
@@ -68,6 +71,8 @@ public class PlayerController : MonoBehaviour
         playerWorldUI.FillPullBar(0f);
         lassoHomeXPosOrig = lassoHome.transform.localPosition;
         origSpeed = speed;
+        origTextScale = playerTextCanvas.transform.localScale;
+        origCardScale = playerSprite.transform.localScale;
     }
 
     void OnEnable()
@@ -82,6 +87,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(lassoReady)
+        {
+            animator.SetBool("LassoReady", true);
+        }
+
         if(state == State.Roaming && !GameManager.instance.pickingUpgrade) 
         {
             Vector2 dir = GetDirection();
@@ -122,13 +132,16 @@ public class PlayerController : MonoBehaviour
     {
         if(isLeft)
         {
-            playerSprite.flipX = true;
+            
             lassoHome.transform.localPosition = -lassoHomeXPosOrig;
+            playerSprite.transform.localScale = new Vector3(-origCardScale.x,origCardScale.y,origCardScale.z);
+            playerTextCanvas.transform.localScale = new Vector3(-origTextScale.x,origTextScale.y,origTextScale.z);
         }
         else
         {
-            playerSprite.flipX = false;
             lassoHome.transform.localPosition = lassoHomeXPosOrig;
+            playerSprite.transform.localScale = new Vector3(origCardScale.x,origCardScale.y,origCardScale.z);
+            playerTextCanvas.transform.localScale = new Vector3(origTextScale.x,origTextScale.y,origTextScale.z);
         }
     }
 
@@ -267,6 +280,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ChargeLasso()
     {
+        animator.SetTrigger("StartCharge");
         Vector3 mousePos = Mouse.current.position.ReadValue();
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
@@ -308,6 +322,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ThrowLasso(float duration)
     {
+        animator.SetBool("LassoReady",false);
         fmodLassoThrow.Play();
         state = State.Throwing;
         float timer = 0;

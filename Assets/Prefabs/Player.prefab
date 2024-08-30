@@ -845,7 +845,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   wrangleCam: {fileID: 8239976867184578323}
-  playerSprite: {fileID: 3846214849512572073}
+  playerSprite: {fileID: 6506249198965633566}
+  playerTextCanvas: {fileID: 283431569655335149}
   lassoHome: {fileID: 2645697450009931216}
   lassoRange: 10
   lassoChargeTime: 0.5
@@ -1538,6 +1539,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
+--- !u!1 &283431569655335149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6410188802630371564, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
+  m_PrefabInstance: {fileID: 6564950017218985985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1560881133202814710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5670663449858930423, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
@@ -1553,13 +1559,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9199733164501102033, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
   m_PrefabInstance: {fileID: 6564950017218985985}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &3846214849512572073 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7961206652262139048, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
-  m_PrefabInstance: {fileID: 6564950017218985985}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &5608779629849445000 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1642969547576689289, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
+  m_PrefabInstance: {fileID: 6564950017218985985}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6506249198965633566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 95055455248478751, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
   m_PrefabInstance: {fileID: 6564950017218985985}
   m_PrefabAsset: {fileID: 0}
