@@ -180,6 +180,7 @@ public class PlayerController : MonoBehaviour
                 {
                     StartCoroutine(BringAnimalBack(0.25f));
                     fmodWranglePull.Play();
+                    fmodWranglePull.EventInstance.setParameterByName("pullNumber", timesPulled);
                 }
             }
             else
