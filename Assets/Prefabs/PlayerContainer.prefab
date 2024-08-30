@@ -46,14 +46,6 @@ PrefabInstance:
       value: Lasso
       objectReference: {fileID: 0}
     - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7762432589551869440, guid: 39093b1564eb3644386567a66021cac5, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}

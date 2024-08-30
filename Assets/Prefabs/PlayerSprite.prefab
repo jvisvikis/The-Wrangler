@@ -29,7 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3907057601158593072}
   - {fileID: 8887848850603805360}
@@ -68,6 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196eacc6c9ac647a48f54d31d6370409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventEmitter: {fileID: 0}
+  eventEmitterStart: {fileID: 0}
+  eventEmitterStop: {fileID: 0}
 --- !u!1 &4498945285752781268
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,9 +129,9 @@ Transform:
   m_GameObject: {fileID: 5370814455293658056}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.35, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4744089027123606732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
@@ -173,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 1cf18b97432e473409be9bf2e7188782, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 919a681fcbe8fb1468c64cbbc60b722c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -223,7 +226,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9199733164501102033}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -282,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2230712288620836558, guid: 9a3e0a65562c98d42a2bb19f6d28f24b, type: 3}
       propertyPath: m_fontSize
-      value: 42.65
+      value: 68.25
       objectReference: {fileID: 0}
     - target: {fileID: 2230712288620836558, guid: 9a3e0a65562c98d42a2bb19f6d28f24b, type: 3}
       propertyPath: m_VerticalAlignment

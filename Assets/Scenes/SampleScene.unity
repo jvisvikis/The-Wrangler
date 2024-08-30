@@ -1729,7 +1729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9041905160553524563, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119057671114284321, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_Type
@@ -1822,21 +1822,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3680975070014867547, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680975070014867547, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680975070014867547, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
+    - target: {fileID: 3687122506445346923, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_text
+      value: Wrangler
       objectReference: {fileID: 0}
     - target: {fileID: 3687122506445346923, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_fontSize
-      value: 68.25
+      value: 65.65
       objectReference: {fileID: 0}
     - target: {fileID: 4202731137368390937, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -1845,14 +1837,6 @@ PrefabInstance:
     - target: {fileID: 4233223104304936052, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4770995980201867443, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4770995980201867443, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4786284759045413730, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_SortingOrder
@@ -1969,14 +1953,6 @@ PrefabInstance:
     - target: {fileID: 8807360826574817141, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9000035244405203045, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9000035244405203045, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 9142835589129442840, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_SortingOrder

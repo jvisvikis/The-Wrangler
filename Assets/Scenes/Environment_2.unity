@@ -3608,6 +3608,8 @@ MonoBehaviour:
   - Boar
   - Cattle
   - Horse
+  fmodUpgradeReveal: {fileID: 0}
+  fmodUpgradeChosen: {fileID: 0}
 --- !u!1 &195570088
 GameObject:
   m_ObjectHideFlags: 0
@@ -8970,7 +8972,7 @@ Transform:
   m_GameObject: {fileID: 457790676}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.5, y: 0, z: 0}
+  m_LocalPosition: {x: -46.75, y: 8.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8991,6 +8993,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c3d9f354f445643a6c9c4c3c1230a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxAnimals: 0
+  animals:
+  - Chicken
+  - Boar
+  - Cattle
+  - Horse
 --- !u!1001 &459384488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15038,6 +15046,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extraTimeModifier: 15
   timeGiven: 23
+  timeToAdd: 0
+  fmodWarningTicks: 3
+  fmodRoundCountdownTick: {fileID: 0}
+  fmodGameOver: {fileID: 0}
 --- !u!4 &685803451
 Transform:
   m_ObjectHideFlags: 0
@@ -24812,8 +24824,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.8, y: 0.5, z: 0}
-  m_LocalScale: {x: 1.325, y: 1.325, z: 1.325}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1470041343}
   - {fileID: 672379376}
@@ -43260,13 +43272,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 342494706718933112, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 824773921187031570, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: orthographic size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 828482343852883405, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_Name
       value: PlayerContainer
       objectReference: {fileID: 0}
     - target: {fileID: 6754866449597473552, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.245173
+      value: -28.245173
       objectReference: {fileID: 0}
     - target: {fileID: 6754866449597473552, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -43307,7 +43327,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7486910917314655889, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 9195265272204470180, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
 --- !u!1001 &1204103830130047653
 PrefabInstance:
