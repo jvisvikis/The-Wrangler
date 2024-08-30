@@ -17,7 +17,7 @@ public class FMODAnimationEventEmitter : MonoBehaviour
     {
         if (IsFirstOfLoop(animationEvent))
         {
-            eventEmitterStart.Play();
+            eventEmitterStart?.Play();
         }
         else if (animationEvent.animatorClipInfo.weight == 1f)
         {
@@ -29,7 +29,7 @@ public class FMODAnimationEventEmitter : MonoBehaviour
     {
         if (IsFirstOfLoop(animationEvent))
         {
-            eventEmitterStop.Play();
+            eventEmitterStop?.Play();
         }
     }
 
