@@ -107,6 +107,9 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 dir = GetDirection();
             rb2d.velocity = dir * speed;
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            mousePos.z = Camera.main.nearClipPlane;
+            Vector3 worldPos=Camera.main.ScreenToWorldPoint(mousePos);
             if(dir.x!=0)
             {
                 animator.SetBool("Walking",true);
@@ -115,10 +118,12 @@ public class PlayerController : MonoBehaviour
             else if(dir.y!=0)
             {
                 animator.SetBool("Walking",true);
+                SetSpriteDirection(worldPos.x < transform.position.x);
             }
             else
             {
                 animator.SetBool("Walking",false);
+                SetSpriteDirection(worldPos.x < transform.position.x);
             }
         }
         else 
