@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 4776949418774722394}
-  upgradeCountForIntensity2: 3
+  upgradeCountForIntensity2: 2
   timeForIntensity3: 60
 --- !u!1 &7098537637420884356
 GameObject:

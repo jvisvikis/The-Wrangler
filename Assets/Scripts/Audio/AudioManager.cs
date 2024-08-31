@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     float timeForIntensity3 = 60f;
 
     static AudioManager instance;
+    static bool startedGame = false;
     static int upgradeCount = 0;
     static bool reachedTimeForIntensity3 = false;
     static float intensity3Timer;
@@ -29,6 +30,23 @@ public class AudioManager : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
         }
+    }
+
+    void Update()
+    {
+        if (startedGame)
+        {
+            Tick();
+        }
+    }
+
+    public static void StartGame()
+    {
+        instance.music.SetParameter("musicStartGame", 1f);
+        startedGame = true;
+        upgradeCount = 0;
+        reachedTimeForIntensity3 = false;
+        intensity3Timer = 0;
     }
 
     public static void DidUpgrade()
@@ -48,7 +66,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static void Tick()
+    static void Tick()
     {
         if (intensity3Timer < instance.timeForIntensity3)
         {
@@ -59,11 +77,6 @@ public class AudioManager : MonoBehaviour
                 SetMusicIntensity(3);
             }
         }
-    }
-
-    public static void SetStartGame(bool startGame)
-    {
-        instance.music.SetParameter("musicStartGame", startGame ? 1f : 0f);
     }
 
     static void SetMusicIntensity(int intensity)

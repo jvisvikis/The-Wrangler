@@ -6,6 +6,6 @@ public class StartGameMusic : MonoBehaviour
 {
     void Start()
     {
-        AudioManager.SetStartGame(true);
+        AudioManager.StartGame();
     }
 }

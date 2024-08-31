@@ -60,10 +60,6 @@ public class UIManager : MonoBehaviour
         {
             //Activate Game Over Panel
         }
-        else
-        {
-            AudioManager.Tick();
-        }
     }
 
     public void SetGamePanel(bool active)
