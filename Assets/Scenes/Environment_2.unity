@@ -12520,7 +12520,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000991eae3f8bda2cab81856ec6a557c4d6
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -42244,6 +42244,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 3576856763014095591, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687122506445346923, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_text
+      value: Wrangler
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687122506445346923, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_fontSize
+      value: 65.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814961836341593215, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814961836341593215, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814961836341593215, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6754866449597473552, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.245173
@@ -42283,6 +42307,34 @@ PrefabInstance:
     - target: {fileID: 6754866449597473552, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953625683608916542, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079927745905284672, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079927745905284672, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1423123829
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132618280011926252, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717492730981892875, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740295836582059161, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740295836582059161, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1068375705
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43159,6 +43211,10 @@ PrefabInstance:
     - target: {fileID: 4300005966385521629, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
+      propertyPath: maxNumAnimals
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
       propertyPath: animalPrefabs.Array.size

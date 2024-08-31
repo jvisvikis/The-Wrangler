@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Merchant
+    uniqueID: 3603191717
+    locked: 0
+  - name: Lasso
+    uniqueID: 2871843467
+    locked: 0
+  - name: Animal
+    uniqueID: 3329131905
+    locked: 0
+  - name: Player
+    uniqueID: 1068375705
+    locked: 0

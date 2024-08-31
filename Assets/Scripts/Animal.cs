@@ -75,7 +75,7 @@ public class Animal : MonoBehaviour
                     break;
                 }
                 
-                if((Vector2)agent.destination == (Vector2)transform.position)
+                if(Vector2.Distance((Vector2)agent.destination,(Vector2)transform.position)< 0.2f)
                 {
                     EnterIdleState();
                 }
@@ -84,7 +84,7 @@ public class Animal : MonoBehaviour
                 agent.SetDestination(transform.position);
                 break;
             case State.Scared:
-                if((Vector2)agent.destination == (Vector2)transform.position)
+                if(Vector2.Distance((Vector2)agent.destination,(Vector2)transform.position)< 0.2f)
                 {
                     EnterIdleState();
                 }
@@ -103,6 +103,7 @@ public class Animal : MonoBehaviour
 
     public void EnterIdleState()
     {
+        Debug.Log("Idle");
         idleTimer = 0;
         waitTime = Random.Range(minIdleTime, maxIdleTime);
         animator.SetBool("Walking",false);
@@ -111,6 +112,7 @@ public class Animal : MonoBehaviour
 
     public void EnterMovingState()
     {
+        Debug.Log("Moving");
         Vector2 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
         agent.SetDestination(newPos);
         SetSpriteDirection(newPos.x-transform.position.x < 0);
@@ -120,8 +122,10 @@ public class Animal : MonoBehaviour
 
     public void EnterScaredState(Transform scaredOf)
     {
+        Debug.Log("Scared");
         animator.SetTrigger("Scared");
-        Vector2 newPos = RandomNavSphere(-3*(scaredOf.position-transform.position), 1, -1);
+        //Vector2 newPos = RandomNavSphere(-10*(scaredOf.position-transform.position).normalized, 1, -1);
+        Vector2 newPos = scaredOf.position;
         agent.SetDestination(newPos);
         /*
             make speed of agent faster here
@@ -133,12 +137,14 @@ public class Animal : MonoBehaviour
 
     public void EnterBeingWrangledState()
     {
+        Debug.Log("Wrangled");
         animator.SetBool("Walking",false);
         state = State.BeingWrangled;
     }
 
     public void EnterFollowState()
     {
+        Debug.Log("Scared");
         animator.SetBool("Walking",true);
         state = State.Follow;
     }
@@ -218,4 +224,12 @@ public class Animal : MonoBehaviour
  
         return navHit.position;
     }
+
+    private IEnumerator StuckChecker()
+    {
+        Vector3 pos = transform.position;
+        yield return new WaitForSeconds(0.5f);
+        if(pos == transform.position)
+            EnterIdleState();
+    } 
 }
