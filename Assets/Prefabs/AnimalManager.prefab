@@ -365,7 +365,7 @@ MonoBehaviour:
   - {fileID: 8624890377722625332}
   - {fileID: 0}
   - {fileID: 0}
-  maxNumAnimals: 50
+  maxNumAnimals: 40
   minNumAnimal: 1
   shinyChance: 0.05
   fmodAnimalDelivered: {fileID: 8554339778098870311}

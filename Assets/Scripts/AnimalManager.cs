@@ -41,7 +41,7 @@ public class AnimalManager : MonoBehaviour
         for(int i = 0; i<maxNumAnimals; i++)
         {
             bool spawnShiny = Random.Range(0.0f,1.0f) <= shinyChance;
-            if(spawnShiny)
+            if(!spawnShiny)
                 animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i%animalPrefabs.Count].gameObject);
             else    
                 animalSpawners[i%animalSpawners.Count].SpawnAnimal(shinyPrefabs[i%shinyPrefabs.Count].gameObject);
