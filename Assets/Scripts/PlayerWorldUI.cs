@@ -5,13 +5,24 @@ using UnityEngine.UI;
 
 public class PlayerWorldUI : MonoBehaviour
 {
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject wrangleCanvas;
+    [SerializeField] private GameObject releaseCanvas;
     [SerializeField] private Image pullFillBar;
     [SerializeField] private Image timeFillBar;
 
+    public void Start()
+    {
+        SetCanvas(false);
+        SetReleaseCanvas(false);
+    }
     public void SetCanvas(bool active)
     {
-        canvas.SetActive(active);
+        wrangleCanvas.SetActive(active);
+    }
+
+    public void SetReleaseCanvas(bool active)
+    {
+        releaseCanvas.SetActive(active);
     }
     public void FillPullBar(float fillAmount)
     {

@@ -94,6 +94,13 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("LassoReady", true);
         }
 
+        if(playerCollider.IsTouchingLayers(merchantMask) && lassoBelt.GetLastInUse()!=null 
+        && lassoBelt.GetLastInUse().animal!=null&& merchant.animalsWanted.Contains(lassoBelt.GetLastInUse().animal.animalName))
+            playerWorldUI.SetReleaseCanvas(true);
+        else
+            playerWorldUI.SetReleaseCanvas(false);
+            
+
         if(state == State.Roaming && !GameManager.instance.pickingUpgrade) 
         {
             Vector2 dir = GetDirection();
