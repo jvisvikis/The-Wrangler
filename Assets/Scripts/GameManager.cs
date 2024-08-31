@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
 
     public void AddTime(int modifierMultiplier)
     {
+        StartCoroutine(UIManager.instance.AddTimeUI((float)extraTimeModifier*modifierMultiplier));
         extraTime += extraTimeModifier*modifierMultiplier;
     }
 

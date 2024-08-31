@@ -7,6 +7,8 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance {get; private set;}
+    [SerializeField] private GameObject addTimeObject;
+    [SerializeField] private TextMeshProUGUI addTimeText;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private Animator upgradePanelAnim;
@@ -163,6 +165,13 @@ public class UIManager : MonoBehaviour
         fmodUpgradeChosen.Play();
     }
 
+    public IEnumerator AddTimeUI(float timeAdded)
+    {
+        addTimeObject.SetActive(true);
+        addTimeText.text = $"{timeAdded}";
+        yield return new WaitForSeconds(1f);
+        addTimeObject.SetActive(false);
+    }
     public IEnumerator DelayActiveState(GameObject gameobject, bool state, float delay)
     {
         yield return new WaitForSeconds(delay);
