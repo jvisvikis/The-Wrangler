@@ -10,7 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private Animator upgradePanelAnim;
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private List<Image> animalsWanted;
+    [SerializeField] private List<GameObject> animalsWantedCards;
+    [SerializeField] private List<Image> animalsWantedImages;
+    [SerializeField] private List<TextMeshProUGUI> animalsWantedNames;
     [SerializeField] private List<TextMeshProUGUI> animalsWantedNums;
     [SerializeField] private List<TextMeshProUGUI> stats;
     [SerializeField] private List<Sprite> animalSprites;
@@ -107,17 +109,18 @@ public class UIManager : MonoBehaviour
         {
             if(kvp.Value > 0)
             {
-                animalsWanted[imageIdx].sprite = animalDictionary[kvp.Key];
+                animalsWantedImages[imageIdx].sprite = animalDictionary[kvp.Key];
                 animalsWantedNums[imageIdx].text = $"x{kvp.Value}";
-                animalsWanted[imageIdx].gameObject.SetActive(true);
+                animalsWantedNames[imageIdx].text = kvp.Key;
+                animalsWantedCards[imageIdx].gameObject.SetActive(true);
                 animalNamesWanted.Add(kvp.Key);
                 imageIdx++;
             }
         }
 
-        for(int i = imageIdx; i<animalsWanted.Count; i++)
+        for(int i = imageIdx; i<animalsWantedCards.Count; i++)
         {
-            animalsWanted[i].gameObject.SetActive(false);
+            animalsWantedCards[i].SetActive(false);
         }
     }
 
