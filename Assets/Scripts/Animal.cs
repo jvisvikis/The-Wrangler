@@ -21,12 +21,15 @@ public class Animal : MonoBehaviour
     [SerializeField] private float minIdleTime;
     [SerializeField] private float scaredSpeedModifier;
     [SerializeField] private float scaredDistance;
+    [SerializeField] private AnimalType animalType;
     private Merchant merchant;
     private PlayerController player;
     private NavMeshAgent agent;
     private float idleTimer;
     private float waitTime;
     private float origSpeed;
+
+    public float AnimalTypeValue => (float)animalType;
 
     void Start()
     {

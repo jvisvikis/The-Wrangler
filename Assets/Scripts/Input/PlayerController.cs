@@ -185,7 +185,8 @@ public class PlayerController : MonoBehaviour
             if(moveCounter <= 0)
             {
                 pullTimer = pullTime;
-                moveCounter = lassoBelt.GetFreeLasso().animal.moveNum;
+                var animal = lassoBelt.GetFreeLasso().animal;
+                moveCounter = animal.moveNum;
                 timesPulled++;
                 playerWorldUI.ResetFillBars();
                 if(timesPulled >= 3)
@@ -196,13 +197,14 @@ public class PlayerController : MonoBehaviour
                     playerWorldUI.SetCanvas(false);
                     timesPulled = 0;
                     state = State.Roaming;
-                    SetWrangingAudio(false, true);
+                    SetWrangingAudio(animal, false, true);
                 }
                 else
                 {
                     StartCoroutine(BringAnimalBack(0.25f));
                     fmodWranglePull.Play();
                     fmodWranglePull.EventInstance.setParameterByName("pullNumber", timesPulled);
+                    fmodWranglePull.EventInstance.setParameterByName("animalType", animal.AnimalTypeValue);
                 }
             }
             else
@@ -213,9 +215,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator AsyncSetFMODParameter(FMODUnity.StudioEventEmitter emitter, string name, float value, float delay = 0.1f)
+    private IEnumerator AsyncSetFMODParameter(FMODUnity.StudioEventEmitter emitter, string name, float value)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(0.1f);
         // emitter.EventInstance.setParameterByName(name, value);
         emitter.SetParameter(name, value);
     }
@@ -224,13 +226,14 @@ public class PlayerController : MonoBehaviour
     {
         if(lassoBelt.GetFreeLasso().animal != null)
         {
+            var animal = lassoBelt.GetFreeLasso().animal;
             timesPulled = 0;
             UIManager.instance.SetGamePanel(true);
             playerWorldUI.SetCanvas(false);
             playerWorldUI.ResetFillBars();
             lassoBelt.GetFreeLasso().ReleaseAnimal(true);
             lassoBelt.GetFreeLasso().isWrangling = false;
-            SetWrangingAudio(false, false);
+            SetWrangingAudio(animal, false, false);
         }
     }
 
@@ -360,7 +363,7 @@ public class PlayerController : MonoBehaviour
             switchCam.SwitchPriority();
             SetWrangleCamMidPos(lassoAimer.transform);
             SetWranglingUI(true);
-            SetWrangingAudio(true);
+            SetWrangingAudio(lassoBelt.GetFreeLasso().animal, true);
             state = State.Wrangling;
         }
         else
@@ -371,13 +374,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SetWrangingAudio(bool isWrangling, bool success = false)
+    private void SetWrangingAudio(Animal animal, bool isWrangling, bool success = false)
     {
         var studio = FMODUnity.RuntimeManager.StudioSystem;
         if (isWrangling)
         {
             studio.setParameterByName("wrangling", 1f);
             fmodWrangleLoop.Play();
+            fmodWrangleLoop.EventInstance.setParameterByName("animalType", animal.AnimalTypeValue);
         }
         else
         {
@@ -388,6 +392,7 @@ public class PlayerController : MonoBehaviour
             if (success)
             {
                 fmodWrangleSuccess.Play();
+                fmodWrangleSuccess.EventInstance.setParameterByName("animalType", animal.AnimalTypeValue);
             }
             else
             {

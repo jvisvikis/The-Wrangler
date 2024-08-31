@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4d6fe481-8e6c-49e3-aa19-617131a0cf24}">
+		<property name="assetPath">
+			<value>animal/animalHalfStartle/animal-animalHalfStartle-vocals-007.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.41270833333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9c161ed6-92b0-4439-948e-47d7e9ebaab4}</destination>
+		</relationship>
+	</object>
+</objects>
