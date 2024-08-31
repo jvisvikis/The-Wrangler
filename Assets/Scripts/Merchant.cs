@@ -21,6 +21,7 @@ public class Merchant : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         animalsWanted = new List<string>();
         currentMaxAnimals = 1;
+        bestAnimalWanted = 1;
         animalsWanted.Add(animals[0]);
         UIManager.instance.SetImages(animalsWanted);
     }
