@@ -11317,6 +11317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverText
       objectReference: {fileID: 0}
+    - target: {fileID: 5821348934806665809, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1490328214, guid: 36773ccbde558044a85badf4207d27c6, type: 3}
     - target: {fileID: 6262425337879821987, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -42632,6 +42636,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1933039929742839774, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9d667ea41118c7347aecbbd7a62a8815, type: 2}
     - target: {fileID: 3110432669388930668, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
