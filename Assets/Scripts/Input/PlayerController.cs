@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private LayerMask merchantMask;
     [SerializeField] private Transform wrangleCam;
+    [SerializeField] private Sprite [] sprites;
+    [SerializeField] private SpriteRenderer playerSpriteRenderer;
     [SerializeField] private GameObject playerSprite;
     [SerializeField] private GameObject playerTextCanvas;
     [SerializeField] private GameObject lassoHome;
@@ -141,7 +143,6 @@ public class PlayerController : MonoBehaviour
     {
         if(isLeft)
         {
-            
             // lassoHome.transform.localPosition = -lassoHomeXPosOrig;
             playerSprite.transform.localScale = new Vector3(-origCardScale.x,origCardScale.y,origCardScale.z);
             playerTextCanvas.transform.localScale = new Vector3(-origTextScale.x,origTextScale.y,origTextScale.z);
@@ -174,6 +175,7 @@ public class PlayerController : MonoBehaviour
         if(state == State.Roaming && lassoBelt.GetFreeLasso() != null && lassoReady)
         {
             state = State.Charging;
+            playerSpriteRenderer.sprite = sprites[1];
             StartCoroutine(ChargeLasso());
         }
         if(state == State.Wrangling)
@@ -191,6 +193,7 @@ public class PlayerController : MonoBehaviour
                 playerWorldUI.ResetFillBars();
                 if(timesPulled >= 3)
                 {
+                    playerSpriteRenderer.sprite = sprites[0];
                     lassoBelt.GrabAnimal();
                     switchCam.SwitchPriority();
                     UIManager.instance.SetGamePanel(true);
@@ -357,6 +360,7 @@ public class PlayerController : MonoBehaviour
         lassoAimer.gameObject.SetActive(false);
         if(successfulThrow)
         {
+            playerSpriteRenderer.sprite = sprites[2];
             pullTimer = pullTime;
             moveCounter = lassoBelt.GetFreeLasso().animal.moveNum;
             lassoBelt.BringAnimal(transform.position-lassoAimer.transform.position);
@@ -369,6 +373,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             lassoBelt.GetFreeLasso().SetAnimal(null);
+            playerSpriteRenderer.sprite = sprites[0];
             state = State.Roaming;
             fmodLassoMiss.Play();
         }

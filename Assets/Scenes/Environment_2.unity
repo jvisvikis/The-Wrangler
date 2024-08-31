@@ -11289,14 +11289,6 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2235095370635883647, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -175
-      objectReference: {fileID: 0}
-    - target: {fileID: 2235095370635883647, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 37.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3181599923367093803, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_Name
       value: UI (1)
@@ -11335,7 +11327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9041905160553524563, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42656,10 +42648,6 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1423123829
       objectReference: {fileID: 0}
-    - target: {fileID: 7132618280011926252, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ded00fcfb9ee5654794ad297461f9524, type: 3}
     - target: {fileID: 7132618280011926252, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_SortingLayer
       value: 4
