@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Follow: {fileID: 8641177373924019005}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 10
+    OrthographicSize: 15
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -659,7 +659,7 @@ MonoBehaviour:
   playerSprite: {fileID: 6506249198965633566}
   playerTextCanvas: {fileID: 283431569655335149}
   lassoHome: {fileID: 2645697450009931216}
-  lassoRange: 10
+  lassoRange: 15
   lassoChargeTime: 0.5
   lassoCooldown: 1
   lassoThrowHeight: 5
@@ -910,6 +910,7 @@ GameObject:
   - component: {fileID: 6162028763965703480}
   - component: {fileID: 5702091005023126313}
   - component: {fileID: 143490971088745603}
+  - component: {fileID: 6378449671156829047}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1083,6 +1084,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 775518570419421771}
+--- !u!114 &6378449671156829047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342221546010918966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 45e7cabdfe556c44db20b3deba2b31fc, type: 2}
 --- !u!1 &8745088729859703216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1156,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 5
+    OrthographicSize: 7
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

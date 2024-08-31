@@ -112,6 +112,7 @@ MonoBehaviour:
   animalLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  lassoCard: {fileID: 277471836704476055}
   followDist: 2
   followSharpness: 1.5
 --- !u!1 &4158702064111507685
@@ -322,6 +323,11 @@ PrefabInstance:
       addedObject: {fileID: 2614986492378691134}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a3e0a65562c98d42a2bb19f6d28f24b, type: 3}
+--- !u!1 &277471836704476055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2387571370892462690, guid: 9a3e0a65562c98d42a2bb19f6d28f24b, type: 3}
+  m_PrefabInstance: {fileID: 2520780667583857141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4788564262639998424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6958054252410016813, guid: 9a3e0a65562c98d42a2bb19f6d28f24b, type: 3}

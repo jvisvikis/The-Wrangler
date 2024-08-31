@@ -72,6 +72,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1cf18b97432e473409be9bf2e7188782, type: 3}
+    - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: animalFree
+      value: 
+      objectReference: {fileID: 21300000, guid: 6bec4812096bfd44d916972b29daa535, type: 3}
+    - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: animalCaptured
+      value: 
+      objectReference: {fileID: 21300000, guid: c2710b9fe36ef5a47b7f2e6b1d35cbf3, type: 3}
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -431,11 +431,14 @@ MonoBehaviour:
   moveNum: 10
   animalName: Chicken
   animator: {fileID: 4772782041351967087}
-  animalSprite: {fileID: 4416515523620745421}
+  animalSprite: {fileID: 5953111150762061198}
+  animalFree: {fileID: 0}
+  animalCaptured: {fileID: 0}
   pullStrength: 0.1
   wanderRadius: 20
   maxIdleTime: 10
   minIdleTime: 3
+  scaredSpeedModifier: 0
   scaredDistance: 7
 --- !u!195 &5438482484573799437
 NavMeshAgent:

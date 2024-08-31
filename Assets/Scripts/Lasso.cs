@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lasso : MonoBehaviour
 {
     [SerializeField] private LayerMask animalLayerMask;
-    [SerializeField] private float followDist = 2;
+    [SerializeField] private GameObject lassoCard;
     [SerializeField] private float followSharpness = 0.05f;
     
     public Animal animal {get; private set;}
@@ -33,6 +33,7 @@ public class Lasso : MonoBehaviour
 
     public void AnimalWrangled()
     {
+        lassoCard.SetActive(false);
         animal.Wrangled();
     }
 
@@ -47,6 +48,7 @@ public class Lasso : MonoBehaviour
 
     public void ReleaseAnimal(bool isFree)
     {
+        lassoCard.SetActive(true);
         gotAnimal = false;
         isWrangling = false;
         transform.parent = player.transform.parent;

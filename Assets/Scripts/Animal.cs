@@ -13,6 +13,8 @@ public class Animal : MonoBehaviour
     public string animalName;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer animalSprite;
+    [SerializeField] private Sprite animalFree;
+    [SerializeField] private Sprite animalCaptured;
     [SerializeField] private float pullStrength;
     [SerializeField] private float wanderRadius;
     [SerializeField] private float maxIdleTime;
@@ -36,6 +38,7 @@ public class Animal : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         origSpeed = agent.speed;
         EnterIdleState();
+        SetSpriteDirection(false);
     }
 
     void Update()
@@ -90,7 +93,7 @@ public class Animal : MonoBehaviour
             case State.Scared:
                 if(Vector2.Distance((Vector2)agent.destination,(Vector2)transform.position)< 0.2f)
                 {
-                    agent.speed/=3;
+                    agent.speed = origSpeed;
                     EnterIdleState();
                 }
                 break;
@@ -101,14 +104,23 @@ public class Animal : MonoBehaviour
     public void SetSpriteDirection(bool isLeft)
     {
         if(isLeft)
-            animalSprite.flipX = true;
-        else
             animalSprite.flipX = false;
+        else
+            animalSprite.flipX = true;
     }
+
+    public void SetSprite(bool isFree)
+    {
+        if(isFree)
+            animalSprite.sprite = animalFree;
+        else
+            animalSprite.sprite = animalCaptured;
+    }
+
 
     public void EnterIdleState()
     {
-        Debug.Log("Idle");
+        SetSprite(true);
         idleTimer = 0;
         waitTime = Random.Range(minIdleTime, maxIdleTime);
         animator.SetBool("Walking",false);
@@ -117,7 +129,6 @@ public class Animal : MonoBehaviour
 
     public void EnterMovingState()
     {
-        Debug.Log("Moving");
         Vector2 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
         agent.SetDestination(newPos);
         SetSpriteDirection(newPos.x-transform.position.x < 0);
@@ -127,7 +138,7 @@ public class Animal : MonoBehaviour
 
     public void EnterScaredState(Transform scaredOf)
     {
-        Debug.Log("Scared");
+        SetSprite(false);
         animator.SetTrigger("Scared");
         Vector2 newPos = RandomNavSphere(transform.position+(-10*(scaredOf.position-transform.position).normalized), 1, -1);
       
@@ -135,7 +146,7 @@ public class Animal : MonoBehaviour
         /*
             make speed of agent faster here
         */ 
-        agent.speed = agent.speed * 3;
+        agent.speed = origSpeed*3;
         SetSpriteDirection(newPos.x-transform.position.x < 0);
         animator.SetBool("Walking",true);
         state = State.Scared;
@@ -143,14 +154,13 @@ public class Animal : MonoBehaviour
 
     public void EnterBeingWrangledState()
     {
-        Debug.Log("Wrangled");
         animator.SetBool("Walking",false);
+        SetSprite(false);
         state = State.BeingWrangled;
     }
 
     public void EnterFollowState()
     {
-        Debug.Log("Scared");
         animator.SetBool("Walking",true);
         state = State.Follow;
     }
@@ -180,6 +190,7 @@ public class Animal : MonoBehaviour
 
     public void Wrangled()
     {
+        agent.speed = origSpeed*3;
         EnterFollowState();
     }
 

@@ -69,9 +69,17 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: animalFree
+      value: 
+      objectReference: {fileID: 21300000, guid: a1486d834c2da9848b27523abaf03bb9, type: 3}
+    - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalName
       value: Sheep
       objectReference: {fileID: 0}
+    - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: animalCaptured
+      value: 
+      objectReference: {fileID: 21300000, guid: 24fc92850e6b6ae4a8c8be55d2732e8e, type: 3}
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -90,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8639884569354036906, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Name
-      value: AnimalBandit 1
+      value: AnimalSheep
       objectReference: {fileID: 0}
     - target: {fileID: 9035135526328742093, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Materials.Array.data[0]

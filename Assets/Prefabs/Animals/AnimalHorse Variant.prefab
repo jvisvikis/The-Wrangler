@@ -69,9 +69,17 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: animalFree
+      value: 
+      objectReference: {fileID: 21300000, guid: f7098b8a32f868f418f53264b1f99662, type: 3}
+    - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalName
       value: Horse
       objectReference: {fileID: 0}
+    - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: animalCaptured
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d9131269e86def45bdf6dd9a0ae827a, type: 3}
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Sprite
       value: 
