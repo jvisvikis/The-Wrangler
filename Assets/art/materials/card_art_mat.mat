@@ -70,11 +70,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brightness: 0
+    - _Brightness: 0.306
     - _EnableExternalAlpha: 0
-    - _Saturation: 1.5
+    - _Saturation: 1.55
     m_Colors:
-    - _Background_Colour: {r: 1, g: 0.8673893, b: 0.427451, a: 0}
+    - _Background_Colour: {r: 1, g: 0.837724, b: 0.427451, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0.1415094, g: 0.1021271, b: 0.1021271, a: 0}

@@ -8,6 +8,9 @@ public class AudioManager : MonoBehaviour
     FMODUnity.StudioEventEmitter music;
 
     [SerializeField]
+    FMODUnity.StudioEventEmitter ambience;
+
+    [SerializeField]
     FMODUnity.StudioEventEmitter startGame;
 
     [SerializeField]
@@ -43,8 +46,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    static bool IsWebGL()
+    {
+        return Application.platform == RuntimePlatform.WebGLPlayer;
+    }
+
+    public void Pause()
+    {
+        if (IsWebGL())
+        {
+            music.EventInstance.setPaused(true);
+            ambience.EventInstance.setPaused(true);
+        }
+    }
+
     public static void StartGame()
     {
+        if (IsWebGL())
+        {
+            instance.music.EventInstance.setPaused(false);
+            instance.ambience.EventInstance.setPaused(false);
+        }
         instance.music.SetParameter("musicStartGame", 1f);
         instance.startGame.Play();
         startedGame = true;

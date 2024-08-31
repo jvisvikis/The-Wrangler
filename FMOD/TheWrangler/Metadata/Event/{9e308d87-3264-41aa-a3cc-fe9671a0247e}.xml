@@ -103,7 +103,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{b2e2487e-3362-484d-a93b-fbd247f7a568}">
 		<property name="volume">
-			<value>5</value>
+			<value>7</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{ce35b040-8ee3-4d26-a4ad-1893eb344f05}</destination>
@@ -210,7 +210,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{c2a7e9af-116e-446b-929c-557cfe60d8c8}">
 		<property name="volume">
-			<value>-20</value>
+			<value>-15</value>
 		</property>
 		<property name="name">
 			<value>shuffle</value>

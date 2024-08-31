@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 4776949418774722394}
+  ambience: {fileID: 8897876947091043439}
   startGame: {fileID: 7982707898025536172}
   upgradeCountForIntensity2: 3
   timeForIntensity3: 60

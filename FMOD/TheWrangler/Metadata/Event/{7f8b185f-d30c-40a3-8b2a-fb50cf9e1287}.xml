@@ -222,7 +222,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{a75dffc6-56cb-47b1-8943-06b3e6dee52f}">
 		<property name="volume">
-			<value>-10</value>
+			<value>-9</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{8a007024-a6f6-4bf8-a942-5031867dbb3a}</destination>
@@ -971,7 +971,7 @@
 	</object>
 	<object class="CompressorEffect" id="{c6cd55a1-2907-4d8f-a5fc-28bada2cd7f6}">
 		<property name="threshold">
-			<value>-24</value>
+			<value>-26</value>
 		</property>
 		<property name="ratio">
 			<value>2</value>

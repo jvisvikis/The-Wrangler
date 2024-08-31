@@ -120,6 +120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalBandit
       objectReference: {fileID: 0}
+    - target: {fileID: 8994315550496878431, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 08f38a92708114b4f861bf052ab03369, type: 2}
     - target: {fileID: 9035135526328742093, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
