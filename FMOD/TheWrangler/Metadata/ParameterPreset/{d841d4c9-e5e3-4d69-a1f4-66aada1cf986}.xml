@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{d841d4c9-e5e3-4d69-a1f4-66aada1cf986}">
+		<property name="name">
+			<value>animalType</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e65a55b0-d8d5-4e03-8bfc-587db7910316}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{22e4ab1c-9ad1-4880-8fc1-1dcc5e7a136e}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{22e4ab1c-9ad1-4880-8fc1-1dcc5e7a136e}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>7</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>None</value>
+			<value>Chicken</value>
+			<value>Pig</value>
+			<value>Cow</value>
+			<value>Horse</value>
+			<value>Bandit</value>
+			<value>Sheep</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 69ce940535dcac24cbdda322e6f860de
+=======
+guid: 296f87318ab8a4a5197f82cbeb994b6b
+>>>>>>> 110d496 (Animal sounds - only chicken so far)
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

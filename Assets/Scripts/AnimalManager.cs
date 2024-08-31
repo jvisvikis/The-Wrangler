@@ -54,6 +54,7 @@ public class AnimalManager : MonoBehaviour
         }
 
         fmodAnimalDelivered.Play();
+        fmodAnimalDelivered.EventInstance.setParameterByName("animalType", animal.AnimalTypeValue);
     }
 
 }
