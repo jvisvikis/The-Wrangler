@@ -207,6 +207,9 @@
 		<property name="isAsync">
 			<value>true</value>
 		</property>
+		<property name="start">
+			<value>0.080000000000000002</value>
+		</property>
 		<property name="length">
 			<value>1.6461666666666666</value>
 		</property>
@@ -224,7 +227,7 @@
 			<value>-16</value>
 		</property>
 		<property name="name">
-			<value>Audio 1</value>
+			<value>vocal</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{f1c67abf-0785-4cd8-b027-e87140fce795}</destination>
