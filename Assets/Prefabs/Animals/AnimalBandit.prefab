@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalFree
       value: 
-      objectReference: {fileID: 21300000, guid: 23cec9a05b7f55141aa3d440428f3f8f, type: 3}
+      objectReference: {fileID: 21300000, guid: 8e99987ce28b7c347b2309f177b304b9, type: 3}
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalName
       value: Bandit
@@ -83,7 +83,7 @@ PrefabInstance:
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalCaptured
       value: 
-      objectReference: {fileID: 21300000, guid: 18c1c92e0c4ef214fbac07f79e20b9ea, type: 3}
+      objectReference: {fileID: 21300000, guid: 5ed6c36c0fde7bf4d91634a169609085, type: 3}
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 23cec9a05b7f55141aa3d440428f3f8f, type: 3}
+      objectReference: {fileID: 21300000, guid: 8e99987ce28b7c347b2309f177b304b9, type: 3}
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Color.b
       value: 1

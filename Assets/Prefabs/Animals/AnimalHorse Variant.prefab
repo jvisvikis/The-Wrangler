@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalFree
       value: 
-      objectReference: {fileID: 21300000, guid: f7098b8a32f868f418f53264b1f99662, type: 3}
+      objectReference: {fileID: 21300000, guid: a2376a03ae9cd794a905939b83ac8d51, type: 3}
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalName
       value: Horse
@@ -83,11 +83,11 @@ PrefabInstance:
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalCaptured
       value: 
-      objectReference: {fileID: 21300000, guid: 3d9131269e86def45bdf6dd9a0ae827a, type: 3}
+      objectReference: {fileID: 21300000, guid: defba55f64d30bb44bce61cf23f335cb, type: 3}
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f7098b8a32f868f418f53264b1f99662, type: 3}
+      objectReference: {fileID: 21300000, guid: a2376a03ae9cd794a905939b83ac8d51, type: 3}
     - target: {fileID: 8639884569354036906, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Name
       value: AnimalHorse Variant

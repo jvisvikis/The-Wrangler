@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalFree
       value: 
-      objectReference: {fileID: 21300000, guid: a1486d834c2da9848b27523abaf03bb9, type: 3}
+      objectReference: {fileID: 21300000, guid: 16d17430aecdda24f8c53b2eaae47a0c, type: 3}
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalName
       value: Sheep
@@ -83,11 +83,11 @@ PrefabInstance:
     - target: {fileID: 4601695311934304623, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: animalCaptured
       value: 
-      objectReference: {fileID: 21300000, guid: 24fc92850e6b6ae4a8c8be55d2732e8e, type: 3}
+      objectReference: {fileID: 21300000, guid: 1c27f6feb1c661046b703048b5bd0ebf, type: 3}
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a1486d834c2da9848b27523abaf03bb9, type: 3}
+      objectReference: {fileID: 21300000, guid: 16d17430aecdda24f8c53b2eaae47a0c, type: 3}
     - target: {fileID: 5953111150762061198, guid: bb5dc65d1d91b3248af08aeb556e5c47, type: 3}
       propertyPath: m_Color.b
       value: 1

@@ -11365,6 +11365,26 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4280887598
       objectReference: {fileID: 0}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2393667f81fc34d40805d0eb93a3f457, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 16d17430aecdda24f8c53b2eaae47a0c, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: f6271ddab360ed94abe93f5b929a0c1d, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: f1e57986558434a429ead225fa0c9e89, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: a2376a03ae9cd794a905939b83ac8d51, type: 3}
     - target: {fileID: 7641756522728720980, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4280887598
