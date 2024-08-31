@@ -14,6 +14,8 @@ public class Merchant : MonoBehaviour
     private int numShinies;
     private int currentMaxAnimals;
 
+    public int bestAnimalWanted {get; private set;}
+
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
@@ -38,7 +40,7 @@ public class Merchant : MonoBehaviour
             
         if(animalsWanted.Count <= 0) 
         {
-            GameManager.instance.AddTime(1+numShinies);
+            GameManager.instance.AddTime(bestAnimalWanted+numShinies);
             UIManager.instance.ToggleUpgradePanelState();
             GameManager.instance.pickingUpgrade = true;
         }
@@ -48,6 +50,7 @@ public class Merchant : MonoBehaviour
     {
         numShinies = 0;
         List<int> uniqueAnimalsIdx = new List<int>();
+        bestAnimalWanted = 0;
         for(int i = 0; i<currentMaxAnimals; i++)
         {
             int idx = 0;
@@ -60,7 +63,10 @@ public class Merchant : MonoBehaviour
                 idx = Random.Range(0,(int)player.strength);
                 uniqueAnimalsIdx.Add(idx);
             }
-            
+
+            if(idx+1 > bestAnimalWanted)
+                bestAnimalWanted = idx + 1;
+
             animalsWanted.Add(animals[idx]);
         }
          

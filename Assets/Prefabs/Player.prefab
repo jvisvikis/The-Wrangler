@@ -993,6 +993,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   wrangleCam: {fileID: 8239976867184578323}
+  sprites:
+  - {fileID: 21300000, guid: ded00fcfb9ee5654794ad297461f9524, type: 3}
+  - {fileID: 21300000, guid: c5f85bdeffacce8499b86647c18c98d3, type: 3}
+  - {fileID: 21300000, guid: a72c854bd209a6b4ea6f7857d5625a59, type: 3}
+  playerSpriteRenderer: {fileID: 3846214849512572073}
   playerSprite: {fileID: 6506249198965633566}
   playerTextCanvas: {fileID: 283431569655335149}
   lassoHome: {fileID: 2645697450009931216}
@@ -2126,6 +2131,11 @@ Transform:
 --- !u!1 &2645697450009931216 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9199733164501102033, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
+  m_PrefabInstance: {fileID: 6564950017218985985}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &3846214849512572073 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7961206652262139048, guid: e35a6efe6f950db40bb2c94aa42cbf6d, type: 3}
   m_PrefabInstance: {fileID: 6564950017218985985}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &5608779629849445000 stripped
