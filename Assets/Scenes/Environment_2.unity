@@ -11102,7 +11102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8948157755450623357, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -8.500244
+      value: -8.500275
       objectReference: {fileID: 0}
     - target: {fileID: 9041905160553524563, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_IsActive
@@ -24439,28 +24439,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2759579202690366088, guid: c29b0a7b00b267c4aac932a468f734b7, type: 3}
   m_PrefabInstance: {fileID: 1249510418}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1251530899 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3368812728030941173, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-  m_PrefabInstance: {fileID: 1154524396672458623}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1251530902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251530899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 449ef5ebbe24720439ec31d15f7b6f3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FocusTracksTarget: 0
-  m_FocusTracking: 0
-  m_FocusTarget: {fileID: 0}
-  m_FocusOffset: 0
-  m_Profile: {fileID: 0}
 --- !u!1001 &1254944420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42246,6 +42224,14 @@ PrefabInstance:
       value: 1068375705
       objectReference: {fileID: 0}
     - target: {fileID: 8776678078262843019, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776678078262843019, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776678078262843019, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
@@ -42258,9 +42244,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3368812728030941173, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1251530902}
     - targetCorrespondingSourceObject: {fileID: 7486910917314655889, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}

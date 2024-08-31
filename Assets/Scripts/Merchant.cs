@@ -7,7 +7,7 @@ using TMPro;
 public class Merchant : MonoBehaviour
 {
     [SerializeField] private int maxAnimals;
-    [SerializeField] private string [] animals =  {"Chicken", "Boar", "Cattle", "Horse"};
+    [SerializeField] private string [] animals;
     public List<string> animalsWanted{get; private set;}
     private PlayerController player;
     
