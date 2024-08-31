@@ -53,6 +53,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Charge"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4ab4b8f-b486-489f-90cf-f959ae81a148"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Release"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b60e3b8-115b-4a1e-9f7b-3b4b80176219"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Charge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Wrangle = m_Player.FindAction("Wrangle", throwIfNotFound: true);
         m_Player_Release = m_Player.FindAction("Release", throwIfNotFound: true);
+        m_Player_Charge = m_Player.FindAction("Charge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Wrangle;
     private readonly InputAction m_Player_Release;
+    private readonly InputAction m_Player_Charge;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -214,6 +236,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Wrangle => m_Wrapper.m_Player_Wrangle;
         public InputAction @Release => m_Wrapper.m_Player_Release;
+        public InputAction @Charge => m_Wrapper.m_Player_Charge;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +255,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Release.started += instance.OnRelease;
             @Release.performed += instance.OnRelease;
             @Release.canceled += instance.OnRelease;
+            @Charge.started += instance.OnCharge;
+            @Charge.performed += instance.OnCharge;
+            @Charge.canceled += instance.OnCharge;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -245,6 +271,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Release.started -= instance.OnRelease;
             @Release.performed -= instance.OnRelease;
             @Release.canceled -= instance.OnRelease;
+            @Charge.started -= instance.OnCharge;
+            @Charge.performed -= instance.OnCharge;
+            @Charge.canceled -= instance.OnCharge;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -267,5 +296,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnWrangle(InputAction.CallbackContext context);
         void OnRelease(InputAction.CallbackContext context);
+        void OnCharge(InputAction.CallbackContext context);
     }
 }
