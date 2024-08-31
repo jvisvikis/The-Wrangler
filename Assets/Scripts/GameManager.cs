@@ -64,6 +64,14 @@ public class GameManager : MonoBehaviour
             merchant.IncrementCurrentMaxAnimals();
         }
 
+        if(gameOver)
+            GameOverSequence();
+
+    }
+
+    public void GameOverSequence()
+    {
+        UIManager.instance.GameOver();
     }
 
     public void UpgradePlayerStat(string stat)
