@@ -17,12 +17,14 @@ public class Animal : MonoBehaviour
     [SerializeField] private float wanderRadius;
     [SerializeField] private float maxIdleTime;
     [SerializeField] private float minIdleTime;
+    [SerializeField] private float scaredSpeedModifier;
     [SerializeField] private float scaredDistance;
     private Merchant merchant;
     private PlayerController player;
     private NavMeshAgent agent;
     private float idleTimer;
     private float waitTime;
+    private float origSpeed;
 
     void Start()
     {
@@ -32,11 +34,13 @@ public class Animal : MonoBehaviour
         agent.updateUpAxis = false;
         merchant = FindObjectOfType<Merchant>();
         player = FindObjectOfType<PlayerController>();
+        origSpeed = agent.speed;
         EnterIdleState();
     }
 
     void Update()
     {
+        animator.SetFloat("Speed",agent.velocity.magnitude/origSpeed);
         switch(state)
         {
             case State.Idle:
@@ -86,6 +90,7 @@ public class Animal : MonoBehaviour
             case State.Scared:
                 if(Vector2.Distance((Vector2)agent.destination,(Vector2)transform.position)< 0.2f)
                 {
+                    agent.speed/=3;
                     EnterIdleState();
                 }
                 break;
@@ -130,6 +135,7 @@ public class Animal : MonoBehaviour
         /*
             make speed of agent faster here
         */ 
+        agent.speed = agent.speed * 3;
         SetSpriteDirection(newPos.x-transform.position.x < 0);
         animator.SetBool("Walking",true);
         state = State.Scared;
