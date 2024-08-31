@@ -11189,6 +11189,10 @@ PrefabInstance:
       propertyPath: animalSprites.Array.data[5]
       value: 
       objectReference: {fileID: 21300000, guid: be5a640986be5ea41bd7676c7100296b, type: 3}
+    - target: {fileID: 8948157755450623357, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -8.500244
+      objectReference: {fileID: 0}
     - target: {fileID: 9041905160553524563, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -32149,6 +32153,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1176055460445891581, guid: b0dbfc5d5646eec48a108450f226d247, type: 3}
   m_PrefabInstance: {fileID: 1644017770}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1644725038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644725039}
+  - component: {fileID: 1644725040}
+  m_Layer: 0
+  m_Name: AudioStartGameMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1644725039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644725038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1644725040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644725038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0b70e683d7a4ab59b4e6879736d68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1647748104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43848,6 +43896,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 7903095385902802082}
+  - {fileID: 1644725039}
   - {fileID: 1225084219}
   - {fileID: 457790677}
   - {fileID: 1154524396672458623}

@@ -208,7 +208,7 @@
 			<value>true</value>
 		</property>
 		<property name="start">
-			<value>0.080000000000000002</value>
+			<value>0.14000000000000001</value>
 		</property>
 		<property name="length">
 			<value>1.6461666666666666</value>
@@ -224,7 +224,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{2eb5f749-8dee-49a4-b261-1d3813ee283d}">
 		<property name="volume">
-			<value>-16</value>
+			<value>-14</value>
 		</property>
 		<property name="name">
 			<value>vocal</value>

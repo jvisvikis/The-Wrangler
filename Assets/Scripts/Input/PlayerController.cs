@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
                     playerWorldUI.SetCanvas(false);
                     timesPulled = 0;
                     state = State.Roaming;
-                    StopFMODWrangleLoop(true, timesPulled);
+                    SetWrangingAudio(false, true);
                 }
                 else
                 {
@@ -203,22 +203,6 @@ public class PlayerController : MonoBehaviour
                 fmodWranglePress.Play();
                 fmodWranglePress.EventInstance.setParameterByName("wranglePressProgress", progress);
             }
-        }
-    }
-
-    private void StopFMODWrangleLoop(bool success, int pullNumber)
-    {
-        // fmodWrangleLoop.EventInstance.setParameterByName("stop", 1);
-        fmodWrangleLoop.SetParameter("stop", 1);
-        StartCoroutine(AsyncSetFMODParameter(fmodWrangleLoop, "stop", 0));
-        if (success)
-        {
-            fmodWrangleSuccess.Play();
-        }
-        else
-        {
-            fmodWrangleFail.Play();
-            fmodWrangleFail.EventInstance.setParameterByName("pullNumber", timesPulled);
         }
     }
 
@@ -239,7 +223,7 @@ public class PlayerController : MonoBehaviour
             playerWorldUI.ResetFillBars();
             lassoBelt.GetFreeLasso().ReleaseAnimal(true);
             lassoBelt.GetFreeLasso().isWrangling = false;
-            StopFMODWrangleLoop(false, 0);
+            SetWrangingAudio(false, false);
         }
     }
 
@@ -369,14 +353,40 @@ public class PlayerController : MonoBehaviour
             switchCam.SwitchPriority();
             SetWrangleCamMidPos(lassoAimer.transform);
             SetWranglingUI(true);
+            SetWrangingAudio(true);
             state = State.Wrangling;
-            fmodWrangleLoop.Play();
         }
         else
         {
             lassoBelt.GetFreeLasso().SetAnimal(null);
             state = State.Roaming;
             fmodLassoMiss.Play();
+        }
+    }
+
+    private void SetWrangingAudio(bool isWrangling, bool success = false)
+    {
+        var studio = FMODUnity.RuntimeManager.StudioSystem;
+        if (isWrangling)
+        {
+            studio.setParameterByName("wrangling", 1f);
+            fmodWrangleLoop.Play();
+        }
+        else
+        {
+            studio.setParameterByName("wrangling", 0f);
+            // fmodWrangleLoop.EventInstance.setParameterByName("stop", 1);
+            fmodWrangleLoop.SetParameter("stop", 1);
+            StartCoroutine(AsyncSetFMODParameter(fmodWrangleLoop, "stop", 0));
+            if (success)
+            {
+                fmodWrangleSuccess.Play();
+            }
+            else
+            {
+                fmodWrangleFail.Play();
+                fmodWrangleFail.EventInstance.setParameterByName("pullNumber", timesPulled);
+            }
         }
     }
 

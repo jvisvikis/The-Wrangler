@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{b72ecda4-793d-405f-8e85-978619d0d32d}">
 		<property name="name">
-			<value>intensity</value>
+			<value>musicIntensity</value>
 		</property>
 		<relationship name="folder">
 			<destination>{e65a55b0-d8d5-4e03-8bfc-587db7910316}</destination>
@@ -17,6 +17,9 @@
 		</property>
 		<property name="initialValue">
 			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>2.5329999923706055</value>
 		</property>
 	</object>
 </objects>
