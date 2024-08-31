@@ -124,8 +124,8 @@ public class Animal : MonoBehaviour
     {
         Debug.Log("Scared");
         animator.SetTrigger("Scared");
-        //Vector2 newPos = RandomNavSphere(-10*(scaredOf.position-transform.position).normalized, 1, -1);
-        Vector2 newPos = scaredOf.position;
+        Vector2 newPos = RandomNavSphere(transform.position+(-10*(scaredOf.position-transform.position).normalized), 1, -1);
+      
         agent.SetDestination(newPos);
         /*
             make speed of agent faster here
