@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
-        stats[0].text = $"Speed: {player.speed}";
+        stats[0].text = $"Speed: {player.GetSpeedRatio()}";
         stats[1].text = $"Strength: {player.strength}";
         stats[2].text = $"Lassos: {player.lassoBelt.GetNumLassos()}";
 
@@ -157,7 +157,7 @@ public class UIManager : MonoBehaviour
     public void UpgradePlayerStat(string stat)
     {
         GameManager.instance.UpgradePlayerStat(stat);
-        stats[0].text = $"Speed: {player.speed}";
+        stats[0].text = $"Speed: {player.GetSpeedRatio()}";
         stats[1].text = $"Strength: {player.strength}";
         stats[2].text = $"Lassos: {player.lassoBelt.GetNumLassos()}";
         fmodUpgradeChosen.Play();

@@ -145,6 +145,11 @@ public class PlayerController : MonoBehaviour
             playerWorldUI.FillTimeBar(pullTimer/pullTime);
         }
     }
+
+    public float GetSpeedRatio()
+    {
+        return speed - origSpeed + 1;
+    }
     public void SetSpriteDirection(bool isLeft)
     {
         if(isLeft)
