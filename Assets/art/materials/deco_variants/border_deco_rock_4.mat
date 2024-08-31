@@ -29,9 +29,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blend: 1
+    - _Blend: 0.401
     m_Colors:
-    - _Blend_Colour: {r: 0.9725491, g: 0.91372555, b: 0.63529414, a: 0}
+    - _Blend_Colour: {r: 0.6901961, g: 0.5294118, b: 0.25490198, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1373530936051772314
 MonoBehaviour:
