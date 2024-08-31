@@ -8,6 +8,9 @@ public class AudioManager : MonoBehaviour
     FMODUnity.StudioEventEmitter music;
 
     [SerializeField]
+    FMODUnity.StudioEventEmitter startGame;
+
+    [SerializeField]
     int upgradeCountForIntensity2 = 3;
 
     [SerializeField]
@@ -43,6 +46,7 @@ public class AudioManager : MonoBehaviour
     public static void StartGame()
     {
         instance.music.SetParameter("musicStartGame", 1f);
+        instance.startGame.Play();
         startedGame = true;
         upgradeCount = 0;
         reachedTimeForIntensity3 = false;
