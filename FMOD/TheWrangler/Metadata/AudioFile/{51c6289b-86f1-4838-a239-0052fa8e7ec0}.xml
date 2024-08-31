@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{51c6289b-86f1-4838-a239-0052fa8e7ec0}">
+		<property name="assetPath">
+			<value>music/DRUMS2-v3-P0m-L38m-T152-4-4.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>64.736833333333337</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9c161ed6-92b0-4439-948e-47d7e9ebaab4}</destination>
+		</relationship>
+	</object>
+</objects>

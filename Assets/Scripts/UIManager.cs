@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance {get; private set;}
     [SerializeField] private GameObject gamePanel;
+    [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private Animator upgradePanelAnim;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private List<GameObject> animalsWantedCards;
@@ -53,15 +54,12 @@ public class UIManager : MonoBehaviour
         stats[2].text = $"Lassos: {player.lassoBelt.GetNumLassos()}";
 
         upgradePanelAnim.gameObject.SetActive(false);
+        gameOverPanel.SetActive(false);
     }
 
     void Update()
     {
         SetTimerText();
-        if(GameManager.instance.gameOver)
-        {
-            //Activate Game Over Panel
-        }
     }
 
     public void SetGamePanel(bool active)
@@ -124,6 +122,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+    }
+    
     public void ToggleUpgradePanelState()
     {
         if(upgradePanelAnim.gameObject.activeSelf)
