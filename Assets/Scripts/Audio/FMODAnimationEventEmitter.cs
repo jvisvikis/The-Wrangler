@@ -13,8 +13,15 @@ public class FMODAnimationEventEmitter : MonoBehaviour
     [SerializeField]
     FMODUnity.StudioEventEmitter eventEmitterStop;
 
+    bool firstOfGame = true;
+
     public void Emit(AnimationEvent animationEvent)
     {
+        if (CheckIsFirstOfGame())
+        {
+            return;
+        }
+
         if (IsFirstOfLoop(animationEvent))
         {
             eventEmitterStart?.Play();
@@ -27,10 +34,17 @@ public class FMODAnimationEventEmitter : MonoBehaviour
 
     public void Idle(AnimationEvent animationEvent)
     {
-        if (IsFirstOfLoop(animationEvent))
+        if (!CheckIsFirstOfGame() && IsFirstOfLoop(animationEvent))
         {
             eventEmitterStop?.Play();
         }
+    }
+
+    bool CheckIsFirstOfGame()
+    {
+        bool b = firstOfGame;
+        firstOfGame = false;
+        return b;
     }
 
     bool IsFirstOfLoop(AnimationEvent animationEvent)
