@@ -6,9 +6,11 @@ public class AnimalManager : MonoBehaviour
 {
     public static AnimalManager instance;
     [SerializeField] private List<Animal> animalPrefabs;
+    [SerializeField] private List<Animal> shinyPrefabs;
     [SerializeField] private List<AnimalSpawner> animalSpawners;
     [SerializeField] private int maxNumAnimals;
     [SerializeField] private int minNumAnimal;
+    [SerializeField] private float shinyChance;
 
     [Header("FMOD")]
     [SerializeField] private FMODUnity.StudioEventEmitter fmodAnimalDelivered;
@@ -38,18 +40,27 @@ public class AnimalManager : MonoBehaviour
 
         for(int i = 0; i<maxNumAnimals; i++)
         {
-            animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i%animalPrefabs.Count].gameObject);
+            bool spawnShiny = Random.Range(0.0f,1.0f) <= shinyChance;
+            if(spawnShiny)
+                animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i%animalPrefabs.Count].gameObject);
+            else    
+                animalSpawners[i%animalSpawners.Count].SpawnAnimal(shinyPrefabs[i%shinyPrefabs.Count].gameObject);
+                
             animalsActive[animalPrefabs[i%animalPrefabs.Count].animalName]++;
         }
     }
 
     public void AnimalDelivered(Animal animal)
     {
+        bool spawnShiny = Random.Range(0.0f,1.0f) <= shinyChance;
         for(int i = 0; i<animalPrefabs.Count; i++)
         {
             if(animal.animalName.Contains(animalPrefabs[i].animalName))
             {
-                animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i].gameObject);
+                if(!spawnShiny)
+                    animalSpawners[i%animalSpawners.Count].SpawnAnimal(animalPrefabs[i].gameObject);
+                else
+                    animalSpawners[i%animalSpawners.Count].SpawnAnimal(shinyPrefabs[Random.Range(0,shinyPrefabs.Count)].gameObject);
             }
         }
 

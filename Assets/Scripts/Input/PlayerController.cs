@@ -60,7 +60,8 @@ public class PlayerController : MonoBehaviour
     {
         playerControls = new Controls();
         playerControls.Player.Wrangle.performed += ctx => Wrangle();
-        playerControls.Player.Wrangle.canceled += ctx => ReleaseLasso();
+        playerControls.Player.Charge.performed += ctx => WindUp();
+        playerControls.Player.Charge.canceled += ctx => ReleaseLasso();
         playerControls.Player.Release.performed += ctx => ReleaseAnimal();
 
         merchant = FindObjectOfType<Merchant>();
@@ -175,7 +176,7 @@ public class PlayerController : MonoBehaviour
         return lassoBelt.GetAnimalNames();
     }
 
-    private void Wrangle()
+    private void WindUp()
     {
         if(state == State.Roaming && lassoBelt.GetFreeLasso() != null && lassoReady)
         {
@@ -183,6 +184,10 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.sprite = sprites[1];
             StartCoroutine(ChargeLasso());
         }
+    }
+
+    private void Wrangle()
+    {
         if(state == State.Wrangling)
         {
             moveCounter -= strength;

@@ -11401,6 +11401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverText
       objectReference: {fileID: 0}
+    - target: {fileID: 5821348934806665809, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1490328214, guid: 36773ccbde558044a85badf4207d27c6, type: 3}
     - target: {fileID: 6262425337879821987, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -11445,6 +11449,26 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4280887598
       objectReference: {fileID: 0}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2393667f81fc34d40805d0eb93a3f457, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 16d17430aecdda24f8c53b2eaae47a0c, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: f6271ddab360ed94abe93f5b929a0c1d, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: f1e57986558434a429ead225fa0c9e89, type: 3}
+    - target: {fileID: 7216712088066377390, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
+      propertyPath: animalSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: a2376a03ae9cd794a905939b83ac8d51, type: 3}
     - target: {fileID: 7641756522728720980, guid: ede7b380b36fb3142bdcd5613d152bdf, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4280887598
@@ -31934,6 +31958,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+    - target: {fileID: 3542274466710094693, guid: 5486c6edd9145bd4f9df8da8cc00b425, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ea8445b2aa84ca0489c18cb345b8c953, type: 2}
     - target: {fileID: 3951823425194650098, guid: 5486c6edd9145bd4f9df8da8cc00b425, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.598854
@@ -42717,6 +42745,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1933039929742839774, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9d667ea41118c7347aecbbd7a62a8815, type: 2}
     - target: {fileID: 3110432669388930668, guid: 699f9e71ffc168f49823424213a68adb, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -43710,38 +43742,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
-      propertyPath: maxNumAnimals
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
-      propertyPath: animalPrefabs.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
-      propertyPath: animalSpawners.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
-      propertyPath: animalPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1115839598180715798, guid: fd68261853466f94ca06436e1c9aedb0, type: 3}
-    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
-      propertyPath: animalPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 1115839598180715798, guid: 64867f5971abefa43bc134291430a0ff, type: 3}
-    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
-      propertyPath: animalPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 4656845486838471410, guid: 2ed224453edc33e4fa3439bfae1b0e9f, type: 3}
-    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
-      propertyPath: animalPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 1637130226276573421, guid: 473c739ebf04643458c681d0d3c7786a, type: 3}
-    - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
-      propertyPath: animalPrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 1115839598180715798, guid: 0836c744a9a2c2d4f8f727691ada81f6, type: 3}
     - target: {fileID: 4665241871955844349, guid: b6c502a78d63d8142a07160e332d69de, type: 3}
       propertyPath: animalSpawners.Array.data[4]
       value: 
