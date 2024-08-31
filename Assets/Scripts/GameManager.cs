@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float extraTimeModifier;
     [SerializeField] private float timeGiven;
     [SerializeField] private float timeToAdd;
+    [SerializeField] float timeWarning = 20f;
+    [SerializeField] float timeDireWarning = 3f;
+    [SerializeField] float timeExtremelyDireWarning = 1f;
 
     [Header("FMOD")]
-    [SerializeField] private int fmodWarningTicks = 3;
+    [SerializeField] float direWarningTickPeriod = 0.2f;
+    [SerializeField] float extremelyDireWarningTickPeriod = 0.25f;
+    [SerializeField] FMODUnity.StudioEventEmitter fmodRoundCountdownStart;
     [SerializeField] FMODUnity.StudioEventEmitter fmodRoundCountdownTick;
+    [SerializeField] FMODUnity.StudioEventEmitter fmodRoundCountdownTickFast;
     [SerializeField] FMODUnity.StudioEventEmitter fmodGameOver;
 
     public float timeElapsed => Time.time - startTime;
     public float timeLeft => Mathf.Max(0f,timeGiven - timeElapsed + extraTime);
+    public float TimeWarning => timeWarning;
 
     public float addTimer => timeElapsed - addStartTime;
     public bool gameOver => timeLeft <= 0;
@@ -76,14 +84,36 @@ public class GameManager : MonoBehaviour
 
         while (!gameOver)
         {
-            if (timeLeft < fmodWarningTicks && ((int)timeLeft) != ((int)prevTimeLeft))
+            if (timeLeft < timeWarning && ((int)timeLeft) != ((int)prevTimeLeft))
             {
+                if (Mathf.Round(timeLeft) == Mathf.Round(timeWarning))
+                {
+                    fmodRoundCountdownStart.Play();
+                }
                 fmodRoundCountdownTick.Play();
+                if (timeLeft < timeExtremelyDireWarning)
+                {
+                    StartCoroutine(PlayDireWarningsFor1Second(extremelyDireWarningTickPeriod));
+                }
+                else if (timeLeft < timeDireWarning)
+                {
+                    StartCoroutine(PlayDireWarningsFor1Second(direWarningTickPeriod));
+                }
             }
             prevTimeLeft = timeLeft;
             yield return null;
         }
 
         fmodGameOver.Play();
+    }
+
+    private IEnumerator PlayDireWarningsFor1Second(float period)
+    {
+        int numWarnings = (int)Mathf.Round(1f / period);
+        for (int i = 0; i < numWarnings; i++)
+        {
+            fmodRoundCountdownTickFast.Play();
+            yield return new WaitForSeconds(period);
+        }
     }
 }

@@ -80,9 +80,10 @@ public class UIManager : MonoBehaviour
     public void SetTimerText()
     {
         float timeLeft = GameManager.instance.timeLeft;
+        float timeWarning = GameManager.instance.TimeWarning;
         string minutes = $"{(int)timeLeft/60}";
         string seconds = (int)timeLeft%60 >= 10 ? $"{(int)timeLeft%60}" : $"0{(int)timeLeft%60}";
-        timerText.color = (int)timeLeft <= 20 ? Color.red : Color.white;
+        timerText.color = (int)timeLeft <= timeWarning ? Color.red : Color.white;
         timerText.text = $"{minutes}:{seconds}";
     }
 
