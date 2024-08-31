@@ -16,6 +16,8 @@ public class AnimalManager : MonoBehaviour
     [SerializeField] private FMODUnity.StudioEventEmitter fmodAnimalDelivered;
     
     private Dictionary<string,int> animalsActive;
+    public Dictionary<string,int> animalsDelivered;
+    public int animalsDeliveredTotal {get; private set;}
 
     void Awake()
     {
@@ -33,9 +35,11 @@ public class AnimalManager : MonoBehaviour
     void Start()
     {
         animalsActive = new Dictionary<string, int>();
+        animalsDelivered = new Dictionary<string, int>();
         foreach(Animal animal in animalPrefabs)
         {
             animalsActive.Add(animal.animalName,0);
+            animalsDelivered.Add(animal.animalName,0);
         }
 
         for(int i = 0; i<maxNumAnimals; i++)
@@ -53,6 +57,8 @@ public class AnimalManager : MonoBehaviour
     public void AnimalDelivered(Animal animal)
     {
         bool spawnShiny = Random.Range(0.0f,1.0f) <= shinyChance;
+        animalsDelivered[animal.animalName]++;
+        animalsDeliveredTotal++;
         for(int i = 0; i<animalPrefabs.Count; i++)
         {
             if(animal.animalName.Contains(animalPrefabs[i].animalName))

@@ -1984,6 +1984,14 @@ MonoBehaviour:
   - {fileID: 6729761868470703888}
   - {fileID: 515514497407445029}
   - {fileID: 4485768277418688177}
+  animalsDeliveredStatsText:
+  - {fileID: 8733615489917082191}
+  - {fileID: 3149610221977119372}
+  - {fileID: 2652943907617915893}
+  - {fileID: 4075039851382677218}
+  - {fileID: 6024373424388520959}
+  - {fileID: 1143260916003749579}
+  - {fileID: 8940617997177551076}
   animalSprites:
   - {fileID: 21300000, guid: 2393667f81fc34d40805d0eb93a3f457, type: 3}
   - {fileID: 21300000, guid: 16d17430aecdda24f8c53b2eaae47a0c, type: 3}

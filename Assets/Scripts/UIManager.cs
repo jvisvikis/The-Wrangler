@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> animalsWantedNames;
     [SerializeField] private List<TextMeshProUGUI> animalsWantedNums;
     [SerializeField] private List<TextMeshProUGUI> stats;
+    [SerializeField] private List<TextMeshProUGUI> animalsDeliveredStatsText;
     [SerializeField] private List<Sprite> animalSprites;
     [SerializeField] private List<string> animalNames;
 
@@ -128,6 +129,13 @@ public class UIManager : MonoBehaviour
     }
     public void GameOver()
     {
+        AnimalManager animalManager = FindObjectOfType<AnimalManager>();
+        animalsDeliveredStatsText[0].text = $"Animals Delivered: {animalManager.animalsDeliveredTotal}";
+        int idx = 1;
+        foreach(KeyValuePair<string,int> kvp in animalManager.animalsDelivered)
+        {
+            animalsDeliveredStatsText[idx++].text = $"{kvp.Key} Delivered: {kvp.Value}";
+        }
         gameOverPanel.SetActive(true);
     }
     

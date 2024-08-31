@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraTimeModifier: 15
-  timeGiven: 240
+  timeGiven: 2
   timeToAdd: 30
   timeWarning: 20
   timeDireWarning: 5
