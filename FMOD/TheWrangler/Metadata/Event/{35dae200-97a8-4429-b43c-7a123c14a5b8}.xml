@@ -83,7 +83,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{d7acc0ad-e989-437e-b1db-83def6ff3b9a}">
 		<property name="volume">
-			<value>-3.5</value>
+			<value>-1.5</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{b7a9be59-4c6c-4a03-8c81-4a637f361d5b}</destination>
@@ -104,6 +104,9 @@
 	<object class="MultiSound" id="{094ad64f-d872-4607-b620-822e672f08e1}">
 		<property name="length">
 			<value>0.3364375</value>
+		</property>
+		<property name="pitch">
+			<value>3</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{3a943731-e489-40ad-8c1f-a81d1afa800e}</destination>
@@ -131,10 +134,13 @@
 	</object>
 	<object class="MultiSound" id="{1dbc1826-4f32-4756-8630-e371abd160b3}">
 		<property name="start">
-			<value>0.03125</value>
+			<value>0.040000000000000001</value>
 		</property>
 		<property name="length">
 			<value>0.3364375</value>
+		</property>
+		<property name="pitch">
+			<value>3</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{ceb83032-6a53-4561-aa55-d396027f9cd6}</destination>
@@ -145,6 +151,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{fa2d7dfa-215b-4663-8acd-be8689604cb8}">
+		<property name="volume">
+			<value>1.5</value>
+		</property>
 		<property name="name">
 			<value>pick</value>
 		</property>

@@ -312,7 +312,7 @@
 	</object>
 	<object class="MultiSound" id="{ac184c14-b0c3-4507-8d54-074172a23a5f}">
 		<property name="start">
-			<value>0.089999999999999997</value>
+			<value>0.10000000000000001</value>
 		</property>
 		<property name="length">
 			<value>1.6461666666666666</value>
@@ -331,7 +331,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{20b83532-fc21-4b2d-b036-8fc0cda28fe6}">
 		<property name="volume">
-			<value>-14</value>
+			<value>-13</value>
 		</property>
 		<property name="name">
 			<value>Audio 3</value>
@@ -593,7 +593,7 @@
 	<object class="MixerBusFader" id="{d8b1fef6-0e24-49a3-a571-daec00bfe8d5}" />
 	<object class="ThreeEQEffect" id="{e11c7a97-7e01-47df-8adb-67fe33078ef6}">
 		<property name="lowGain">
-			<value>-12.5</value>
+			<value>-10</value>
 		</property>
 		<property name="lowCrossover">
 			<value>1550</value>

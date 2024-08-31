@@ -159,6 +159,7 @@
 		<property name="length">
 			<value>0.54508333333333336</value>
 		</property>
+		<property name="name" />
 		<relationship name="event">
 			<destination>{d38272da-be80-4c70-8529-8e072ead582e}</destination>
 		</relationship>
@@ -245,7 +246,7 @@
 	</object>
 	<object class="MultiSound" id="{bfe14ade-55e5-4bc4-aa3d-56f478bf972a}">
 		<property name="start">
-			<value>0.080000000000000002</value>
+			<value>0.10000000000000001</value>
 		</property>
 		<property name="length">
 			<value>0.50002083333333336</value>
@@ -278,7 +279,7 @@
 	</object>
 	<object class="EventSound" id="{30f13907-42df-4b44-b586-62a4b5bf699e}">
 		<property name="start">
-			<value>0.02</value>
+			<value>0.040000000000000001</value>
 		</property>
 		<property name="length">
 			<value>1.0738125000000001</value>
@@ -292,7 +293,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{13c44b06-07bb-41a6-b75e-c82e7a2878f2}">
 		<property name="volume">
-			<value>-10</value>
+			<value>-9.5</value>
 		</property>
 		<property name="name">
 			<value>animal</value>
@@ -309,7 +310,7 @@
 	</object>
 	<object class="MultiSound" id="{f16049b4-9d34-4e15-844e-2130c801e173}">
 		<property name="start">
-			<value>0.19</value>
+			<value>0.23999999999999999</value>
 		</property>
 		<property name="length">
 			<value>1.1987083333333333</value>
@@ -325,7 +326,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{7cddcdd2-3383-436e-bc46-caea4503c870}">
 		<property name="volume">
-			<value>-7</value>
+			<value>-6.5</value>
 		</property>
 		<property name="name">
 			<value>aha</value>
