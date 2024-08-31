@@ -122,6 +122,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SetPathScene(int path)
+    {
+        FindObjectOfType<SceneReference>().sceneIdx = path;
+    }
     public void GameOver()
     {
         gameOverPanel.SetActive(true);

@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a86fc8f7619b94b852b410d4570049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraTimeModifier: 5
+  extraTimeModifier: 15
   timeGiven: 240
   timeToAdd: 30
   timeWarning: 20

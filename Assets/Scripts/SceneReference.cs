@@ -15,6 +15,7 @@ public class SceneReference : MonoBehaviour
 
     [HideInInspector]
     public string scenePath;
+    public int sceneIdx;
 
     public void Load()
     {
@@ -30,7 +31,7 @@ public class SceneReference : MonoBehaviour
             new LoadSceneParameters(LoadSceneMode.Single)
         );
 #else
-        SceneManager.LoadScene(scenePath);
+        SceneManager.LoadScene(sceneIdx);
 #endif
     }
 
