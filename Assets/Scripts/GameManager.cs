@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
         player.UpgradePlayerStat(stat);
         merchant.AddAnimalsToList();
         pickingUpgrade = false;
+        AudioManager.DidUpgrade();
     }
 
     public void AddTime(int modifierMultiplier)

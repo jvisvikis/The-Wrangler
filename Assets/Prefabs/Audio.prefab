@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3785169730314210070}
+  - component: {fileID: 8382670105509143583}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -116,6 +117,21 @@ Transform:
   - {fileID: 1270154061337683161}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8382670105509143583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787746658534500508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a342f203bc64261aec2f66be819175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 4776949418774722394}
+  upgradeCountForIntensity2: 2
+  timeForIntensity3: 60
 --- !u!1 &7098537637420884356
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +185,7 @@ MonoBehaviour:
       Data4: -2028822833
     Path: event:/music/music
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0

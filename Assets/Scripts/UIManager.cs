@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            // DontDestroyOnLoad(this);
             for(int i = 0; i<animalNames.Count; i++)
             {
                 animalDictionary.Add(animalNames[i],animalSprites[i]);
