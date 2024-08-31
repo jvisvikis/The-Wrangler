@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("FMOD")]
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoThrow;
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoThrowLoop;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoCharge;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodLassoMiss;
     [SerializeField] private FMODUnity.StudioEventEmitter fmodWranglePress;
@@ -333,6 +334,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("LassoReady",false);
         fmodLassoThrow.Play();
+        fmodLassoThrowLoop.Play();
         state = State.Throwing;
         float timer = 0;
         //Calculate the 3 points for curved path
@@ -351,7 +353,7 @@ public class PlayerController : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        fmodLassoThrow.Stop();
+        fmodLassoThrowLoop.Stop();
         LassoThrown(lassoAimer.animal != null && !lassoAimer.animal.captured);
     }
 

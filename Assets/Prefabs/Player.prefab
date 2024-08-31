@@ -667,6 +667,7 @@ MonoBehaviour:
   speedModifier: 1
   strengthModifier: 1
   fmodLassoThrow: {fileID: 8786806643942559219}
+  fmodLassoThrowLoop: {fileID: 378108531317676655}
   fmodLassoCharge: {fileID: 2794005834275800046}
   fmodLassoMiss: {fileID: 3621318858422742061}
   fmodWranglePress: {fileID: 5392414694742231723}
@@ -1286,6 +1287,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ab01c380ca54665be1344381628b1c, type: 3}
+--- !u!114 &378108531317676655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4806041964332575693, guid: e9ab01c380ca54665be1344381628b1c, type: 3}
+  m_PrefabInstance: {fileID: 5155832155331752354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &487285269465050065 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4705730931467180659, guid: e9ab01c380ca54665be1344381628b1c, type: 3}
