@@ -15,12 +15,12 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 9
+    m_Value: 8
   intensity:
     m_OverrideState: 1
-    m_Value: 0.504
+    m_Value: 0.25
   response:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.817
   texture:
     m_OverrideState: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.25
   xMultiplier:
     m_OverrideState: 1
     m_Value: 0.7
