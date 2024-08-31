@@ -29,6 +29,9 @@ public class Animal : MonoBehaviour
     private float waitTime;
     private float origSpeed;
 
+    [Header("FMOD")]
+    [SerializeField] private FMODUnity.StudioEventEmitter fmodAnimalScared;
+
     public float AnimalTypeValue => (float)animalType;
 
     void Start()

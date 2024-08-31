@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{378c4d4e-f8a8-4b83-863f-08e71bb162fd}">
+		<property name="assetPath">
+			<value>player/playerAha/player-playerAha-vocals-007.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.1987083333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9c161ed6-92b0-4439-948e-47d7e9ebaab4}</destination>
+		</relationship>
+	</object>
+</objects>
