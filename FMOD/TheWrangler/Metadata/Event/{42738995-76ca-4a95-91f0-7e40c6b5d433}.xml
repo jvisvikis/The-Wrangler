@@ -33,7 +33,6 @@
 			<destination>{5514a4a5-647e-47ac-94ca-1a9409bd2ac8}</destination>
 		</relationship>
 		<relationship name="parameters">
-			<destination>{0dcf5fa1-a64a-4476-91e5-e2ba8dc8834d}</destination>
 			<destination>{7b600440-efa0-4fa1-81da-fef04a8c3014}</destination>
 		</relationship>
 		<relationship name="banks">
@@ -86,11 +85,6 @@
 		<relationship name="modules">
 			<destination>{c3e44d16-0875-473a-b808-50ba2a5ed7d7}</destination>
 			<destination>{9527746c-87e2-4bc8-acda-0b0fc6a68feb}</destination>
-		</relationship>
-	</object>
-	<object class="ParameterProxy" id="{0dcf5fa1-a64a-4476-91e5-e2ba8dc8834d}">
-		<relationship name="preset">
-			<destination>{fb3da58d-3fe8-443e-bbe2-bc877c1e62d4}</destination>
 		</relationship>
 	</object>
 	<object class="ParameterProxy" id="{7b600440-efa0-4fa1-81da-fef04a8c3014}">

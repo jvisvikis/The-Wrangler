@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{40c7a38a-c39f-4605-a10d-e67c8e685906}">
+		<property name="name">
+			<value>shiny</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e65a55b0-d8d5-4e03-8bfc-587db7910316}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{d41b414f-2dfd-401a-bc9e-e62e07e4c09b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{d41b414f-2dfd-401a-bc9e-e62e07e4c09b}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

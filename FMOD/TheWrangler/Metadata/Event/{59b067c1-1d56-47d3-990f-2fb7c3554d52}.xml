@@ -160,7 +160,7 @@
 	</object>
 	<object class="MultiSound" id="{77ff54d7-ff90-4044-b773-bd8bf8660958}">
 		<property name="start">
-			<value>0.040000000000000001</value>
+			<value>0.10000000000000001</value>
 		</property>
 		<property name="length">
 			<value>1.6461666666666666</value>
@@ -176,6 +176,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{22855c93-8543-466f-bce3-3610a5cd5d3f}">
+		<property name="volume">
+			<value>3</value>
+		</property>
 		<property name="name">
 			<value>Audio 3</value>
 		</property>
@@ -262,10 +265,10 @@
 	</object>
 	<object class="LoopRegion" id="{e67ac8b0-927b-4d41-9ba4-bdc67ae3f027}">
 		<property name="position">
-			<value>1.6461666666666666</value>
+			<value>1.6861666666666666</value>
 		</property>
 		<property name="length">
-			<value>0.85383333333333344</value>
+			<value>0.81383333333333341</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{2a493194-0d95-41f0-8e90-aadbdf6b52d4}</destination>

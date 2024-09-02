@@ -5,13 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    FMODUnity.StudioEventEmitter music;
-
-    [SerializeField]
-    FMODUnity.StudioEventEmitter ambience;
-
-    [SerializeField]
-    FMODUnity.StudioEventEmitter startGame;
+    bool startGame = false;
 
     [SerializeField]
     int upgradeCountForIntensity2 = 3;
@@ -19,70 +13,46 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     float timeForIntensity3 = 60f;
 
-    static AudioManager instance;
-    static bool startedGame = false;
-    static int upgradeCount = 0;
-    static bool reachedTimeForIntensity3 = false;
-    static float intensity3Timer;
+    [SerializeField]
+    FMODUnity.StudioEventEmitter fmodStartGame;
 
-    void Awake()
+    int upgradeCount = 0;
+    bool reachedTimeForIntensity3 = false;
+    float intensity3Timer;
+
+    void Start()
     {
-        if (instance == null)
-        {
-            GameObject.DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-        else
-        {
-            GameObject.Destroy(gameObject);
-        }
+        PersistentAudio.StartAudio();
+        PersistentAudio.Music.setParameterByName("musicStartGame", startGame ? 1 : 0);
+        SetMusicIntensity(0);
+        SetPaused(false);
     }
 
     void Update()
     {
-        if (startedGame)
+        if (startGame)
         {
             Tick();
         }
     }
 
-    static bool IsWebGL()
+    void SetPaused(bool paused)
     {
-        return Application.platform == RuntimePlatform.WebGLPlayer;
-    }
-
-    public void Pause()
-    {
-        if (IsWebGL())
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
-            music.EventInstance.setPaused(true);
-            ambience.EventInstance.setPaused(true);
+            PersistentAudio.Music.setPaused(paused);
+            PersistentAudio.Ambience.setPaused(paused);
         }
     }
 
-    public static void StartGame()
-    {
-        if (IsWebGL())
-        {
-            instance.music.EventInstance.setPaused(false);
-            instance.ambience.EventInstance.setPaused(false);
-        }
-        instance.music.SetParameter("musicStartGame", 1f);
-        instance.startGame.Play();
-        startedGame = true;
-        upgradeCount = 0;
-        reachedTimeForIntensity3 = false;
-        intensity3Timer = 0;
-    }
-
-    public static void DidUpgrade()
+    public void DidUpgrade()
     {
         upgradeCount++;
         if (reachedTimeForIntensity3)
         {
             // don't downgrade the intensity level
         }
-        else if (upgradeCount == instance.upgradeCountForIntensity2)
+        else if (upgradeCount == upgradeCountForIntensity2)
         {
             SetMusicIntensity(2);
         }
@@ -92,12 +62,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    static void Tick()
+    void Tick()
     {
-        if (intensity3Timer < instance.timeForIntensity3)
+        if (intensity3Timer < timeForIntensity3)
         {
             intensity3Timer += Time.deltaTime;
-            if (intensity3Timer >= instance.timeForIntensity3)
+            if (intensity3Timer >= timeForIntensity3)
             {
                 reachedTimeForIntensity3 = true;
                 SetMusicIntensity(3);
@@ -105,8 +75,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    static void SetMusicIntensity(int intensity)
+    void SetMusicIntensity(int intensity)
     {
-        instance.music.SetParameter("musicIntensity", intensity);
+        PersistentAudio.Music.setParameterByName("musicIntensity", intensity);
     }
 }

@@ -36,10 +36,6 @@
 		<relationship name="timeline">
 			<destination>{88044a7b-fa73-43c3-a5e7-319e1a11b60c}</destination>
 		</relationship>
-		<relationship name="parameters">
-			<destination>{cf63dfe1-a62a-4d67-bad5-57c953b5fb0a}</destination>
-			<destination>{5878d6dd-ba50-467a-b68b-1f642830d542}</destination>
-		</relationship>
 		<relationship name="banks">
 			<destination>{6dc690ad-76d5-4f4b-8db3-5b3c7d783e9e}</destination>
 		</relationship>
@@ -123,16 +119,6 @@
 			<destination>{ec44366a-038c-4b00-be89-767b574a37b5}</destination>
 			<destination>{f0568696-a5f8-4d7e-8cb7-7f90973742ce}</destination>
 			<destination>{538d996a-f83e-4ed5-8dd7-49505c8b9abb}</destination>
-		</relationship>
-	</object>
-	<object class="ParameterProxy" id="{cf63dfe1-a62a-4d67-bad5-57c953b5fb0a}">
-		<relationship name="preset">
-			<destination>{fb3da58d-3fe8-443e-bbe2-bc877c1e62d4}</destination>
-		</relationship>
-	</object>
-	<object class="ParameterProxy" id="{5878d6dd-ba50-467a-b68b-1f642830d542}">
-		<relationship name="preset">
-			<destination>{3be49fe6-093c-48d5-abb5-0336da138105}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{f70f93ed-55b1-4d62-9517-6e4624c1ce2b}">
@@ -321,7 +307,7 @@
 	</object>
 	<object class="MultiSound" id="{538d996a-f83e-4ed5-8dd7-49505c8b9abb}">
 		<property name="start">
-			<value>0.080000000000000002</value>
+			<value>0.20000000000000001</value>
 		</property>
 		<property name="length">
 			<value>1.1987083333333333</value>
@@ -590,6 +576,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{df561241-f95c-43ed-ba35-33c719857eb1}" />
 	<object class="SingleSound" id="{38e5a0b4-4704-4603-bc2a-15f571f8d918}">
+		<property name="pitch">
+			<value>2</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{c94b3f3e-01cb-49ec-ba95-720f3299871c}</destination>
 		</relationship>
@@ -610,6 +599,9 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{563220e4-fee2-4301-8283-61e20a673d1b}">
+		<property name="pitch">
+			<value>2</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{9882531b-b78c-4d01-9247-0a67d7f712cf}</destination>
 		</relationship>

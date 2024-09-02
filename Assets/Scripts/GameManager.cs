@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     private Merchant merchant;
     private PlayerController player;
+    private AudioManager audioManager;
     // Start is called before the first frame update
     void Awake()
     {
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         merchant = FindObjectOfType<Merchant>();
         player = FindObjectOfType<PlayerController>();
+        audioManager = FindObjectOfType<AudioManager>();
         StartCoroutine(AsyncFMODEmitter());
     }
 
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour
         player.UpgradePlayerStat(stat);
         merchant.AddAnimalsToList();
         pickingUpgrade = false;
-        AudioManager.DidUpgrade();
+        audioManager.DidUpgrade();
     }
 
     public void AddTime(int modifierMultiplier)

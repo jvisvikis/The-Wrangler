@@ -233,13 +233,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator AsyncSetFMODParameter(FMODUnity.StudioEventEmitter emitter, string name, float value)
-    {
-        yield return new WaitForSeconds(0.1f);
-        // emitter.EventInstance.setParameterByName(name, value);
-        emitter.SetParameter(name, value);
-    }
-
     public void AnimalEscaped()
     {
         if(lassoBelt.GetFreeLasso().animal != null)
@@ -406,13 +399,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             studio.setParameterByName("wrangling", 0f);
-            // fmodWrangleLoop.EventInstance.setParameterByName("stop", 1);
-            fmodWrangleLoop.SetParameter("stop", 1);
-            StartCoroutine(AsyncSetFMODParameter(fmodWrangleLoop, "stop", 0));
+            fmodWrangleLoop.EventInstance.keyOff();
             if (success)
             {
                 fmodWrangleSuccess.Play();
                 fmodWrangleSuccess.EventInstance.setParameterByName("animalType", animal.AnimalTypeValue);
+                fmodWrangleSuccess.EventInstance.setParameterByName("shiny", animal.isShiny ? 1 : 0);
             }
             else
             {

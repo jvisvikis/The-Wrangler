@@ -312,7 +312,7 @@
 	</object>
 	<object class="MultiSound" id="{ac184c14-b0c3-4507-8d54-074172a23a5f}">
 		<property name="start">
-			<value>0.10000000000000001</value>
+			<value>0.09375</value>
 		</property>
 		<property name="length">
 			<value>1.6461666666666666</value>
@@ -334,7 +334,7 @@
 			<value>-13</value>
 		</property>
 		<property name="name">
-			<value>Audio 3</value>
+			<value>vocals</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{fd40bc57-bc1c-4fc2-882d-e4f51f60d9c1}</destination>
