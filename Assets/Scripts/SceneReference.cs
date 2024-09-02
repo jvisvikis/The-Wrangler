@@ -15,6 +15,9 @@ public class SceneReference : MonoBehaviour
 #endif
 
     [SerializeField]
+    float loadDelayIfWebGL = 0f;
+
+    [SerializeField]
     UnityEvent<string> OnBeforeLoad;
 
     [HideInInspector]
@@ -49,7 +52,11 @@ public class SceneReference : MonoBehaviour
         }
 
         OnBeforeLoad.Invoke(scenePath);
+        return LoadSceneAsync();
+    }
 
+    AsyncOperation LoadSceneAsync()
+    {
 #if UNITY_EDITOR
         return EditorSceneManager.LoadSceneAsyncInPlayMode(
             scenePath,
@@ -61,10 +68,27 @@ public class SceneReference : MonoBehaviour
     }
 
     /// <summary>
-    /// Alias for LoadAsync to make it possible to call from Unity events (on click etc).
+    /// Like LoadAsync but returns void to be compatible with Unity events, and adds
+    /// loadDelayOnWebGL if running on WebGL. This is useful for FMOD.
     /// </summary>
-    public void LoadBackground()
+    public void LoadDelayed()
     {
-        LoadAsync();
+        if (scenePath == "")
+        {
+            Debug.LogWarning("SceneReference does not have a path");
+            return;
+        }
+
+        OnBeforeLoad.Invoke(scenePath);
+        StartCoroutine(LoadDelayedCoroutine());
+    }
+
+    IEnumerator LoadDelayedCoroutine()
+    {
+        if (loadDelayIfWebGL > 0 && Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            yield return new WaitForSeconds(loadDelayIfWebGL);
+        }
+        yield return LoadSceneAsync();
     }
 }

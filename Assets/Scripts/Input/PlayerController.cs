@@ -188,7 +188,10 @@ public class PlayerController : MonoBehaviour
 
     private void WindUp()
     {
-        if(state == State.Roaming && lassoBelt.GetFreeLasso() != null && lassoReady)
+        if(state == State.Roaming
+            && lassoBelt.GetFreeLasso() != null
+            && lassoReady
+            && !UIManager.instance.UpgradePanelShowing())
         {
             state = State.Charging;
             playerSpriteRenderer.sprite = sprites[1];

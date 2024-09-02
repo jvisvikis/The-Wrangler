@@ -49,6 +49,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public bool UpgradePanelShowing()
+    {
+        return upgradePanelAnim.gameObject.activeSelf;
+    }
+
     void Start()
     {
         player = FindObjectOfType<PlayerController>();

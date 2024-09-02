@@ -36,18 +36,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void Pause()
+    public void PauseIfWebGL()
     {
-        SetPaused(true);
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            SetPaused(true);
+        }
     }
 
     void SetPaused(bool paused)
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-            PersistentAudio.Music.setPaused(paused);
-            PersistentAudio.Ambience.setPaused(paused);
-        }
+        PersistentAudio.Music.setPaused(paused);
+        PersistentAudio.Ambience.setPaused(paused);
     }
 
     public void DidUpgrade()
