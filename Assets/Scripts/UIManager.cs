@@ -125,10 +125,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetPathScene(int path)
-    {
-        FindObjectOfType<SceneReference>().sceneIdx = path;
-    }
     public void GameOver()
     {
         AnimalManager animalManager = FindObjectOfType<AnimalManager>();

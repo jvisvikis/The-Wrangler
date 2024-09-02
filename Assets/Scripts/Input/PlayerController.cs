@@ -90,6 +90,11 @@ public class PlayerController : MonoBehaviour
         playerControls.Disable();
     }
 
+    void OnDestroy()
+    {
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("wrangling", 0f);
+    }
+
     void Update()
     {
         if(lassoReady)

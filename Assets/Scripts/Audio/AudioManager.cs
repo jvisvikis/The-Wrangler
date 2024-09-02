@@ -36,6 +36,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void Pause()
+    {
+        SetPaused(true);
+    }
+
     void SetPaused(bool paused)
     {
         if (Application.platform == RuntimePlatform.WebGLPlayer)

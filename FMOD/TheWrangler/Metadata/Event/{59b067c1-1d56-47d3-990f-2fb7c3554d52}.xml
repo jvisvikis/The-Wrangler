@@ -146,7 +146,7 @@
 			<value>-3.5</value>
 		</property>
 		<property name="name">
-			<value>Audio 1</value>
+			<value>lassoSpin</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{d810b2ae-5acd-470b-96d8-f42673cc31f2}</destination>
@@ -159,9 +159,6 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{77ff54d7-ff90-4044-b773-bd8bf8660958}">
-		<property name="start">
-			<value>0.10000000000000001</value>
-		</property>
 		<property name="length">
 			<value>1.6461666666666666</value>
 		</property>
@@ -180,7 +177,7 @@
 			<value>3</value>
 		</property>
 		<property name="name">
-			<value>Audio 3</value>
+			<value>coat</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{3171c133-eef3-4cb0-9069-90636953c51d}</destination>
@@ -193,6 +190,9 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{bb20bd28-29f0-4b28-9003-76b78bcb49b1}">
+		<property name="start">
+			<value>0.040000000000000001</value>
+		</property>
 		<relationship name="sounds">
 			<destination>{96981829-9f38-4c5d-9b05-5b9498e29cd3}</destination>
 			<destination>{97a4ab87-67fb-4f20-b52e-9c6ecbdeb9d5}</destination>
@@ -214,7 +214,7 @@
 			<value>4.5</value>
 		</property>
 		<property name="name">
-			<value>Audio 2</value>
+			<value>pluck</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{ad8e3b87-a61e-4fe9-a7e6-28a8b8260343}</destination>
@@ -228,7 +228,7 @@
 	</object>
 	<object class="MultiSound" id="{dfb5f1e8-bb27-498b-a165-32dc34aeadb8}">
 		<property name="start">
-			<value>0.02</value>
+			<value>0.087438271604938222</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{f3e8cfd1-5590-4b82-ace8-8ba26eaac458}</destination>
@@ -251,7 +251,7 @@
 			<value>-8.5</value>
 		</property>
 		<property name="name">
-			<value>Audio 4</value>
+			<value>pluckLow</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{ab61a3f5-d070-40fa-9dc2-deda5c73f9a4}</destination>

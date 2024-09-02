@@ -24,11 +24,6 @@ public class MenuUI : MonoBehaviour
         controlsPanel.SetActive(active);
     }
 
-    public void SetScenePath(int path)
-    {
-        FindObjectOfType<SceneReference>().sceneIdx = path;
-    }
-
     public void Quit()
     {
         Application.Quit();

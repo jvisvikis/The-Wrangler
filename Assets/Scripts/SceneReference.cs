@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 #if UNITY_EDITOR
 using UnityEditor.SceneManagement;
@@ -13,9 +14,11 @@ public class SceneReference : MonoBehaviour
     public UnityEditor.SceneAsset sceneAsset;
 #endif
 
+    [SerializeField]
+    UnityEvent<string> OnBeforeLoad;
+
     [HideInInspector]
     public string scenePath;
-    public int sceneIdx;
 
     public void Load()
     {
@@ -25,13 +28,15 @@ public class SceneReference : MonoBehaviour
             return;
         }
 
+        OnBeforeLoad.Invoke(scenePath);
+
 #if UNITY_EDITOR
         EditorSceneManager.LoadSceneInPlayMode(
             scenePath,
             new LoadSceneParameters(LoadSceneMode.Single)
         );
 #else
-        SceneManager.LoadScene(sceneIdx);
+        SceneManager.LoadScene(scenePath);
 #endif
     }
 
@@ -43,6 +48,8 @@ public class SceneReference : MonoBehaviour
             return null;
         }
 
+        OnBeforeLoad.Invoke(scenePath);
+
 #if UNITY_EDITOR
         return EditorSceneManager.LoadSceneAsyncInPlayMode(
             scenePath,
@@ -51,5 +58,13 @@ public class SceneReference : MonoBehaviour
 #else
         return SceneManager.LoadSceneAsync(scenePath);
 #endif
+    }
+
+    /// <summary>
+    /// Alias for LoadAsync to make it possible to call from Unity events (on click etc).
+    /// </summary>
+    public void LoadBackground()
+    {
+        LoadAsync();
     }
 }

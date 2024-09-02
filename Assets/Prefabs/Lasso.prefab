@@ -253,7 +253,7 @@ MonoBehaviour:
     Path: event:/player/lassoThrowLoop
   Event: 
   PlayEvent: 0
-  StopEvent: 0
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
     Path: event:/player/lassoCharge
   Event: 
   PlayEvent: 0
-  StopEvent: 0
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
     Path: event:/player/lassoMiss
   Event: 
   PlayEvent: 0
-  StopEvent: 0
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

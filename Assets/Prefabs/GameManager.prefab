@@ -338,7 +338,6 @@ MonoBehaviour:
   timeWarning: 20
   timeDireWarning: 5
   timeExtremelyDireWarning: 2
-  audioManager: {fileID: 0}
   direWarningTickPeriod: 0.5
   extremelyDireWarningTickPeriod: 0.25
   fmodRoundCountdownStart: {fileID: 3228372513469140314}
