@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
     FMODUnity.StudioEventEmitter fmodStartGame;
 
     [SerializeField]
-    float delayPersistentStart = 1f;
+    float delayPersistentStartIfWebGL = 1f;
 
     int upgradeCount = 0;
     bool reachedTimeForIntensity3 = false;
@@ -25,13 +25,25 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        PersistentAudio.Preload();
-        StartCoroutine(DelayedStartPersistentAudio());
+        if (IsWebGL())
+        {
+            PersistentAudio.Preload();
+            StartCoroutine(DelayedStartPersistentAudio());
+        }
+        else
+        {
+            StartPersistentAudio();
+        }
     }
 
     IEnumerator DelayedStartPersistentAudio()
     {
-        yield return new WaitForSeconds(delayPersistentStart);
+        yield return new WaitForSeconds(delayPersistentStartIfWebGL);
+        StartPersistentAudio();
+    }
+
+    void StartPersistentAudio()
+    {
         PersistentAudio.StartAudio();
         PersistentAudio.Music.setParameterByName("musicStartGame", startGame ? 1 : 0);
         SetMusicIntensity(0);
@@ -48,10 +60,15 @@ public class AudioManager : MonoBehaviour
 
     public void PauseIfWebGL()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        if (IsWebGL())
         {
             SetPaused(true);
         }
+    }
+
+    bool IsWebGL()
+    {
+        return Application.platform == RuntimePlatform.WebGLPlayer;
     }
 
     void SetPaused(bool paused)
