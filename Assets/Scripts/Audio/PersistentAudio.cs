@@ -17,11 +17,18 @@ public class PersistentAudio : MonoBehaviour
 
     static PersistentAudio instance;
 
+    public static void Preload()
+    {
+        RuntimeManager.GetEventDescription(instance.music).loadSampleData();
+        RuntimeManager.GetEventDescription(instance.ambience).loadSampleData();
+    }
+
     public static void StartAudio()
     {
         if (!Music.isValid())
         {
             Music = StartEvent(instance.music);
+            Music.setProperty(EVENT_PROPERTY.SCHEDULE_LOOKAHEAD, 48000);
             Ambience = StartEvent(instance.ambience);
         }
     }
@@ -44,5 +51,11 @@ public class PersistentAudio : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        RuntimeManager.GetEventDescription(music).loadSampleData();
+        RuntimeManager.GetEventDescription(ambience).loadSampleData();
     }
 }

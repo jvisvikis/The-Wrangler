@@ -16,12 +16,22 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     FMODUnity.StudioEventEmitter fmodStartGame;
 
+    [SerializeField]
+    float delayPersistentStart = 1f;
+
     int upgradeCount = 0;
     bool reachedTimeForIntensity3 = false;
     float intensity3Timer;
 
     void Start()
     {
+        PersistentAudio.Preload();
+        StartCoroutine(DelayedStartPersistentAudio());
+    }
+
+    IEnumerator DelayedStartPersistentAudio()
+    {
+        yield return new WaitForSeconds(delayPersistentStart);
         PersistentAudio.StartAudio();
         PersistentAudio.Music.setParameterByName("musicStartGame", startGame ? 1 : 0);
         SetMusicIntensity(0);
