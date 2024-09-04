@@ -49,6 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneAsset: {fileID: 102900000, guid: 8b330a88d2536fe49b577ae3d36464e2, type: 3}
+  loadDelayIfWebGL: 0
+  OnBeforeLoad:
+    m_PersistentCalls:
+      m_Calls: []
   scenePath: Assets/Scenes/Environment_2.unity
 --- !u!1 &100137039413313896
 GameObject:
@@ -4572,8 +4576,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3063824690214143640}
         m_TargetAssemblyTypeName: SceneReference, Assembly-CSharp
-        m_MethodName: Load
-        m_Mode: 1
+        m_MethodName: LoadAsync
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4873,6 +4877,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneAsset: {fileID: 102900000, guid: f8dd391307aa0f04d80e6ad5c5549225, type: 3}
+  loadDelayIfWebGL: 0
+  OnBeforeLoad:
+    m_PersistentCalls:
+      m_Calls: []
   scenePath: Assets/Scenes/Main Menu.unity
 --- !u!1 &8823160592517138905
 GameObject:
@@ -5078,8 +5086,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2328273938164552968}
         m_TargetAssemblyTypeName: SceneReference, Assembly-CSharp
-        m_MethodName: Load
-        m_Mode: 1
+        m_MethodName: LoadAsync
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

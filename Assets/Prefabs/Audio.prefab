@@ -47,8 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startGame: 0
   upgradeCountForIntensity2: 3
-  timeForIntensity3: 60
+  timeForIntensity3: 180
   fmodStartGame: {fileID: 7982707898025536172}
+  delayPersistentStartIfWebGL: 1
 --- !u!1 &2805833170114996668
 GameObject:
   m_ObjectHideFlags: 0

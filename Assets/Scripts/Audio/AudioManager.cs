@@ -21,7 +21,9 @@ public class AudioManager : MonoBehaviour
 
     int upgradeCount = 0;
     bool reachedTimeForIntensity3 = false;
-    float intensity3Timer;
+    float intensity3Timer = 0f;
+    bool pausedMethod = false;
+    bool pausedFocus = false;
 
     void Start()
     {
@@ -44,10 +46,19 @@ public class AudioManager : MonoBehaviour
 
     void StartPersistentAudio()
     {
+        upgradeCount = 0;
+        reachedTimeForIntensity3 = false;
+        intensity3Timer = 0f;
         PersistentAudio.StartAudio();
         PersistentAudio.Music.setParameterByName("musicStartGame", startGame ? 1 : 0);
         SetMusicIntensity(0);
         SetPaused(false);
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        pausedFocus = !hasFocus;
+        UpdatePersistentAudioPaused();
     }
 
     void Update()
@@ -73,6 +84,13 @@ public class AudioManager : MonoBehaviour
 
     void SetPaused(bool paused)
     {
+        pausedMethod = paused;
+        UpdatePersistentAudioPaused();
+    }
+
+    void UpdatePersistentAudioPaused()
+    {
+        bool paused = pausedMethod || pausedFocus;
         PersistentAudio.Music.setPaused(paused);
         PersistentAudio.Ambience.setPaused(paused);
     }

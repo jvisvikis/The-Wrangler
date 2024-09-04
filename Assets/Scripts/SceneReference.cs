@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
+
 #if UNITY_EDITOR
 using UnityEditor.SceneManagement;
 #endif
@@ -23,7 +24,13 @@ public class SceneReference : MonoBehaviour
     [HideInInspector]
     public string scenePath;
 
+    [@System.Obsolete]
     public void Load()
+    {
+        LoadImmediate();
+    }
+
+    public void LoadImmediate()
     {
         if (scenePath == "")
         {
@@ -43,16 +50,24 @@ public class SceneReference : MonoBehaviour
 #endif
     }
 
-    public AsyncOperation LoadAsync()
+    public void LoadAsync(bool skipDelayIfWebGL = false)
     {
         if (scenePath == "")
         {
             Debug.LogWarning("SceneReference does not have a path");
-            return null;
+            return;
         }
 
         OnBeforeLoad.Invoke(scenePath);
-        return LoadSceneAsync();
+
+        if (IsWebGL() && !skipDelayIfWebGL && loadDelayIfWebGL > 0f)
+        {
+            StartCoroutine(LoadSceneAsyncCoroutine(loadDelayIfWebGL));
+        }
+        else
+        {
+            LoadSceneAsync();
+        }
     }
 
     AsyncOperation LoadSceneAsync()
@@ -67,28 +82,17 @@ public class SceneReference : MonoBehaviour
 #endif
     }
 
-    /// <summary>
-    /// Like LoadAsync but returns void to be compatible with Unity events, and adds
-    /// loadDelayOnWebGL if running on WebGL. This is useful for FMOD.
-    /// </summary>
-    public void LoadDelayed()
+    IEnumerator LoadSceneAsyncCoroutine(float delay)
     {
-        if (scenePath == "")
+        if (delay > 0)
         {
-            Debug.LogWarning("SceneReference does not have a path");
-            return;
+            yield return new WaitForSeconds(delay);
         }
-
-        OnBeforeLoad.Invoke(scenePath);
-        StartCoroutine(LoadDelayedCoroutine());
+        LoadSceneAsync();
     }
 
-    IEnumerator LoadDelayedCoroutine()
+    bool IsWebGL()
     {
-        if (loadDelayIfWebGL > 0 && Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-            yield return new WaitForSeconds(loadDelayIfWebGL);
-        }
-        yield return LoadSceneAsync();
+        return Application.platform == RuntimePlatform.WebGLPlayer;
     }
 }

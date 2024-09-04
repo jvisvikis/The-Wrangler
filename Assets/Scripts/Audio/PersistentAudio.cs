@@ -42,6 +42,11 @@ public class PersistentAudio : MonoBehaviour
         }
     }
 
+    public static bool Started()
+    {
+        return Music.isValid();
+    }
+
     static bool IsWebGL()
     {
         return Application.platform == RuntimePlatform.WebGLPlayer;
