@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
 
     public void ReleaseAnimal()
     {
-        if(lassoBelt.GetLastInUse() != null)
+        if(lassoBelt.GetLastInUse() != null && !GameManager.instance.gameOver)
         {
             bool isFree = true;
             if(playerCollider.IsTouchingLayers(merchantMask) && merchant.animalsWanted.Contains(lassoBelt.GetLastInUse().animal.animalName))
