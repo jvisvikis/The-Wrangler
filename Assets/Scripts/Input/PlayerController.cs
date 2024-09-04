@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             playerWorldUI.SetReleaseCanvas(false);
             
 
-        if(state == State.Roaming && !GameManager.instance.pickingUpgrade) 
+        if(state == State.Roaming && !GameManager.instance.pickingUpgrade && !GameManager.instance.gameOver) 
         {
             Vector2 dir = GetDirection();
             rb2d.velocity = dir * speed;
