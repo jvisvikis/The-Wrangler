@@ -363,8 +363,8 @@ MonoBehaviour:
   - {fileID: 2978863991366583281}
   - {fileID: 7040814544292877028}
   - {fileID: 8624890377722625332}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2099995094923838661}
+  - {fileID: 395384322003224897}
   maxNumAnimals: 40
   minNumAnimal: 1
   shinyChance: 0.05
