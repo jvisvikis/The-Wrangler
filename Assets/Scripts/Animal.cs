@@ -204,7 +204,6 @@ public class Animal : MonoBehaviour
     {
         if(isFree)
         {
-            agent.enabled = true;
             EnterScaredState(player.transform);
         }
     }

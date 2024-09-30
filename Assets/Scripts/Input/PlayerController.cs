@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
 
         if(state == State.Wrangling && pullTimer <= 0)
         {
+            playerSpriteRenderer.sprite = sprites[0];
             AnimalEscaped();
             switchCam.SwitchPriority();
             state = State.Roaming;
