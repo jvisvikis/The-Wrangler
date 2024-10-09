@@ -24,7 +24,7 @@ public class Animal : MonoBehaviour
     [SerializeField] private AnimalType animalType;
     private Merchant merchant;
     private PlayerController player;
-    private NavMeshAgent agent;
+    [SerializeField] private NavMeshAgent agent;
     private float idleTimer;
     private float waitTime;
     private float origSpeed;
@@ -37,7 +37,7 @@ public class Animal : MonoBehaviour
     void Start()
     {
         transform.eulerAngles = Vector3.zero;
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         merchant = FindObjectOfType<Merchant>();

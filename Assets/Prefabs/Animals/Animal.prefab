@@ -442,6 +442,7 @@ MonoBehaviour:
   scaredSpeedModifier: 0
   scaredDistance: 7
   animalType: 0
+  agent: {fileID: 5438482484573799437}
   fmodAnimalScared: {fileID: 1531476148988694759}
 --- !u!195 &5438482484573799437
 NavMeshAgent:

@@ -17,6 +17,7 @@ public class AnimalSpawner : MonoBehaviour
         NavMeshHit navHit;
  
         NavMesh.SamplePosition (spawnPoint, out navHit, rectWidth, -1);
+        Debug.Log(navHit.position);
         GameObject spawnedAnimal = Instantiate(animal,navHit.position,Quaternion.identity);
         spawnedAnimal.transform.eulerAngles = Vector3.zero;
     }
